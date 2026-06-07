@@ -168,15 +168,29 @@
     "connects_to": ["site-intelligence-agent", "magma"]
   },
   {
-    "slug": "testimonial-placeholder",
-    "title": "Testimonial",
+    "slug": "testimonial-abhiroop",
+    "title": "Abhiroop Bhatnagar",
     "type": "testimonial",
-    "date": "2026-06",
+    "date": "2025-09",
     "tags": [],
-    "status": "coming-soon",
+    "status": "shipped",
     "tier": 1,
-    "link": "",
-    "description": "Social proof from collaborators, mentors, and teammates.",
+    "link": "https://linkedin.com/in/nishtobehonest",
+    "author_title": "Agentic AI Leader · Direct Manager",
+    "description": "No matter how complex or ambiguous the challenge, he approaches it calmly, breaks it down, and finds a clear path forward. I always had full confidence in him to execute with excellence and lead initiatives from start to finish.",
+    "connects_to": []
+  },
+  {
+    "slug": "testimonial-rajtosh",
+    "title": "Rajtosh Ranjan",
+    "type": "testimonial",
+    "date": "2024-10",
+    "tags": [],
+    "status": "shipped",
+    "tier": 1,
+    "link": "https://linkedin.com/in/nishtobehonest",
+    "author_title": "Software Engineer · Aereo",
+    "description": "He is one of the most focused and structured individuals I have ever met. He has a deep understanding of product requirements and knows how to guide and manage teams effectively to achieve the desired outcomes.",
     "connects_to": []
   }
 ]

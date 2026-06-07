@@ -2,41 +2,26 @@
 
 const NODES_URL = 'data/nodes.json';
 
-async function loadFeatured() {
+async function loadContent() {
   const res = await fetch(NODES_URL);
   const nodes = await res.json();
-  const featured = nodes.filter(n => n.tier === 1 && n.type === 'project').slice(0, 3);
-  const grid = document.getElementById('featuredGrid');
-  if (!grid) return;
-  grid.innerHTML = featured.map(renderNodeCard).join('');
+
+  const featuredGrid = document.getElementById('featuredGrid');
+  if (featuredGrid) {
+    const featured = nodes.filter(n => n.tier === 1 && n.type === 'project').slice(0, 3);
+    featuredGrid.innerHTML = featured.map(renderNodeCard).join('');
+  }
+
+  const testimonialsGrid = document.getElementById('testimonialsGrid');
+  if (testimonialsGrid) {
+    const testimonials = nodes.filter(n => n.type === 'testimonial' && n.status === 'shipped');
+    testimonialsGrid.innerHTML = testimonials.map(renderTestimonialCard).join('');
+    testimonialsGrid.querySelectorAll('.fade-up').forEach(el => {
+      fadeObserver.observe(el);
+    });
+  }
 }
 
-function statusBadgeClass(status) {
-  return {
-    'shipped':     'badge-shipped',
-    'in-progress': 'badge-in-progress',
-    'learning':    'badge-learning-st',
-    'coming-soon': 'badge-coming-soon',
-  }[status] || 'badge-coming-soon';
-}
-
-function statusLabel(status) {
-  return {
-    'shipped':     'Shipped',
-    'in-progress': 'In progress',
-    'learning':    'Learning',
-    'coming-soon': 'Coming soon',
-  }[status] || status;
-}
-
-function typeBadgeClass(type) {
-  return {
-    'project':     'badge-project',
-    'blog':        'badge-blog',
-    'learning':    'badge-learning',
-    'testimonial': 'badge-testimonial',
-  }[type] || 'badge-project';
-}
 
 function renderNodeCard(node) {
   const isSoon = node.status === 'coming-soon';
@@ -49,7 +34,7 @@ function renderNodeCard(node) {
       <div class="node-card-top">
         <div class="node-card-badges">
           <span class="badge ${typeBadgeClass(node.type)}">${node.type}</span>
-          <span class="badge ${statusBadgeClass(node.status)}">${statusLabel(node.status)}</span>
+          ${node.type !== 'testimonial' ? `<span class="badge ${statusBadgeClass(node.status)}">${statusLabel(node.status)}</span>` : ''}
         </div>
         <span class="node-date">${node.date}</span>
       </div>
@@ -60,10 +45,21 @@ function renderNodeCard(node) {
     </div>`;
 }
 
+function renderTestimonialCard(node) {
+  return `
+    <div class="testimonial-card fade-up">
+      <blockquote class="tcard-quote">"${node.description}"</blockquote>
+      <div class="tcard-footer">
+        <p class="tcard-name">${node.title}</p>
+        ${node.author_title ? `<p class="tcard-role">${node.author_title}</p>` : ''}
+      </div>
+    </div>`;
+}
+
 /* ── Scroll dot nav ──────────────────────────────── */
 function initScrollDots() {
   const dots = document.querySelectorAll('.scroll-dot');
-  const sections = ['hero', 'paths', 'featured'].map(id => document.getElementById(id));
+  const sections = ['hero', 'paths', 'featured', 'testimonials'].map(id => document.getElementById(id));
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -85,17 +81,17 @@ function initScrollDots() {
 }
 
 /* ── Fade-up animations ─────────────────────────── */
+let fadeObserver;
 function initFadeUp() {
-  const els = document.querySelectorAll('.fade-up');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  fadeObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); } });
   }, { threshold: 0.15 });
-  els.forEach(el => observer.observe(el));
+  document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
 }
 
 /* ── Init ────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  loadFeatured();
-  initScrollDots();
   initFadeUp();
+  loadContent();
+  initScrollDots();
 });

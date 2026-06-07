@@ -54,22 +54,28 @@
   <div class="scroll-dot active" data-section="hero" title="Top"></div>
   <div class="scroll-dot" data-section="paths" title="What I do"></div>
   <div class="scroll-dot" data-section="featured" title="Featured work"></div>
+  <div class="scroll-dot" data-section="testimonials" title="What people say"></div>
 </div>
 
 <!-- ── Hero ─────────────────────────────────────────── -->
 <section class="hero" id="hero">
   <div class="container">
     <div class="hero-inner">
-      <p class="eyebrow hero-eyebrow fade-up">Agentic PM</p>
-      <h1 class="hero-headline fade-up">I build AI systems that fail gracefully.</h1>
-      <p class="hero-subline fade-up">
-        RAG pipelines, MCP servers, memory architectures, decision engines —
-        for environments where wrong answers cost something.
-        <br />3 years in product, now building AI systems.
-      </p>
-      <div class="hero-actions fade-up">
-        <a href="explore.html" class="btn-primary">See what I've shipped →</a>
-        <a href="explore.html?type=blog,learning" class="btn-secondary">How I think</a>
+      <div class="hero-text">
+        <p class="eyebrow hero-eyebrow fade-up">Agentic PM</p>
+        <h1 class="hero-headline fade-up">I build AI systems that fail gracefully.</h1>
+        <p class="hero-subline fade-up">
+          RAG pipelines, MCP servers, memory architectures, decision engines —
+          for environments where wrong answers cost something.
+          <br />3 years in product, now building AI systems.
+        </p>
+        <div class="hero-actions fade-up">
+          <a href="explore.html" class="btn-primary">See what I've shipped →</a>
+          <a href="explore.html?type=blog,learning" class="btn-secondary">How I think</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap fade-up">
+        <img src="img/nish.png" alt="Nishchay Vishwanath" class="hero-photo" />
       </div>
     </div>
   </div>
@@ -118,6 +124,19 @@
       <a href="explore.html" class="section-link">View all →</a>
     </div>
     <div class="featured-grid" id="featuredGrid">
+      <!-- Populated by main.js -->
+    </div>
+  </div>
+</section>
+
+<!-- ── Testimonials ───────────────────────────────────── -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>What people say</h2>
+      <a href="https://linkedin.com/in/nishtobehonest" class="section-link" target="_blank" rel="noopener">View on LinkedIn →</a>
+    </div>
+    <div class="testimonials-grid" id="testimonialsGrid">
       <!-- Populated by main.js -->
     </div>
   </div>

@@ -10,16 +10,6 @@ const TYPE_COLOR = {
   testimonial: '#F59E0B',
 };
 
-/* ── Badge helpers (shared with main.js pattern) ─── */
-function typeBadgeClass(type) {
-  return { project:'badge-project', blog:'badge-blog', learning:'badge-learning', testimonial:'badge-testimonial' }[type] || 'badge-project';
-}
-function statusBadgeClass(s) {
-  return { shipped:'badge-shipped', 'in-progress':'badge-in-progress', learning:'badge-learning-st', 'coming-soon':'badge-coming-soon' }[s] || 'badge-coming-soon';
-}
-function statusLabel(s) {
-  return { shipped:'Shipped', 'in-progress':'In progress', learning:'Learning', 'coming-soon':'Coming soon' }[s] || s;
-}
 
 /* ── State ───────────────────────────────────────── */
 let allNodes = [];
@@ -66,7 +56,7 @@ function renderGrid() {
         <div class="node-card-top">
           <div class="node-card-badges">
             <span class="badge ${typeBadgeClass(node.type)}">${node.type}</span>
-            <span class="badge ${statusBadgeClass(node.status)}">${statusLabel(node.status)}</span>
+            ${node.type !== 'testimonial' ? `<span class="badge ${statusBadgeClass(node.status)}">${statusLabel(node.status)}</span>` : ''}
           </div>
           <span class="node-date">${node.date}</span>
         </div>
@@ -294,9 +284,9 @@ function openPanel(node) {
   if (node.type === 'testimonial') {
     body.innerHTML = `
       <h2 class="panel-title">${node.title}</h2>
-      <p class="panel-meta">${node.date}</p>
+      <p class="panel-meta">${node.author_title || ''}</p>
       <blockquote class="panel-quote">"${node.description}"</blockquote>
-      ${node.link ? `<a href="${node.link}" class="panel-action" target="_blank" rel="noopener">See original →</a>` : ''}
+      ${node.link ? `<a href="${node.link}" class="panel-action" target="_blank" rel="noopener">View on LinkedIn →</a>` : ''}
       ${connectedSection(node)}
     `;
   } else {

@@ -140,7 +140,13 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   align-items: center;
   padding-top: 60px;
 }
-.hero-inner { max-width: 760px; }
+.hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  width: 100%;
+}
+.hero-text { flex: 1; max-width: 600px; }
 .hero-eyebrow { margin-bottom: 20px; }
 .hero-headline {
   margin-bottom: 20px;
@@ -198,6 +204,57 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 }
 @keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
 .scroll-hint svg { opacity: .4; }
+
+/* ─── Hero photo ─────────────────────────────────── */
+.hero-photo-wrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-photo {
+  display: block;
+  width: 280px;
+  height: 360px;
+  object-fit: cover;
+  object-position: center 8%;
+  mask-image: radial-gradient(ellipse 78% 88% at 50% 32%, black 45%, transparent 88%);
+  -webkit-mask-image: radial-gradient(ellipse 78% 88% at 50% 32%, black 45%, transparent 88%);
+}
+
+/* ─── Testimonials ───────────────────────────────── */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.testimonial-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--amber);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.tcard-quote {
+  font-size: .9375rem;
+  color: var(--muted-2);
+  line-height: 1.75;
+  font-style: italic;
+  flex: 1;
+}
+.tcard-name {
+  font-size: .9375rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.tcard-role {
+  font-size: .8125rem;
+  color: var(--muted);
+  margin-top: 3px;
+}
 
 /* ─── Three paths ────────────────────────────────── */
 .paths-grid {
@@ -599,11 +656,13 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   .featured-grid,
   .nodes-grid { grid-template-columns: repeat(2, 1fr); }
   .view-toggle { display: none; }
+  .hero-photo-wrap { display: none; }
 }
 @media (max-width: 600px) {
   .paths-grid,
   .featured-grid,
-  .nodes-grid { grid-template-columns: 1fr; }
+  .nodes-grid,
+  .testimonials-grid { grid-template-columns: 1fr; }
   .detail-panel { width: 100%; border-left: none; border-top: 1px solid var(--border); }
   .explorer-controls { flex-direction: column; align-items: flex-start; }
   .section-header { flex-direction: column; gap: 8px; }
