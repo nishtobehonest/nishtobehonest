@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explore — Nishchay Vishwanath</title>
+  <meta name="description" content="Browse all projects, writing, learning notes, and social proof from Nishchay Vishwanath — Agentic PM." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+
+<!-- ── Nav ─────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">nish<span>tobehonest</span></a>
+    <div class="nav-links">
+      <a href="explore.html" class="nav-link active">Explore</a>
+      <a href="explore.html?type=blog,learning" class="nav-link">Writing</a>
+      <a href="mailto:nv268@cornell.edu" class="btn-nav">Get in touch →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Explorer header ─────────────────────────────── -->
+<div class="container">
+  <div class="explorer-header">
+    <h1 class="explorer-title">Knowledge Graph</h1>
+    <p class="explorer-subtitle">Everything I've built, written, and learned — interconnected.</p>
+  </div>
+
+  <!-- ── Controls ──────────────────────────────────── -->
+  <div class="explorer-controls">
+    <div style="display:flex; flex-direction:column; gap:10px; flex:1;">
+      <!-- Type filter -->
+      <div class="filter-group" id="typeFilters">
+        <span class="filter-label">Type</span>
+        <button class="filter-pill active" data-filter-type="type" data-value="all">All</button>
+        <button class="filter-pill" data-filter-type="type" data-value="project">Project</button>
+        <button class="filter-pill" data-filter-type="type" data-value="blog">Blog</button>
+        <button class="filter-pill" data-filter-type="type" data-value="learning">Learning</button>
+        <button class="filter-pill" data-filter-type="type" data-value="testimonial">Testimonial</button>
+      </div>
+      <!-- Status filter -->
+      <div class="filter-group" id="statusFilters">
+        <span class="filter-label">Status</span>
+        <button class="filter-pill active" data-filter-type="status" data-value="all">All</button>
+        <button class="filter-pill" data-filter-type="status" data-value="shipped">Shipped</button>
+        <button class="filter-pill" data-filter-type="status" data-value="in-progress">In progress</button>
+        <button class="filter-pill" data-filter-type="status" data-value="learning">Learning</button>
+      </div>
+    </div>
+
+    <!-- View toggle (hidden on mobile via CSS) -->
+    <div class="view-toggle" id="viewToggle">
+      <button class="toggle-btn active" id="gridBtn" title="Grid view">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+        </svg>
+        Grid
+      </button>
+      <button class="toggle-btn" id="graphBtn" title="Graph view">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="5" r="2"/><circle cx="19" cy="17" r="2"/><circle cx="5" cy="17" r="2"/>
+          <line x1="12" y1="7" x2="19" y2="15"/><line x1="12" y1="7" x2="5" y2="15"/>
+          <line x1="7" y1="17" x2="17" y2="17"/>
+        </svg>
+        Graph
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Grid view ──────────────────────────────────── -->
+  <div class="nodes-grid" id="nodesGrid"></div>
+
+  <!-- ── Graph view ────────────────────────────────── -->
+  <div class="graph-container" id="graphContainer">
+    <div class="graph-spinner" id="graphSpinner">
+      <div class="spinner-ring"></div>
+      <span class="spinner-text">Laying out the graph…</span>
+    </div>
+    <svg id="graph-svg"></svg>
+    <div class="graph-tooltip" id="graphTooltip">
+      <div class="graph-tooltip-title" id="tooltipTitle"></div>
+      <div class="graph-tooltip-type" id="tooltipType"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Detail panel ─────────────────────────────────── -->
+<div class="panel-backdrop" id="panelBackdrop"></div>
+<aside class="detail-panel" id="detailPanel">
+  <div class="panel-header">
+    <div>
+      <div class="panel-badges" id="panelBadges"></div>
+    </div>
+    <button class="panel-close" id="panelClose" aria-label="Close panel">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+  <div class="panel-body" id="panelBody"></div>
+</aside>
+
+<!-- ── Footer ─────────────────────────────────────────── -->
+<footer class="footer" style="margin-top:60px;">
+  <div class="container footer-inner">
+    <span class="footer-name">Nishchay Vishwanath</span>
+    <div class="footer-links">
+      <a href="https://github.com/nishtobehonest" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/nishtobehonest" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:nv268@cornell.edu" class="footer-link">Email</a>
+      <a href="/" class="footer-link">← Home</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/explorer.js"></script>
+</body>
+</html>
