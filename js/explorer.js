@@ -10,22 +10,51 @@ const TYPE_COLOR = {
   testimonial: '#F59E0B',
 };
 
+/* ── Persona presets ─────────────────────────────── */
+const PERSONAS = {
+  recruiter: {
+    subtitle: 'Curated for hiring — shipped work and what people say about it.',
+    filters:  { type: 'all', status: 'shipped', domain: 'all' },
+    sort: (a, b) => (a.tier || 2) - (b.tier || 2) || (new Date(b.date) - new Date(a.date)),
+  },
+  engineer: {
+    subtitle: 'The technical work — systems, protocols, and architecture decisions.',
+    filters:  { type: 'all', status: 'all', domain: 'ai-systems' },
+    sort: (a, b) => new Date(b.date) - new Date(a.date),
+  },
+  curious: {
+    subtitle: 'Everything I\'ve built, written, and learned — interconnected.',
+    filters:  { type: 'all', status: 'all', domain: 'all' },
+    sort: null,
+  },
+};
+
+const DEFAULT_SUBTITLE = 'Everything I\'ve built, written, and learned — interconnected.';
 
 /* ── State ───────────────────────────────────────── */
 let allNodes = [];
-let activeTypeFilter  = 'all';
+let activeTypeFilter   = 'all';
 let activeStatusFilter = 'all';
-let currentView = 'grid'; // 'grid' | 'graph'
+let activeDomain       = 'all';
+let activePersona      = null;
+let currentView = 'grid';
 let graphBuilt = false;
 let simulation = null;
 
 /* ── Filter helpers ──────────────────────────────── */
 function getVisibleNodes() {
-  return allNodes.filter(n => {
-    const typeOk   = activeTypeFilter  === 'all' || n.type   === activeTypeFilter;
+  let nodes = allNodes.filter(n => {
+    const typeOk   = activeTypeFilter   === 'all' || n.type   === activeTypeFilter;
     const statusOk = activeStatusFilter === 'all' || n.status === activeStatusFilter;
-    return typeOk && statusOk;
+    const domainOk = activeDomain === 'all' || n.domain === activeDomain;
+    return typeOk && statusOk && domainOk;
   });
+
+  if (activePersona && PERSONAS[activePersona].sort) {
+    nodes = [...nodes].sort(PERSONAS[activePersona].sort);
+  }
+
+  return nodes;
 }
 
 /* ── URL query param → initial filter state ─────── */
@@ -51,6 +80,10 @@ function renderGrid() {
       ? `<a href="${node.link}" class="node-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">View →</a>`
       : (isSoon ? `<span class="lock-icon">🔒 Coming soon</span>` : '');
 
+    const provesEl = node.proves
+      ? `<p class="node-proves">→ ${node.proves}</p>`
+      : '';
+
     return `
       <div class="node-card ${isSoon ? 'coming-soon' : ''}" data-slug="${node.slug}">
         <div class="node-card-top">
@@ -62,6 +95,7 @@ function renderGrid() {
         </div>
         <h3 class="node-title">${node.title}</h3>
         <p class="node-desc">${node.description}</p>
+        ${provesEl}
         <div class="node-tags">${node.tags.slice(0, 5).map(t => `<span class="tag">${t}</span>`).join('')}</div>
         ${linkEl}
       </div>`;
@@ -75,6 +109,54 @@ function renderGrid() {
   });
 }
 
+/* ── Sync filter pill active states ─────────────── */
+function syncFilterPills() {
+  document.querySelectorAll('[data-filter-type="type"]').forEach(p =>
+    p.classList.toggle('active', p.dataset.value === activeTypeFilter));
+  document.querySelectorAll('[data-filter-type="status"]').forEach(p =>
+    p.classList.toggle('active', p.dataset.value === activeStatusFilter));
+  document.querySelectorAll('[data-filter-type="domain"]').forEach(p =>
+    p.classList.toggle('active', p.dataset.value === activeDomain));
+}
+
+/* ── Persona selector ────────────────────────────── */
+function initPersonaSelector() {
+  document.querySelectorAll('.persona-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      const persona = pill.dataset.persona;
+
+      if (activePersona === persona) {
+        // Toggle off — return to defaults
+        activePersona      = null;
+        activeTypeFilter   = 'all';
+        activeStatusFilter = 'all';
+        activeDomain       = 'all';
+      } else {
+        activePersona = persona;
+        const preset = PERSONAS[persona].filters;
+        activeTypeFilter   = preset.type;
+        activeStatusFilter = preset.status;
+        activeDomain       = preset.domain;
+      }
+
+      document.querySelectorAll('.persona-pill').forEach(p =>
+        p.classList.toggle('active', p.dataset.persona === activePersona));
+
+      const subtitle = document.getElementById('explorerSubtitle');
+      if (subtitle) {
+        subtitle.textContent = activePersona
+          ? PERSONAS[activePersona].subtitle
+          : DEFAULT_SUBTITLE;
+      }
+
+      syncFilterPills();
+      renderGrid();
+
+      if (currentView === 'graph') { graphBuilt = false; buildGraph(); }
+    });
+  });
+}
+
 /* ── Filter pills ────────────────────────────────── */
 function initFilters() {
   document.querySelectorAll('[data-filter-type]').forEach(pill => {
@@ -82,29 +164,24 @@ function initFilters() {
       const filterType = pill.dataset.filterType;
       const value = pill.dataset.value;
 
-      if (filterType === 'type') {
-        activeTypeFilter = value;
-        document.querySelectorAll('[data-filter-type="type"]').forEach(p => p.classList.toggle('active', p.dataset.value === value));
-      } else {
-        activeStatusFilter = value;
-        document.querySelectorAll('[data-filter-type="status"]').forEach(p => p.classList.toggle('active', p.dataset.value === value));
-      }
+      if (filterType === 'type')        activeTypeFilter   = value;
+      else if (filterType === 'status') activeStatusFilter = value;
+      else if (filterType === 'domain') activeDomain       = value;
 
+      // Clear persona when user manually changes any filter
+      activePersona = null;
+      document.querySelectorAll('.persona-pill').forEach(p => p.classList.remove('active'));
+      const subtitle = document.getElementById('explorerSubtitle');
+      if (subtitle) subtitle.textContent = DEFAULT_SUBTITLE;
+
+      syncFilterPills();
       renderGrid();
 
-      // Rebuild graph if currently visible (filter state persists)
-      if (currentView === 'graph') {
-        graphBuilt = false;
-        buildGraph();
-      }
+      if (currentView === 'graph') { graphBuilt = false; buildGraph(); }
     });
   });
 
-  // Apply initial active state from state vars
-  document.querySelectorAll('[data-filter-type="type"]').forEach(p =>
-    p.classList.toggle('active', p.dataset.value === activeTypeFilter));
-  document.querySelectorAll('[data-filter-type="status"]').forEach(p =>
-    p.classList.toggle('active', p.dataset.value === activeStatusFilter));
+  syncFilterPills();
 }
 
 /* ── View toggle ─────────────────────────────────── */
@@ -143,7 +220,6 @@ function buildGraph() {
   const visible = getVisibleNodes();
   const visibleSlugs = new Set(visible.map(n => n.slug));
 
-  // Deduplicate edges: collect unique pairs
   const edgePairs = new Set();
   const links = [];
   visible.forEach(node => {
@@ -171,7 +247,6 @@ function buildGraph() {
   const W = container.clientWidth;
   const H = container.clientHeight;
 
-  // Clear previous
   d3.select(svgEl).selectAll('*').remove();
   if (simulation) simulation.stop();
 
@@ -179,7 +254,6 @@ function buildGraph() {
     .attr('width', W)
     .attr('height', H);
 
-  // Zoom/pan
   const g = svg.append('g');
   svg.call(d3.zoom().scaleExtent([0.3, 3]).on('zoom', e => g.attr('transform', e.transform)));
 
@@ -235,7 +309,6 @@ function buildGraph() {
       tooltipTitle.textContent = d.title;
       tooltipType.textContent  = d.type;
       tooltipType.style.color  = TYPE_COLOR[d.type] || '#4F8EF7';
-      // Highlight edges
       link
         .attr('stroke', l => (l.source.id === d.id || l.target.id === d.id) ? 'rgba(255,255,255,.6)' : 'rgba(255,255,255,.08)')
         .attr('stroke-width', l => (l.source.id === d.id || l.target.id === d.id) ? 2.5 : 1.5);
@@ -263,16 +336,15 @@ function buildGraph() {
     node.attr('transform', d => `translate(${d.x},${d.y})`);
   });
 
-  // Hide spinner after warm-up
   setTimeout(() => spinner.classList.add('hidden'), 900);
 }
 
 /* ── Detail panel ────────────────────────────────── */
 function openPanel(node) {
-  const panel   = document.getElementById('detailPanel');
+  const panel    = document.getElementById('detailPanel');
   const backdrop = document.getElementById('panelBackdrop');
-  const badges  = document.getElementById('panelBadges');
-  const body    = document.getElementById('panelBody');
+  const badges   = document.getElementById('panelBadges');
+  const body     = document.getElementById('panelBody');
 
   badges.innerHTML = `
     <span class="badge ${typeBadgeClass(node.type)}">${node.type}</span>
@@ -294,10 +366,15 @@ function openPanel(node) {
       ? `<a href="${node.link}" class="panel-action" target="_blank" rel="noopener">View ${node.type === 'blog' ? 'post' : 'project'} →</a>`
       : '';
 
+    const provesEl = node.proves
+      ? `<p class="panel-proves">→ ${node.proves}</p>`
+      : '';
+
     body.innerHTML = `
       <h2 class="panel-title">${node.title}</h2>
       <p class="panel-meta">${node.date}${node.tier ? ` · Tier ${node.tier}` : ''}</p>
       <p class="panel-desc">${node.description}</p>
+      ${provesEl}
       <div class="panel-tags">${node.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
       ${actionBtn}
       ${connectedSection(node)}
@@ -308,7 +385,6 @@ function openPanel(node) {
   backdrop.classList.add('active');
   document.body.style.overflow = 'hidden';
 
-  // Wire connected-node mini-cards
   body.querySelectorAll('.connected-node-card').forEach(card => {
     card.addEventListener('click', () => {
       const n = allNodes.find(x => x.slug === card.dataset.slug);
@@ -354,11 +430,11 @@ async function init() {
   allNodes = await res.json();
 
   applyURLFilters();
+  initPersonaSelector();
   initFilters();
   renderGrid();
   initViewToggle();
 
-  // Panel close handlers
   document.getElementById('panelClose').addEventListener('click', closePanel);
   document.getElementById('panelBackdrop').addEventListener('click', closePanel);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });

@@ -31,7 +31,13 @@
 <div class="container">
   <div class="explorer-header">
     <h1 class="explorer-title">Knowledge Graph</h1>
-    <p class="explorer-subtitle">Everything I've built, written, and learned — interconnected.</p>
+    <p class="explorer-subtitle" id="explorerSubtitle">Everything I've built, written, and learned — interconnected.</p>
+    <div class="persona-bar" id="personaBar">
+      <span class="persona-label">I'm a</span>
+      <button class="persona-pill" data-persona="recruiter">Recruiter</button>
+      <button class="persona-pill" data-persona="engineer">Engineer / Builder</button>
+      <button class="persona-pill" data-persona="curious">Just curious</button>
+    </div>
   </div>
 
   <!-- ── Controls ──────────────────────────────────── -->
@@ -53,6 +59,14 @@
         <button class="filter-pill" data-filter-type="status" data-value="shipped">Shipped</button>
         <button class="filter-pill" data-filter-type="status" data-value="in-progress">In progress</button>
         <button class="filter-pill" data-filter-type="status" data-value="learning">Learning</button>
+      </div>
+      <!-- Domain filter -->
+      <div class="filter-group" id="domainFilters">
+        <span class="filter-label">Domain</span>
+        <button class="filter-pill active" data-filter-type="domain" data-value="all">All</button>
+        <button class="filter-pill" data-filter-type="domain" data-value="ai-systems">AI Systems</button>
+        <button class="filter-pill" data-filter-type="domain" data-value="product">Product</button>
+        <button class="filter-pill" data-filter-type="domain" data-value="writing">Writing</button>
       </div>
     </div>
 
@@ -122,7 +136,6 @@
   </div>
 </footer>
 
-<script src="js/utils.js"></script>
 <script src="js/explorer.js"></script>
 </body>
 </html>
