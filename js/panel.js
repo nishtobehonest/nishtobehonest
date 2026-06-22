@@ -1,0 +1,280 @@
+/* Homepage slide-in panel system — 4 section renderers */
+
+(function () {
+  let nodesCache = null;
+  let currentPanel = null;
+
+  async function getNodes() {
+    if (!nodesCache) {
+      const res = await fetch('data/nodes.json');
+      nodesCache = await res.json();
+    }
+    return nodesCache;
+  }
+
+  /* ── DOM refs ─────────────────────────────────────── */
+  const panel    = document.getElementById('canvasPanel');
+  const overlay  = document.getElementById('panelOverlay');
+  const titleEl  = document.getElementById('panelTitle');
+  const bodyEl   = document.getElementById('panelBody');
+  const closeBtn = document.getElementById('panelClose');
+
+  if (!panel) return;
+
+  /* ── Open / close ────────────────────────────────── */
+  const TITLES = { work: '01 / WORK', projects: '02 / PROJECTS', thinking: '03 / THINKING', about: '04 / ABOUT' };
+
+  function openPanel(section) {
+    if (currentPanel === section && panel.classList.contains('open')) {
+      closePanel();
+      return;
+    }
+    currentPanel = section;
+    titleEl.textContent = TITLES[section] || section;
+
+    document.querySelectorAll('.nav-item').forEach(el => {
+      el.classList.toggle('active', el.dataset.panel === section);
+    });
+
+    bodyEl.innerHTML = '';
+    renderSection(section);
+    panel.classList.add('open');
+    overlay.classList.add('active');
+  }
+
+  function closePanel() {
+    panel.classList.remove('open');
+    overlay.classList.remove('active');
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    currentPanel = null;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     WORK — hardcoded accordion
+  ═══════════════════════════════════════════════════ */
+
+  const WORK = [
+    {
+      year: '2025 → 2026',
+      company: 'Cornell University',
+      role: 'MEng Management',
+      bullets: [
+        'Product strategy and AI systems engineering focus',
+        'DTI × ServiceNow consulting engagement — root-cause analysis of enterprise AI adoption drop-off',
+        'AI for Engineering Management coursework'
+      ]
+    },
+    {
+      year: '2023 → 2025',
+      company: 'Aereo',
+      role: 'Product Manager',
+      bullets: [
+        'Agentic AI team — field service and operational workflows',
+        'Led initiatives from 0→1 on agentic product features',
+        'Shipped AI tools used in production environments'
+      ]
+    }
+    // TODO: add prior PM roles
+  ];
+
+  function renderWork() {
+    bodyEl.innerHTML = `
+      <div class="work-accordion">
+        ${WORK.map((item, i) => `
+          <div class="work-item">
+            <button class="work-trigger" data-idx="${i}">
+              <span class="work-year">${item.year}</span>
+              <span class="work-company">${item.company}</span>
+              <span class="work-role">${item.role}</span>
+              <span class="work-chevron">›</span>
+            </button>
+            <div class="work-detail">
+              <ul class="work-bullets">
+                ${item.bullets.map(b => `<li>${b}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+        `).join('')}
+      </div>`;
+
+    bodyEl.querySelectorAll('.work-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const detail = btn.nextElementSibling;
+        const isOpen = btn.classList.contains('open');
+        bodyEl.querySelectorAll('.work-trigger').forEach(b => {
+          b.classList.remove('open');
+          b.nextElementSibling.classList.remove('open');
+        });
+        if (!isOpen) {
+          btn.classList.add('open');
+          detail.classList.add('open');
+        }
+      });
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════
+     PROJECTS — card grid with filters
+  ═══════════════════════════════════════════════════ */
+
+  const PROJ_FILTERS = [
+    { label: 'All',         value: 'all' },
+    { label: 'Shipped',     value: 'shipped' },
+    { label: 'In Progress', value: 'in-progress' },
+    { label: 'AI Systems',  value: 'ai-systems' },
+    { label: 'Product',     value: 'product' },
+  ];
+
+  async function renderProjects() {
+    bodyEl.innerHTML = `<span style="font-family:var(--font-mono);font-size:.75rem;color:var(--muted)">loading...</span>`;
+    const nodes = await getNodes();
+    const projects = nodes
+      .filter(n => n.type === 'project')
+      .sort((a, b) => a.tier - b.tier || b.date.localeCompare(a.date));
+
+    let activeFilter = 'all';
+
+    function filterList(f) {
+      if (f === 'all')         return projects;
+      if (f === 'shipped')     return projects.filter(n => n.status === 'shipped');
+      if (f === 'in-progress') return projects.filter(n => n.status === 'in-progress');
+      return projects.filter(n => n.domain === f);
+    }
+
+    function cardHtml(node) {
+      const isSoon = node.status === 'coming-soon';
+      const Tag    = node.link && !isSoon ? 'a' : 'div';
+      const attrs  = node.link && !isSoon ? `href="${node.link}" target="_blank" rel="noopener"` : '';
+      return `
+        <${Tag} class="node-card${isSoon ? ' coming-soon' : ''}" ${attrs}>
+          <div class="node-card-top">
+            <div class="node-card-badges">
+              <span class="badge ${typeBadgeClass(node.type)}">${node.type}</span>
+              <span class="badge ${statusBadgeClass(node.status)}">${statusLabel(node.status)}</span>
+            </div>
+            <span class="node-date">${node.date}</span>
+          </div>
+          <p class="node-title">${node.title}</p>
+          <p class="node-desc">${node.description}</p>
+          ${node.proves ? `<p class="node-proves">${node.proves}</p>` : ''}
+        </${Tag}>`;
+    }
+
+    function rebuild(f) {
+      const filtered = filterList(f);
+      bodyEl.innerHTML = `
+        <div class="projects-filters">
+          ${PROJ_FILTERS.map(pill => `
+            <button class="filter-pill${f === pill.value ? ' active' : ''}" data-filter="${pill.value}">${pill.label}</button>
+          `).join('')}
+        </div>
+        <div class="projects-grid">
+          ${filtered.map(cardHtml).join('')}
+        </div>
+        <a href="explore.html" class="view-graph-link">→ View full knowledge graph</a>`;
+
+      bodyEl.querySelectorAll('[data-filter]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeFilter = btn.dataset.filter;
+          rebuild(activeFilter);
+        });
+      });
+    }
+
+    rebuild(activeFilter);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     THINKING — blog + learning list
+  ═══════════════════════════════════════════════════ */
+
+  async function renderThinking() {
+    bodyEl.innerHTML = `<span style="font-family:var(--font-mono);font-size:.75rem;color:var(--muted)">loading...</span>`;
+    const nodes = await getNodes();
+    const items = nodes
+      .filter(n => n.type === 'blog' || n.type === 'learning')
+      .sort((a, b) => b.date.localeCompare(a.date));
+
+    if (!items.length) {
+      bodyEl.innerHTML = `<p style="color:var(--muted);font-size:.875rem">Nothing here yet.</p>`;
+      return;
+    }
+
+    bodyEl.innerHTML = `
+      <div class="thinking-list">
+        ${items.map(node => {
+          const typeLabel = node.type === 'blog' ? 'Writing' : 'Learning';
+          const hasLink   = node.link && node.status !== 'coming-soon';
+          const titleInner = hasLink
+            ? `<a href="${node.link}" target="_blank" rel="noopener" class="thinking-item-title">${node.title}</a>`
+            : `<p class="thinking-item-title">${node.title}${node.status === 'coming-soon' ? ' <span style="color:var(--muted);font-size:.7rem">— coming soon</span>' : ''}</p>`;
+          return `
+            <div class="thinking-item">
+              ${titleInner}
+              <p class="thinking-item-desc">${node.description}</p>
+              <span class="thinking-item-meta">${typeLabel}  ·  ${node.date}</span>
+            </div>`;
+        }).join('')}
+      </div>`;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     ABOUT — bio + education + testimonials
+  ═══════════════════════════════════════════════════ */
+
+  async function renderAbout() {
+    const nodes = await getNodes();
+    const testimonials = nodes.filter(n => n.type === 'testimonial' && n.status === 'shipped');
+
+    bodyEl.innerHTML = `
+      <p class="about-bio">Agentic PM. Cornell MEM 2026.
+I build AI systems that fail gracefully —
+RAG pipelines, MCP servers, memory architectures,
+for environments where wrong answers cost something.
+
+3 years in product. Focus: FDE/PM at Series A/B
+startups bringing AI into physical-world operations —
+geospatial, autonomous systems, industrial ops.</p>
+
+      <span class="about-section-label">Education</span>
+      <div class="about-edu">
+        Cornell University <span class="edu-sep">/</span> MEng Management <span class="edu-sep">/</span> 2025–2026
+      </div>
+
+      <span class="about-section-label">What people say</span>
+      <div class="about-testimonials">
+        ${testimonials.map(node => `
+          <div class="testimonial-card">
+            <blockquote class="tcard-quote">"${node.description}"</blockquote>
+            <div>
+              <p class="tcard-name">${node.title}</p>
+              ${node.author_title ? `<p class="tcard-role">${node.author_title}</p>` : ''}
+            </div>
+          </div>`).join('')}
+      </div>`;
+  }
+
+  /* ── Dispatcher ──────────────────────────────────── */
+
+  function renderSection(section) {
+    switch (section) {
+      case 'work':     renderWork();     break;
+      case 'projects': renderProjects(); break;
+      case 'thinking': renderThinking(); break;
+      case 'about':    renderAbout();    break;
+    }
+  }
+
+  /* ── Event wiring ────────────────────────────────── */
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.nav-item').forEach(btn => {
+      btn.addEventListener('click', () => openPanel(btn.dataset.panel));
+    });
+    closeBtn.addEventListener('click', closePanel);
+    overlay.addEventListener('click', closePanel);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && currentPanel) closePanel();
+    });
+  });
+})();

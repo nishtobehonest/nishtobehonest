@@ -11,7 +11,23 @@
     "link": "https://github.com/nishtobehonest/site-intelligence-agent",
     "description": "RAG-based field service assistant with a 4-step confidence pipeline — LOW confidence skips the LLM entirely, because a hallucinated answer is worse than no answer.",
     "proves": "Designs for failure, not the happy path",
+    "design_note": "Threshold tuning runs offline against a ground-truth eval set — because tuning in production means the first bad answer has already shipped.",
     "connects_to": ["magma", "calling-services-mcp"]
+  },
+  {
+    "slug": "pipeline-risk-intelligence-agent",
+    "title": "Pipeline Risk Intelligence Agent",
+    "type": "project",
+    "domain": "ai-systems",
+    "date": "2026-06",
+    "tags": ["Apache-Sedona", "Claude", "FastAPI", "React", "Leaflet", "geospatial", "risk-routing"],
+    "status": "in-progress",
+    "tier": 1,
+    "link": "https://github.com/nishtobehonest/pipeline-risk-intelligence-agent",
+    "description": "Spatial risk agent for natural gas pipelines — scores segments using FEMA flood zones, USGS seismic hazard, and Census urban proximity. When signals conflict (>0.40 spread), routes to human review with plain-English explanation. Never averages away ambiguity.",
+    "proves": "The system knows when it shouldn't decide",
+    "design_note": "Three routing outcomes, not two. Binary alert/no-alert would average conflicting signals. The third path routes ambiguity to a human with a plain-English explanation of why.",
+    "connects_to": ["decision-intelligence-agent", "site-intelligence-agent"]
   },
   {
     "slug": "magma",
@@ -39,6 +55,7 @@
     "link": "https://github.com/nishtobehonest/CallingServices_MCP",
     "description": "Python MCP server for ticket intake and routing — three tools, one prompt, one resource over the Model Context Protocol. Claude Desktop picks it up with a single config line.",
     "proves": "Protocol-level systems thinking",
+    "design_note": "Email header injection is blocked at input validation, not at send time. Security at the boundary means the bad input never reaches the system — not caught mid-flight.",
     "connects_to": ["latex-resume-tailor-mcp", "site-intelligence-agent"]
   },
   {
@@ -53,6 +70,7 @@
     "link": "https://github.com/nishtobehonest/decision-intelligence-agent",
     "description": "Deterministic revenue classifier and marketing decision engine — deliberately no LLM in the core path. When revenue is healthy, it suppresses low-priority actions. Models the cost of acting.",
     "proves": "Knows when NOT to use AI",
+    "design_note": "No LLM in the core decision path. The cost of acting is modeled explicitly — when revenue is healthy, suppressing low-priority actions is the right call, not an oversight.",
     "connects_to": ["dti-servicenow", "case-studies"]
   },
   {
@@ -82,6 +100,20 @@
     "description": "Live React + Gemini 2.5 Flash dashboard for MBA case analysis. Tab-aware context: system prompt rebuilds per active tab so 'what does this chart mean?' works without confusion.",
     "proves": "Context-aware prompting at the application layer",
     "connects_to": ["decision-intelligence-agent", "ground-truth"]
+  },
+  {
+    "slug": "ground-truth",
+    "title": "Ground Truth — Multi-Tab AI Dashboard",
+    "type": "project",
+    "domain": "ai-systems",
+    "date": "2026-01",
+    "tags": ["React", "Anthropic", "multi-tab", "system-prompts", "context-aware"],
+    "status": "shipped",
+    "tier": 2,
+    "link": "",
+    "description": "React + Anthropic API dashboard with per-tab system prompts — each tab rebuilds context from scratch so queries resolve correctly regardless of which tab is active.",
+    "proves": "Context isolation at the application layer",
+    "connects_to": ["case-studies", "decision-intelligence-agent"]
   },
   {
     "slug": "dti-servicenow",
@@ -138,6 +170,76 @@
     "description": "Full system design docs, evaluation framework, and LinkedIn carousel for an agentic consulting analyst. Consulting-grade problem framing for enterprise AI pitches.",
     "proves": "Consulting-grade AI system design",
     "connects_to": ["dti-servicenow", "email-negotiation-coach"]
+  },
+  {
+    "slug": "2d-world-ai",
+    "title": "2D World AI — Learning Lab",
+    "type": "project",
+    "domain": "ai-systems",
+    "date": "2026-06",
+    "tags": ["evals", "agents", "LLM", "learning-in-public", "deterministic"],
+    "status": "in-progress",
+    "tier": 2,
+    "link": "",
+    "description": "Chapter-by-chapter lab where AI concepts — deterministic agents, random agents, LLM navigation, evals, LLM-as-judge — are built into a 2D grid world. Each chapter ends with a notes.md written after running the code. The notes are the artifact.",
+    "proves": "Learning AI engineering in public, with evals",
+    "connects_to": ["learning-rag-architecture", "decision-intelligence-agent"]
+  },
+  {
+    "slug": "artifact-waymo",
+    "title": "Waymo — Map Readiness Brief",
+    "type": "project",
+    "domain": "product",
+    "date": "2026-05",
+    "tags": ["FDE-artifact", "bespoke-pitch", "geospatial", "autonomous-vehicles", "data-provenance"],
+    "status": "shipped",
+    "tier": 2,
+    "link": "",
+    "description": "Unsolicited PM brief arguing Waymo's construction-zone failures are a data provenance problem, not a perception problem — proposing a Pre-Event Map Invalidation layer. Built before applying.",
+    "proves": "Forward-deployed PM: builds before applying",
+    "connects_to": ["pipeline-risk-intelligence-agent", "agentic-consulting-analyst"]
+  },
+  {
+    "slug": "artifact-homelight",
+    "title": "HomeLight — Geospatial Intelligence Brief",
+    "type": "project",
+    "domain": "product",
+    "date": "2026-06",
+    "tags": ["FDE-artifact", "bespoke-pitch", "geospatial", "proptech", "neighborhood-intelligence"],
+    "status": "shipped",
+    "tier": 2,
+    "link": "",
+    "description": "Hypothesis-driven PM brief on HomeLight's missing neighborhood intelligence layer — the conversion gap between agent matching and closing that Redfin/Zillow have closed. Built before applying.",
+    "proves": "Forward-deployed PM: builds before applying",
+    "connects_to": ["agentic-consulting-analyst", "dti-servicenow"]
+  },
+  {
+    "slug": "artifact-netic",
+    "title": "Netic — Technician Intelligence Brief",
+    "type": "project",
+    "domain": "product",
+    "date": "2026-06",
+    "tags": ["FDE-artifact", "bespoke-pitch", "field-service", "AI-agents", "operational-AI"],
+    "status": "shipped",
+    "tier": 2,
+    "link": "",
+    "description": "PM brief arguing Netic optimizes for job count but the real opportunity is job value — a technician intelligence layer that closes the data loop from the Cultivate Engine to the field and back.",
+    "proves": "Forward-deployed PM: builds before applying",
+    "connects_to": ["site-intelligence-agent", "agentic-consulting-analyst"]
+  },
+  {
+    "slug": "artifact-drafted",
+    "title": "Drafted — Builder Retention Brief",
+    "type": "project",
+    "domain": "product",
+    "date": "2026-06",
+    "tags": ["FDE-artifact", "bespoke-pitch", "proptech", "AI-design", "retention"],
+    "status": "shipped",
+    "tier": 2,
+    "link": "",
+    "description": "PM brief for Drafted (YC P26) on the builder retention gap — 65% consumer users, 15% builders, but builders drive revenue. Maps the professional workflow gap the consumer-first product creates.",
+    "proves": "Forward-deployed PM: builds before applying",
+    "connects_to": ["agentic-consulting-analyst", "decision-intelligence-agent"]
   },
   {
     "slug": "blog-on-graceful-failure",

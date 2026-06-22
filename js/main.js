@@ -6,6 +6,8 @@ async function loadContent() {
   const res = await fetch(NODES_URL);
   const nodes = await res.json();
 
+  loadBuildingStrip(nodes);
+
   const featuredGrid = document.getElementById('featuredGrid');
   if (featuredGrid) {
     const featured = nodes.filter(n => n.tier === 1 && n.type === 'project').slice(0, 3);
@@ -87,6 +89,18 @@ function initFadeUp() {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); } });
   }, { threshold: 0.15 });
   document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+}
+
+/* ── Building strip ─────────────────────────────── */
+function loadBuildingStrip(nodes) {
+  const inProgress = nodes.filter(n => n.status === 'in-progress' && n.type === 'project');
+  const strip = document.getElementById('buildingStrip');
+  const container = document.getElementById('buildingLinks');
+  if (!strip || !container) return;
+  if (!inProgress.length) { strip.style.display = 'none'; return; }
+  container.innerHTML = inProgress.map((n, i) =>
+    `${i > 0 ? '<span class="building-sep">, </span>' : ''}<a href="explore.html" class="building-link">${n.title}</a>`
+  ).join('');
 }
 
 /* ── Init ────────────────────────────────────────── */

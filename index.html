@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="canvas-mode">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,16 +10,15 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Nishchay Vishwanath — Agentic PM" />
   <meta property="og:description" content="I build AI systems that fail gracefully. RAG pipelines, MCP servers, memory architectures, decision engines." />
-  <meta property="og:url" content="https://nishtobehonest.com" />
+  <meta property="og:url" content="https://nishchay.me" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -27,7 +26,7 @@
     "name": "Nishchay Vishwanath",
     "jobTitle": "Agentic PM",
     "alumniOf": "Cornell University",
-    "url": "https://nishtobehonest.com",
+    "url": "https://nishchay.me",
     "sameAs": [
       "https://linkedin.com/in/nishtobehonest",
       "https://github.com/nishtobehonest"
@@ -37,125 +36,61 @@
 </head>
 <body>
 
-<!-- ── Nav ─────────────────────────────────────────── -->
-<nav class="nav">
-  <div class="container nav-inner">
-    <a href="/" class="nav-logo">nish<span>tobehonest</span></a>
-    <div class="nav-links">
-      <a href="explore.html" class="nav-link">Explore</a>
-      <a href="explore.html?type=blog,learning" class="nav-link">Writing</a>
-      <a href="mailto:nv268@cornell.edu" class="btn-nav">Get in touch →</a>
-    </div>
-  </div>
-</nav>
+<div class="canvas">
 
-<!-- ── Scroll dots ──────────────────────────────────── -->
-<div class="scroll-dots" id="scrollDots">
-  <div class="scroll-dot active" data-section="hero" title="Top"></div>
-  <div class="scroll-dot" data-section="paths" title="What I do"></div>
-  <div class="scroll-dot" data-section="featured" title="Featured work"></div>
-  <div class="scroll-dot" data-section="testimonials" title="What people say"></div>
+  <!-- ── Identity column (left 38%) ────────────────── -->
+  <aside class="identity-col">
+    <div class="id-top">
+      <h1 class="id-name">Nishchay Vishwanath</h1>
+      <p class="id-tagline">Product → AI. Systems. Geospatial.</p>
+      <blockquote class="id-quote">
+        "What I cannot create,<br>I do not understand."
+        <cite>— R. Feynman</cite>
+      </blockquote>
+    </div>
+
+    <nav class="id-nav" aria-label="Sections">
+      <button class="nav-item" data-panel="work">01 / WORK</button>
+      <button class="nav-item" data-panel="projects">02 / PROJECTS</button>
+      <button class="nav-item" data-panel="thinking">03 / THINKING</button>
+      <button class="nav-item" data-panel="about">04 / ABOUT</button>
+    </nav>
+
+    <footer class="id-footer">
+      <div class="id-socials">
+        <a href="https://github.com/nishtobehonest" class="id-social" target="_blank" rel="noopener">↗ github</a>
+        <a href="https://linkedin.com/in/nishtobehonest" class="id-social" target="_blank" rel="noopener">↗ linkedin</a>
+        <a href="mailto:nv268@cornell.edu" class="id-social">↗ email</a>
+      </div>
+      <span class="id-copy">©2026</span>
+    </footer>
+  </aside>
+
+  <!-- ── Terminal column (right 62%) ───────────────── -->
+  <div class="terminal-col">
+    <div class="terminal-header">
+      <span class="terminal-dot red"></span>
+      <span class="terminal-dot amber"></span>
+      <span class="terminal-dot green"></span>
+      <span class="terminal-title">nishchay.me — knowledge graph</span>
+    </div>
+    <div class="terminal-body" id="termBody" aria-live="polite" aria-label="Terminal output"></div>
+  </div>
+
 </div>
 
-<!-- ── Hero ─────────────────────────────────────────── -->
-<section class="hero" id="hero">
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-text">
-        <p class="eyebrow hero-eyebrow fade-up">Agentic PM</p>
-        <h1 class="hero-headline fade-up">I build AI systems that fail gracefully.</h1>
-        <p class="hero-subline fade-up">
-          RAG pipelines, MCP servers, memory architectures, decision engines —
-          for environments where wrong answers cost something.
-          <br />3 years in product, now building AI systems.
-        </p>
-        <div class="hero-actions fade-up">
-          <a href="explore.html" class="btn-primary">See what I've shipped →</a>
-          <a href="explore.html?type=blog,learning" class="btn-secondary">How I think</a>
-        </div>
-      </div>
-      <div class="hero-photo-wrap fade-up">
-        <img src="img/nish.png" alt="Nishchay Vishwanath" class="hero-photo" />
-      </div>
-    </div>
+<!-- ── Homepage panel system ─────────────────────── -->
+<div class="panel-overlay" id="panelOverlay"></div>
+<div class="canvas-panel" id="canvasPanel" role="dialog" aria-modal="true" aria-labelledby="panelTitle">
+  <div class="cp-header">
+    <span class="cp-title" id="panelTitle"></span>
+    <button class="cp-close" id="panelClose" aria-label="Close panel">✕</button>
   </div>
-  <div class="scroll-hint">
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path d="M12 5v14M5 12l7 7 7-7"/>
-    </svg>
-    scroll
-  </div>
-</section>
-
-<!-- ── Three paths ──────────────────────────────────── -->
-<section class="section" id="paths">
-  <div class="container">
-    <div class="paths-grid">
-      <a href="explore.html" class="path-card fade-up">
-        <div class="path-icon">⚙️</div>
-        <span class="path-label">Proof of work</span>
-        <h3 class="path-title">What I've shipped</h3>
-        <p class="path-desc">RAG agents, MCP servers, decision engines, memory architectures. All open source, all demo-ready.</p>
-        <span class="path-arrow">Browse all work →</span>
-      </a>
-      <a href="explore.html?type=blog,learning" class="path-card fade-up">
-        <div class="path-icon">🧠</div>
-        <span class="path-label">How I think</span>
-        <h3 class="path-title">Writing & learning</h3>
-        <p class="path-desc">Notes on AI architecture, PM craft, and what I'm figuring out in public. Timestamped, so the arc is visible.</p>
-        <span class="path-arrow">Read my notes →</span>
-      </a>
-      <a href="mailto:nv268@cornell.edu" class="path-card fade-up">
-        <div class="path-icon">👋</div>
-        <span class="path-label">Let's talk</span>
-        <h3 class="path-title">Get in touch</h3>
-        <p class="path-desc">PM with 3 years of experience. Building at the intersection of AI systems and product. Open to Agentic PM and Forward Deployed PM roles at AI-native startups.</p>
-        <span class="path-arrow">nv268@cornell.edu →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ── Featured work ─────────────────────────────────── -->
-<section class="section" id="featured">
-  <div class="container">
-    <div class="section-header fade-up">
-      <h2>Featured work</h2>
-      <a href="explore.html" class="section-link">View all →</a>
-    </div>
-    <div class="featured-grid" id="featuredGrid">
-      <!-- Populated by main.js -->
-    </div>
-  </div>
-</section>
-
-<!-- ── Testimonials ───────────────────────────────────── -->
-<section class="section" id="testimonials">
-  <div class="container">
-    <div class="section-header fade-up">
-      <h2>What people say</h2>
-      <a href="https://linkedin.com/in/nishtobehonest" class="section-link" target="_blank" rel="noopener">View on LinkedIn →</a>
-    </div>
-    <div class="testimonials-grid" id="testimonialsGrid">
-      <!-- Populated by main.js -->
-    </div>
-  </div>
-</section>
-
-<!-- ── Footer ─────────────────────────────────────────── -->
-<footer class="footer">
-  <div class="container footer-inner">
-    <span class="footer-name">Nishchay Vishwanath</span>
-    <div class="footer-links">
-      <a href="https://github.com/nishtobehonest" class="footer-link" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://linkedin.com/in/nishtobehonest" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:nv268@cornell.edu" class="footer-link">Email</a>
-      <a href="explore.html" class="footer-link">View all work →</a>
-    </div>
-  </div>
-</footer>
+  <div class="cp-body" id="panelBody"></div>
+</div>
 
 <script src="js/utils.js"></script>
-<script src="js/main.js"></script>
+<script src="js/terminal.js"></script>
+<script src="js/panel.js"></script>
 </body>
 </html>

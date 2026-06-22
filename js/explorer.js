@@ -13,8 +13,8 @@ const TYPE_COLOR = {
 /* ── Persona presets ─────────────────────────────── */
 const PERSONAS = {
   recruiter: {
-    subtitle: 'Curated for hiring — shipped work and what people say about it.',
-    filters:  { type: 'all', status: 'shipped', domain: 'all' },
+    subtitle: 'Curated for hiring — all work including what\'s in progress.',
+    filters:  { type: 'all', status: 'all', domain: 'all' },
     sort: (a, b) => (a.tier || 2) - (b.tier || 2) || (new Date(b.date) - new Date(a.date)),
   },
   engineer: {
@@ -29,7 +29,7 @@ const PERSONAS = {
   },
 };
 
-const DEFAULT_SUBTITLE = 'Everything I\'ve built, written, and learned — interconnected.';
+const DEFAULT_SUBTITLE = 'Projects / Writing / Learning — interconnected.';
 
 /* ── State ───────────────────────────────────────── */
 let allNodes = [];
@@ -40,6 +40,7 @@ let activePersona      = null;
 let currentView = 'grid';
 let graphBuilt = false;
 let simulation = null;
+let roughLinkGroup = null;
 
 /* ── Filter helpers ──────────────────────────────── */
 function getVisibleNodes() {
@@ -60,12 +61,29 @@ function getVisibleNodes() {
 /* ── URL query param → initial filter state ─────── */
 function applyURLFilters() {
   const params = new URLSearchParams(window.location.search);
+
+  const personaParam = params.get('persona');
+  if (personaParam && PERSONAS[personaParam]) {
+    activePersona = personaParam;
+    const preset = PERSONAS[personaParam].filters;
+    activeTypeFilter   = preset.type;
+    activeStatusFilter = preset.status;
+    activeDomain       = preset.domain;
+  }
+
   const typeParam = params.get('type');
   if (typeParam) {
     const first = typeParam.split(',')[0].trim();
     if (['project','blog','learning','testimonial'].includes(first)) {
       activeTypeFilter = first;
+      activePersona = null;
     }
+  }
+
+  const domainParam = params.get('domain');
+  if (domainParam && ['ai-systems','product','writing'].includes(domainParam)) {
+    activeDomain  = domainParam;
+    activePersona = null;
   }
 }
 
@@ -265,12 +283,33 @@ function buildGraph() {
     .force('center', d3.forceCenter(W / 2, H / 2))
     .force('collision', d3.forceCollide().radius(d => nodeRadius(d) + 14));
 
-  const link = g.append('g')
-    .selectAll('line')
+  const linkGroup = g.append('g');
+  const link = linkGroup.selectAll('line')
     .data(links)
     .join('line')
     .attr('stroke', 'rgba(255,255,255,.12)')
     .attr('stroke-width', 1.5);
+
+  // Rough.js: draw hand-sketched edges once simulation settles
+  roughLinkGroup = null;
+  function drawRoughEdges() {
+    if (roughLinkGroup) { roughLinkGroup.remove(); roughLinkGroup = null; }
+    if (typeof rough === 'undefined') return;
+    const rc = rough.svg(svgEl);
+    const rg = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    rg.setAttribute('pointer-events', 'none');
+    links.forEach((l, idx) => {
+      if (l.source.x == null) return;
+      const el = rc.line(l.source.x, l.source.y, l.target.x, l.target.y, {
+        roughness: 1.3, stroke: 'rgba(255,255,255,0.18)', strokeWidth: 1.5, seed: (idx + 1) * 17,
+      });
+      rg.appendChild(el);
+    });
+    roughLinkGroup = rg;
+    g.node().insertBefore(rg, linkGroup.node());
+    linkGroup.attr('opacity', 0);
+  }
+  simulation.on('end.rough', drawRoughEdges);
 
   const node = g.append('g')
     .selectAll('g')
@@ -278,7 +317,11 @@ function buildGraph() {
     .join('g')
     .attr('cursor', 'pointer')
     .call(d3.drag()
-      .on('start', (e, d) => { if (!e.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+      .on('start', (e, d) => {
+        if (!e.active) simulation.alphaTarget(0.3).restart();
+        if (roughLinkGroup) { roughLinkGroup.remove(); roughLinkGroup = null; linkGroup.attr('opacity', 1); }
+        d.fx = d.x; d.fy = d.y;
+      })
       .on('drag',  (e, d) => { d.fx = e.x; d.fy = e.y; })
       .on('end',   (e, d) => { if (!e.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; }));
 
@@ -309,9 +352,11 @@ function buildGraph() {
       tooltipTitle.textContent = d.title;
       tooltipType.textContent  = d.type;
       tooltipType.style.color  = TYPE_COLOR[d.type] || '#4F8EF7';
+      const isConnected = l => l.source.id === d.id || l.target.id === d.id;
       link
-        .attr('stroke', l => (l.source.id === d.id || l.target.id === d.id) ? 'rgba(255,255,255,.6)' : 'rgba(255,255,255,.08)')
-        .attr('stroke-width', l => (l.source.id === d.id || l.target.id === d.id) ? 2.5 : 1.5);
+        .attr('stroke', l => isConnected(l) ? 'rgba(255,255,255,.6)' : 'rgba(255,255,255,.08)')
+        .attr('stroke-width', l => isConnected(l) ? 2.5 : 1.5)
+        .attr('opacity', 1);
     })
     .on('mousemove', e => {
       const rect = container.getBoundingClientRect();
@@ -320,7 +365,10 @@ function buildGraph() {
     })
     .on('mouseout', () => {
       tooltip.classList.remove('visible');
-      link.attr('stroke', 'rgba(255,255,255,.12)').attr('stroke-width', 1.5);
+      link
+        .attr('stroke', 'rgba(255,255,255,.12)')
+        .attr('stroke-width', 1.5)
+        .attr('opacity', roughLinkGroup ? 0 : 1);
     })
     .on('click', (e, d) => {
       e.stopPropagation();
@@ -370,11 +418,19 @@ function openPanel(node) {
       ? `<p class="panel-proves">→ ${node.proves}</p>`
       : '';
 
+    const designNoteEl = node.design_note
+      ? `<div class="panel-design-note">
+           <p class="panel-design-note-label">Why I built it this way</p>
+           <p>${node.design_note}</p>
+         </div>`
+      : '';
+
     body.innerHTML = `
       <h2 class="panel-title">${node.title}</h2>
       <p class="panel-meta">${node.date}${node.tier ? ` · Tier ${node.tier}` : ''}</p>
       <p class="panel-desc">${node.description}</p>
       ${provesEl}
+      ${designNoteEl}
       <div class="panel-tags">${node.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
       ${actionBtn}
       ${connectedSection(node)}
@@ -432,6 +488,15 @@ async function init() {
   applyURLFilters();
   initPersonaSelector();
   initFilters();
+
+  // Sync persona pill highlight + subtitle if set from URL
+  if (activePersona) {
+    document.querySelectorAll('.persona-pill').forEach(p =>
+      p.classList.toggle('active', p.dataset.persona === activePersona));
+    const subtitle = document.getElementById('explorerSubtitle');
+    if (subtitle) subtitle.textContent = PERSONAS[activePersona].subtitle;
+  }
+
   renderGrid();
   initViewToggle();
 
