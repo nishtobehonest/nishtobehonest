@@ -23,13 +23,15 @@ The entire site is still driven by a single data file: [data/nodes.json](data/no
 
 **Pages:**
 - [index.html](index.html) — viewport-as-canvas landing page. No scroll. Two-column grid: identity left (38%), terminal typewriter right (62%). Navigation opens slide-in panels.
-- [explore.html](explore.html) — full explorer with grid + D3 force-directed graph toggle; driven by [js/explorer.js](js/explorer.js). Linked from the PROJECTS panel.
+- [explore.html](explore.html) — full explorer with grid + D3 force-directed graph toggle, persona routing (recruiter / engineer / curious), and domain filter pills. Driven by [js/explorer.js](js/explorer.js). Linked from the PROJECTS panel.
 
 **Key files:**
 - `css/style.css` — design tokens + canvas layout + terminal + panel system + mobile
 - `js/terminal.js` — typewriter animation; reads nodes.json, types project names + confidence gate lines
-- `js/panel.js` — slide-in panel system; renders all 4 sections (WORK, PROJECTS, THINKING, ABOUT)
+- `js/panel.js` — slide-in panel system; renders all 4 sections. WORK is hardcoded (edit `WORK` array in panel.js directly — not data-driven from nodes.json)
+- `js/explorer.js` — all explore.html logic: grid render, D3 graph, detail panel, persona presets, domain/status/type filters
 - `js/utils.js` — badge helpers shared between index and explore
+- `js/main.js` — legacy v1/v2 landing page script; not loaded by any current page. Do not delete (reference only)
 - `data/nodes.json` — single source of truth for all content
 
 **Homepage layout:**
@@ -133,6 +135,8 @@ Dark theme (pure black), three fonts. CSS variables in [css/style.css](css/style
 
 **Accent colors are functional, not decorative.** They map to node types and statuses — do not change them for aesthetic reasons.
 
+**Design token reuse:** These tokens are the canonical source. They are also embedded in the `/build-artifact-v2` skill (`~/.claude/commands/build-artifact-v2.md`) so outbound artifacts share the same visual language. If you update a token here, update it in `build-artifact-v2.md` too (reference copy: `~/Technical/skills/build-artifact-v2.md`).
+
 ## External libraries
 
 - **D3 v7** — force-directed graph (`explore.html` only — NOT loaded on index.html)
@@ -149,4 +153,4 @@ Dark theme (pure black), three fonts. CSS variables in [css/style.css](css/style
 
 - `planning/plan-01-knowledge-graph-portfolio.md` — original architecture
 - `planning/plan-02-enrichment-and-visual.md` — enrichment pass
-- `planning/plan-03-rebuild.md` — **current** — clean-slate canvas rebuild (2026-06-22)
+- `planning/plan-03-rebuild.md` — clean-slate canvas rebuild — **shipped 2026-06-22**
