@@ -151,6 +151,4 @@ Dark theme (pure black), three fonts. CSS variables in [css/style.css](css/style
 
 ## Planning history
 
-- `planning/plan-01-knowledge-graph-portfolio.md` — original architecture
-- `planning/plan-02-enrichment-and-visual.md` — enrichment pass
-- `planning/plan-03-rebuild.md` — clean-slate canvas rebuild — **shipped 2026-06-22**
+planning/ folder removed after v3 shipped. Three phases: knowledge graph architecture (v1) → enrichment + visuals (v2) → viewport-as-canvas rebuild (v3, 2026-06-22).
