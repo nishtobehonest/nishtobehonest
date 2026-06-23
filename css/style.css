@@ -428,7 +428,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 }
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 10px;
   margin-bottom: 20px;
 }

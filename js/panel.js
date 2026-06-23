@@ -156,15 +156,11 @@
       return `
         <${Tag} class="node-card${isSoon ? ' coming-soon' : ''}" ${attrs}>
           <div class="node-card-top">
-            <div class="node-card-badges">
-              <span class="badge ${typeBadgeClass(node.type)}">${node.type}</span>
-              <span class="badge ${statusBadgeClass(node.status)}">${statusLabel(node.status)}</span>
-            </div>
+            <span class="badge ${statusBadgeClass(node.status)}">${statusLabel(node.status)}</span>
             <span class="node-date">${node.date}</span>
           </div>
           <p class="node-title">${node.title}</p>
           <p class="node-desc">${node.description}</p>
-          ${node.proves ? `<p class="node-proves">${node.proves}</p>` : ''}
         </${Tag}>`;
     }
 
