@@ -125,14 +125,6 @@
      PROJECTS — card grid with filters
   ═══════════════════════════════════════════════════ */
 
-  const PROJ_FILTERS = [
-    { label: 'All',         value: 'all' },
-    { label: 'Shipped',     value: 'shipped' },
-    { label: 'In Progress', value: 'in-progress' },
-    { label: 'AI Systems',  value: 'ai-systems' },
-    { label: 'Product',     value: 'product' },
-  ];
-
   async function renderProjects() {
     bodyEl.innerHTML = `<span style="font-family:var(--font-mono);font-size:.75rem;color:var(--muted)">loading...</span>`;
     const nodes = await getNodes();
@@ -140,52 +132,28 @@
       .filter(n => n.type === 'project')
       .sort((a, b) => a.tier - b.tier || b.date.localeCompare(a.date));
 
-    let activeFilter = 'all';
-
-    function filterList(f) {
-      if (f === 'all')         return projects;
-      if (f === 'shipped')     return projects.filter(n => n.status === 'shipped');
-      if (f === 'in-progress') return projects.filter(n => n.status === 'in-progress');
-      return projects.filter(n => n.domain === f);
-    }
-
-    function cardHtml(node) {
+    function rowHtml(node) {
       const isSoon = node.status === 'coming-soon';
       const Tag    = node.link && !isSoon ? 'a' : 'div';
       const attrs  = node.link && !isSoon ? `href="${node.link}" target="_blank" rel="noopener"` : '';
       return `
-        <${Tag} class="node-card${isSoon ? ' coming-soon' : ''}" ${attrs}>
-          <div class="node-card-top">
-            <span class="badge ${statusBadgeClass(node.status)}">${statusLabel(node.status)}</span>
-            <span class="node-date">${node.date}</span>
-          </div>
-          <p class="node-title">${node.title}</p>
-          <p class="node-desc">${node.description}</p>
+        <${Tag} class="proj-row${isSoon ? ' proj-row-soon' : ''}" ${attrs}>
+          <span class="proj-date">${node.date}</span>
+          <span class="proj-title">${node.title}</span>
+          <span class="proj-status">${statusLabel(node.status)}</span>
+          <span class="proj-chevron">›</span>
         </${Tag}>`;
     }
 
-    function rebuild(f) {
-      const filtered = filterList(f);
+    function rebuild() {
       bodyEl.innerHTML = `
-        <div class="projects-filters">
-          ${PROJ_FILTERS.map(pill => `
-            <button class="filter-pill${f === pill.value ? ' active' : ''}" data-filter="${pill.value}">${pill.label}</button>
-          `).join('')}
-        </div>
-        <div class="projects-grid">
-          ${filtered.map(cardHtml).join('')}
+        <div class="proj-list">
+          ${projects.map(rowHtml).join('')}
         </div>
         <a href="explore.html" class="view-graph-link">→ View full knowledge graph</a>`;
-
-      bodyEl.querySelectorAll('[data-filter]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          activeFilter = btn.dataset.filter;
-          rebuild(activeFilter);
-        });
-      });
     }
 
-    rebuild(activeFilter);
+    rebuild();
   }
 
   /* ═══════════════════════════════════════════════════

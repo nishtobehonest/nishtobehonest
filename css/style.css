@@ -426,23 +426,24 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border);
 }
-.projects-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-.projects-grid .node-card  { padding: 14px; gap: 7px; }
-.projects-grid .node-title { font-size: 0.875rem; }
-.projects-grid .node-desc  {
+.proj-list { margin-bottom: 8px; }
+.proj-row {
+  display: flex;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
   font-size: 0.8125rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  color: var(--muted-2);
+  text-decoration: none;
+  transition: color .15s;
 }
-.projects-grid .node-tags  { display: none; }
-.projects-grid .node-link  { display: none; }
+.proj-row:hover { color: var(--text); }
+.proj-row-soon { opacity: 0.45; pointer-events: none; }
+.proj-date    { color: var(--muted); min-width: 86px; flex-shrink: 0; font-size: 0.75rem; }
+.proj-title   { flex: 1; font-weight: 600; padding: 0 10px; color: var(--text); }
+.proj-status  { color: var(--muted); font-size: 0.75rem; margin-right: 10px; }
+.proj-chevron { color: var(--muted); font-size: 0.75rem; flex-shrink: 0; }
 
 .view-graph-link {
   display: inline-flex;
