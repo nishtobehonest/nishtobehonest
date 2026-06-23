@@ -31,7 +31,6 @@ The entire site is still driven by a single data file: [data/nodes.json](data/no
 - `js/panel.js` — slide-in panel system; renders all 4 sections. WORK is hardcoded (edit `WORK` array in panel.js directly — not data-driven from nodes.json)
 - `js/explorer.js` — all explore.html logic: grid render, D3 graph, detail panel, persona presets, domain/status/type filters
 - `js/utils.js` — badge helpers shared between index and explore
-- `js/main.js` — legacy v1/v2 landing page script; not loaded by any current page. Do not delete (reference only)
 - `data/nodes.json` — single source of truth for all content
 
 **Homepage layout:**
