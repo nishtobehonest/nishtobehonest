@@ -391,7 +391,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .work-trigger:hover { color: var(--text); }
 .work-trigger.open  { color: var(--text); }
 .work-year    { color: var(--muted); min-width: 86px; flex-shrink: 0; font-size: 0.75rem; }
-.work-company { flex: 1; font-weight: 600; padding: 0 10px; }
+.work-company { flex: 1; font-weight: 600; padding: 0 10px; color: var(--text); }
 .work-role    { color: var(--muted); font-size: 0.75rem; margin-right: 10px; }
 .work-chevron { color: var(--muted); font-size: 0.75rem; transition: transform .25s; flex-shrink: 0; }
 .work-trigger.open .work-chevron { transform: rotate(90deg); }
