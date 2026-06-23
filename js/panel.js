@@ -60,21 +60,29 @@
       role: 'MEng Management',
       bullets: [
         'Product strategy and AI systems engineering focus',
-        'DTI × ServiceNow consulting engagement — root-cause analysis of enterprise AI adoption drop-off',
         'AI for Engineering Management coursework'
       ]
     },
     {
-      year: '2023 → 2025',
+      year: 'Jan → May 2026',
+      company: 'ServiceNow',
+      role: 'Enterprise AI Product Consultant',
+      bullets: [
+        'Cornell DTI engagement — root-cause analysis of enterprise AI adoption drop-off',
+        'Tested LLM Build Agent across no-code, low-code, and pro-code developer personas',
+        'Presented agentic AI readiness portfolio to App Engine GM'
+      ]
+    },
+    {
+      year: '2022 → 2025',
       company: 'Aereo',
       role: 'Product Manager',
       bullets: [
-        'Agentic AI team — field service and operational workflows',
-        'Led initiatives from 0→1 on agentic product features',
-        'Shipped AI tools used in production environments'
+        'Owned geospatial data products for mining and infrastructure clients',
+        'Scaled spatial analytics pipeline 800× — 25K to 20M+ data points in production',
+        'Built 300-feature roadmap supporting $15M Series B; supported $1.5M deal close'
       ]
     }
-    // TODO: add prior PM roles
   ];
 
   function renderWork() {
