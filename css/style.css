@@ -310,41 +310,25 @@ h3 { font-size: 1.125rem; font-weight: 600; }
    HOMEPAGE PANEL SYSTEM
 ═══════════════════════════════════════════════════ */
 
-.panel-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.55);
-  z-index: 299;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .25s;
-}
-.panel-overlay.active { opacity: 1; pointer-events: all; }
-
-.canvas-panel {
-  position: fixed;
-  top: 0; right: 0; bottom: 0;
-  width: var(--panel-w);
-  background: var(--surface);
-  border-left: 1px solid var(--border);
-  z-index: 300;
-  transform: translateX(100%);
-  transition: transform .3s cubic-bezier(.4,0,.2,1);
+/* ── Section view (replaces terminal on nav click) ── */
+#terminalView, #sectionView {
   display: flex;
   flex-direction: column;
+  flex: 1;
   overflow: hidden;
 }
-.canvas-panel.open { transform: translateX(0); }
+[hidden] { display: none !important; }
 
-.cp-header {
+.section-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 24px;
+  padding: 14px 24px;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
+  height: 45px;
 }
-.cp-title {
+.section-title {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   font-weight: 600;
@@ -352,7 +336,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   text-transform: uppercase;
   color: var(--muted);
 }
-.cp-close {
+.section-close {
   width: 32px; height: 32px;
   display: flex;
   align-items: center;
@@ -362,11 +346,14 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   cursor: pointer;
   font-size: 1rem;
   line-height: 1;
+  background: none;
+  border: none;
+  font-family: inherit;
   transition: background .2s, color .2s;
 }
-.cp-close:hover { background: var(--border); color: var(--text); }
+.section-close:hover { background: var(--border); color: var(--text); }
 
-.cp-body {
+.section-body {
   flex: 1;
   overflow-y: auto;
   padding: 24px;
@@ -999,14 +986,5 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   .nav-item { font-size: 0.75rem; padding: 6px 10px; }
   .terminal-col { min-height: 55vh; }
   .terminal-body { padding: 20px 24px; font-size: 0.75rem; }
-  .canvas-panel {
-    width: 100%;
-    border-left: none;
-    border-top: 1px solid var(--border);
-    top: auto;
-    height: 85dvh;
-    transform: translateY(100%);
-  }
-  .canvas-panel.open { transform: translateY(0); }
   .projects-grid { grid-template-columns: 1fr; }
 }

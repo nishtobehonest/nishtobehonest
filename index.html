@@ -66,27 +66,29 @@
     </footer>
   </aside>
 
-  <!-- ── Terminal column (right 62%) ───────────────── -->
+  <!-- ── Terminal / section column (right 62%) ────── -->
   <div class="terminal-col">
-    <div class="terminal-header">
-      <span class="terminal-dot red"></span>
-      <span class="terminal-dot amber"></span>
-      <span class="terminal-dot green"></span>
-      <span class="terminal-title">nishchay.me — knowledge graph</span>
+
+    <div id="terminalView">
+      <div class="terminal-header">
+        <span class="terminal-dot red"></span>
+        <span class="terminal-dot amber"></span>
+        <span class="terminal-dot green"></span>
+        <span class="terminal-title">nishchay.me — knowledge graph</span>
+      </div>
+      <div class="terminal-body" id="termBody" aria-live="polite" aria-label="Terminal output"></div>
     </div>
-    <div class="terminal-body" id="termBody" aria-live="polite" aria-label="Terminal output"></div>
+
+    <div id="sectionView" hidden>
+      <div class="section-header">
+        <span class="section-title" id="panelTitle"></span>
+        <button class="section-close" id="panelClose" aria-label="Close">✕</button>
+      </div>
+      <div class="section-body" id="panelBody"></div>
+    </div>
+
   </div>
 
-</div>
-
-<!-- ── Homepage panel system ─────────────────────── -->
-<div class="panel-overlay" id="panelOverlay"></div>
-<div class="canvas-panel" id="canvasPanel" role="dialog" aria-modal="true" aria-labelledby="panelTitle">
-  <div class="cp-header">
-    <span class="cp-title" id="panelTitle"></span>
-    <button class="cp-close" id="panelClose" aria-label="Close panel">✕</button>
-  </div>
-  <div class="cp-body" id="panelBody"></div>
 </div>
 
 <script src="js/utils.js"></script>

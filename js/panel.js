@@ -1,4 +1,4 @@
-/* Homepage slide-in panel system — 4 section renderers */
+/* Homepage panel system — sections replace the terminal column */
 
 (function () {
   let nodesCache = null;
@@ -13,38 +13,33 @@
   }
 
   /* ── DOM refs ─────────────────────────────────────── */
-  const panel    = document.getElementById('canvasPanel');
-  const overlay  = document.getElementById('panelOverlay');
+  const termView = document.getElementById('terminalView');
+  const sectView = document.getElementById('sectionView');
   const titleEl  = document.getElementById('panelTitle');
   const bodyEl   = document.getElementById('panelBody');
   const closeBtn = document.getElementById('panelClose');
 
-  if (!panel) return;
+  if (!sectView) return;
 
   /* ── Open / close ────────────────────────────────── */
   const TITLES = { work: '01 / WORK', projects: '02 / PROJECTS', thinking: '03 / THINKING', about: '04 / ABOUT' };
 
   function openPanel(section) {
-    if (currentPanel === section && panel.classList.contains('open')) {
-      closePanel();
-      return;
-    }
+    if (currentPanel === section) { closePanel(); return; }
     currentPanel = section;
     titleEl.textContent = TITLES[section] || section;
-
     document.querySelectorAll('.nav-item').forEach(el => {
       el.classList.toggle('active', el.dataset.panel === section);
     });
-
     bodyEl.innerHTML = '';
     renderSection(section);
-    panel.classList.add('open');
-    overlay.classList.add('active');
+    termView.hidden = true;
+    sectView.hidden = false;
   }
 
   function closePanel() {
-    panel.classList.remove('open');
-    overlay.classList.remove('active');
+    sectView.hidden = true;
+    termView.hidden = false;
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     currentPanel = null;
   }
