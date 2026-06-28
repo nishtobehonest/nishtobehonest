@@ -208,6 +208,21 @@ for environments where wrong answers cost something.
 startups bringing AI into physical-world operations —
 geospatial, autonomous systems, industrial ops.</p>
 
+      <span class="about-section-label">What I sell</span>
+      <p class="about-pitch">I sit at the gap between what an AI system can do and whether real users will actually trust and use it. I have done that for enterprise customers in production environments where wrong outputs affected safety and compliance decisions. I can prototype, design the architecture, write the requirements, coordinate the engineers, earn the trust of skeptical field teams, and own the outcome. That combination is what is genuinely rare right now.</p>
+
+      <span class="about-section-label">Capabilities</span>
+      <ul class="about-caps">
+        <li>Discovery and customer understanding</li>
+        <li>AI product judgment</li>
+        <li>Agent and system architecture</li>
+        <li>Prototyping and building</li>
+        <li>Platform and systems thinking</li>
+        <li>Execution and delivery</li>
+        <li>Data and quantitative thinking</li>
+        <li>Operating without a safety net</li>
+      </ul>
+
       <span class="about-section-label">Education</span>
       <div class="about-edu">
         Cornell University <span class="edu-sep">/</span> MEng Management <span class="edu-sep">/</span> 2025–2026
