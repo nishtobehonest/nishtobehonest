@@ -212,16 +212,73 @@ geospatial, autonomous systems, industrial ops.</p>
       <p class="about-pitch">I sit at the gap between what an AI system can do and whether real users will actually trust and use it. I have done that for enterprise customers in production environments where wrong outputs affected safety and compliance decisions. I can prototype, design the architecture, write the requirements, coordinate the engineers, earn the trust of skeptical field teams, and own the outcome. That combination is what is genuinely rare right now.</p>
 
       <span class="about-section-label">Capabilities</span>
-      <ul class="about-caps">
-        <li>Discovery and customer understanding</li>
-        <li>AI product judgment</li>
-        <li>Agent and system architecture</li>
-        <li>Prototyping and building</li>
-        <li>Platform and systems thinking</li>
-        <li>Execution and delivery</li>
-        <li>Data and quantitative thinking</li>
-        <li>Operating without a safety net</li>
-      </ul>
+      <div class="about-caps-accordion">
+        ${[
+          { title: 'Discovery and customer understanding', bullets: [
+            'On-site field discovery with enterprise customers before any spec exists',
+            'Translating ambiguous, emotionally loaded customer asks into crisp problem statements',
+            'Building trust with skeptical, non-technical field users who have deeply embedded manual processes',
+            'Distinguishing the stated problem from the real one',
+            'Owning the customer relationship end to end across multiple stakeholder levels simultaneously',
+          ]},
+          { title: 'AI product judgment', bullets: [
+            'Designing human-in-the-loop validation workflows for AI outputs in high-stakes environments',
+            'Identifying silent failure risk before it reaches users',
+            'Knowing when to automate fully versus when to keep a human in the loop, and being able to defend that call',
+            'Defining eval categories, failure modes, and what done actually looks like for an AI feature',
+            'Understanding the difference between model accuracy and user trust, and knowing which one to optimize first',
+            'Prompt engineering and iteration, not as a technical exercise but as a product discipline',
+          ]},
+          { title: 'Agent and system architecture', bullets: [
+            'Designing multi-agent pipelines where each agent has a single, narrow job',
+            'Scoping agentic solutions with four parts: trigger, action with confidence, human handoff, log',
+            'Understanding RAG pipeline design including chunking strategy, embedding model choice, and where retrieval actually breaks',
+            'Building eval frameworks that test accuracy, hallucination rate, retrieval quality, and latency',
+            'Reading agent architectures and spotting where they will fail in production before they do',
+          ]},
+          { title: 'Prototyping and building', bullets: [
+            'Can build a working prototype fast enough to show engineers what you mean, not just describe it',
+            'Built a Site Intelligence Agent with FastAPI, ChromaDB, and the Anthropic SDK, tested against 85 eval cases, under 2% hallucination',
+            'Built a multi-agent healthcare triage system from scratch in an unfamiliar domain under a hard deadline',
+            'Uses Claude Code daily as a real tool, not a claimed interest',
+            'Can write enough code to have a real conversation with engineers, not just nod along',
+          ]},
+          { title: 'Platform and systems thinking', bullets: [
+            'Recognizing when a system is breaking because of wrong assumptions, not wrong performance',
+            'Designing stage-based workflows with validation gates and guardrails that prevent misuse at the system level',
+            'Understanding how scale changes user behavior and what breaks first',
+            'Distinguishing load-bearing architectural decisions from implementation details',
+          ]},
+          { title: 'Execution and delivery', bullets: [
+            'End-to-end ownership from problem definition through launch through stabilization',
+            'Writing PRDs and acceptance criteria that encode expert constraints as safe defaults',
+            'Making hard, unpopular prioritization calls under sales pressure',
+            'Cross-team coordination without process theater',
+            'Release readiness judgment — knowing when something is safe to ship and when it is not',
+          ]},
+          { title: 'Data and quantitative thinking', bullets: [
+            'SQL background from Aereo, comfortable enough to run your own queries rather than wait for an analyst',
+            'Built operational dashboards and analytics workflows for enterprise clients',
+            'Comfortable with unit economics, cost-per-query reasoning, and accuracy versus cost tradeoffs',
+          ]},
+          { title: 'Operating without a safety net', bullets: [
+            'Founded and ran a business end to end, hired and led a team, operated without structure or support',
+            'Can do whatever-it-takes work when the gap needs filling, not just the work on the job description',
+            'No notice period, ready to move when the right thing comes along',
+          ]},
+        ].map((cap, i) => `
+          <div class="cap-item">
+            <button class="cap-trigger" data-cap="${i}">
+              <span class="cap-title">${cap.title}</span>
+              <span class="cap-chevron">›</span>
+            </button>
+            <div class="cap-detail" id="cap-detail-${i}">
+              <ul class="cap-bullets">
+                ${cap.bullets.map(b => `<li>${b}</li>`).join('')}
+              </ul>
+            </div>
+          </div>`).join('')}
+      </div>
 
       <span class="about-section-label">Education</span>
       <div class="about-edu">
@@ -239,6 +296,15 @@ geospatial, autonomous systems, industrial ops.</p>
             </div>
           </div>`).join('')}
       </div>`;
+
+    bodyEl.querySelectorAll('.cap-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const detail = bodyEl.querySelector(`#cap-detail-${btn.dataset.cap}`);
+        const isOpen = btn.classList.contains('open');
+        btn.classList.toggle('open', !isOpen);
+        detail.classList.toggle('open', !isOpen);
+      });
+    });
   }
 
   /* ── Dispatcher ──────────────────────────────────── */

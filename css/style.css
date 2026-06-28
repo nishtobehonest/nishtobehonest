@@ -525,24 +525,41 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   border-left: 2px solid var(--border-2);
   padding-left: 14px;
 }
-.about-caps {
-  list-style: none;
-  margin-bottom: 28px;
+.about-caps-accordion { margin-bottom: 28px; }
+.cap-item { border-bottom: 1px solid var(--border); }
+.cap-trigger {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.about-caps li {
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   color: var(--muted-2);
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: color .15s;
 }
-.about-caps li::before { content: "—"; color: var(--muted); }
+.cap-trigger:hover { color: var(--text); }
+.cap-trigger.open  { color: var(--text); }
+.cap-title { flex: 1; }
+.cap-chevron { color: var(--muted); font-size: 0.75rem; transition: transform .25s; flex-shrink: 0; }
+.cap-trigger.open .cap-chevron { transform: rotate(90deg); }
+.cap-detail { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+.cap-detail.open { max-height: 400px; }
+.cap-bullets { list-style: none; padding: 0 0 14px 0; }
+.cap-bullets li {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted-2);
+  line-height: 1.7;
+  margin-bottom: 6px;
+  padding-left: 14px;
+  position: relative;
+}
+.cap-bullets li::before { content: "·"; position: absolute; left: 0; color: var(--muted); }
 .about-testimonials { display: flex; flex-direction: column; gap: 14px; }
 
 
