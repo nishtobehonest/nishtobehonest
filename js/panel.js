@@ -297,7 +297,7 @@
               ${node.author_title ? `<p class="tcard-role">${node.author_title}</p>` : ''}
             </div>
           </div>`).join('')}
-        <a href="https://linkedin.com/in/nishtobehonest" target="_blank" rel="noopener" class="more-recs-link">↗ More recommendations on LinkedIn</a>
+        <a href="https://www.linkedin.com/in/nishchay-v/" target="_blank" rel="noopener" class="more-recs-link">↗ More recommendations on LinkedIn</a>
       </div>`;
   }
 
