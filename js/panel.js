@@ -208,7 +208,7 @@
         <p>I'm targeting roles where the agent design problem is the core product problem — teams where designing and shipping agentic systems is the job, not just speccing them.</p>
       </div>
 
-      <span class="about-section-label">Capabilities</span>
+      <span class="about-section-label">What I bring</span>
       <div class="about-caps-accordion">
         ${[
           { title: 'Discovery and customer understanding', bullets: [
