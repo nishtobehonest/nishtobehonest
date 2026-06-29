@@ -194,17 +194,19 @@
     const testimonials = nodes.filter(n => n.type === 'testimonial' && n.status === 'shipped');
 
     bodyEl.innerHTML = `
-      <p class="about-bio">Agentic PM. Cornell MEM 2026.
-I build AI systems that fail gracefully —
-RAG pipelines, MCP servers, memory architectures,
-for environments where wrong answers cost something.
+      <div class="about-bio">
+        <p>PM background, CS foundation, three years in production AI at Aereo — geospatial SaaS serving mining, construction, and infrastructure clients. That's where I learned what operational AI actually means: messy data, high stakes, enterprise buyers who won't act on outputs they can't trust.</p>
+        <p>I'm interested in the agentic system design problem: how do you build agents that route correctly, fail gracefully, and hand off to humans in a way that actually works?</p>
+        <p>At Cornell I've been building that layer — multi-agent RAG, HITL escalation, MCP servers, eval frameworks. I want a role where I'm designing and shipping these systems, not just writing docs about them.</p>
+        <p class="about-stem">STEM OPT · Open to FDE, Agentic PM, AI PM, and product builder roles.</p>
+      </div>
 
-3 years in product. Focus: FDE/PM at Series A/B
-startups bringing AI into physical-world operations —
-geospatial, autonomous systems, industrial ops.</p>
-
-      <span class="about-section-label">What I sell</span>
-      <p class="about-pitch">I sit at the gap between what an AI system can do and whether real users will actually trust and use it. I have done that for enterprise customers in production environments where wrong outputs affected safety and compliance decisions. I can prototype, design the architecture, write the requirements, coordinate the engineers, earn the trust of skeptical field teams, and own the outcome. That combination is what is genuinely rare right now.</p>
+      <span class="about-section-label">Background</span>
+      <div class="about-background">
+        <p>Three years shipping operational AI products at Aereo — drone imagery pipelines, geospatial analytics, mining and infrastructure clients. Real messy data, real enterprise buyers, real consequences when the system got it wrong.</p>
+        <p>At Cornell, I moved into the build layer: RAG pipelines, multi-agent orchestration, MCP server development, LLM evaluation frameworks, HITL escalation design, and full-stack deployment. Stack includes Python, LangChain, LangGraph, FastAPI, React, Apache Sedona, Anthropic SDK, Chroma, Streamlit, and Vercel. I've built and shipped end-to-end — from data ingestion to agent reasoning to human review interface to cloud deployment.</p>
+        <p>I'm targeting roles where the agent design problem is the core product problem — teams where designing and shipping agentic systems is the job, not just speccing them.</p>
+      </div>
 
       <span class="about-section-label">Capabilities</span>
       <div class="about-caps-accordion">
@@ -320,7 +322,6 @@ geospatial, autonomous systems, industrial ops.</p>
       btn.addEventListener('click', () => openPanel(btn.dataset.panel));
     });
     closeBtn.addEventListener('click', closePanel);
-    overlay.addEventListener('click', closePanel);
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && currentPanel) closePanel();
     });

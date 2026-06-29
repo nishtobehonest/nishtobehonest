@@ -9,9 +9,9 @@
     "status": "shipped",
     "tier": 1,
     "link": "https://github.com/nishtobehonest/site-intelligence-agent",
-    "description": "RAG-based field service assistant with a 4-step confidence pipeline — LOW confidence skips the LLM entirely, because a hallucinated answer is worse than no answer.",
+    "description": "Multi-agent RAG for field technicians working with messy, high-stakes operational data. Three routing paths: confident answer with citations, conflict surfaced for human review, programmatic escalation when the system can't trust its own output. Under 2% hallucination rate across 85 adversarial eval cases.",
     "proves": "Designs for failure, not the happy path",
-    "design_note": "Threshold tuning runs offline against a ground-truth eval set — because tuning in production means the first bad answer has already shipped.",
+    "design_note": "The design problem was confidence calibration and explainability, not just retrieval accuracy. Architecture diagram showing the three routing paths is the proof of system thinking — not prompt engineering.",
     "connects_to": ["magma", "calling-services-mcp"]
   },
   {
@@ -24,23 +24,23 @@
     "status": "in-progress",
     "tier": 1,
     "link": "https://github.com/nishtobehonest/pipeline-risk-intelligence-agent",
-    "description": "Spatial risk agent for natural gas pipelines — scores segments using FEMA flood zones, USGS seismic hazard, and Census urban proximity. When signals conflict (>0.40 spread), routes to human review with plain-English explanation. Never averages away ambiguity.",
-    "proves": "The system knows when it shouldn't decide",
-    "design_note": "Three routing outcomes, not two. Binary alert/no-alert would average conflicting signals. The third path routes ambiguity to a human with a plain-English explanation of why.",
+    "description": "Spatial risk scoring with HITL conflict detection on real PHMSA pipeline data. Composite risk score layers FEMA flood zones, USGS seismic data, NLCD land cover, and historical inspection records. The HITL routing layer surfaces disagreement between spatial risk score and inspection history — gives the human reviewer a plain-English explanation and a counterfactual.",
+    "proves": "HITL conflict detection is the differentiator, not the risk scoring",
+    "design_note": "The HITL conflict-detection design is what makes this different from a dashboard. When the composite spatial score and inspection history disagree, the system routes to a human with a plain-English explanation of why — not just a flag.",
     "connects_to": ["decision-intelligence-agent", "site-intelligence-agent"]
   },
   {
     "slug": "magma",
-    "title": "MAGMA — Agentic Memory Architecture",
+    "title": "MAGMA — Multi-Graph Agentic Memory",
     "type": "project",
     "domain": "ai-systems",
     "date": "2026-03",
-    "tags": ["memory", "graphs", "agentic", "research", "NetworkX"],
+    "tags": ["memory", "graphs", "agentic", "research", "NetworkX", "Streamlit"],
     "status": "shipped",
     "tier": 1,
     "link": "https://github.com/nishtobehonest/MAGMA-agentic-memory-architecture",
-    "description": "Interactive demo of a 4-graph memory system (semantic, temporal, causal, entity) from a research paper — gamified 5-act mystery where you watch the agent walk live graph traversals.",
-    "proves": "Translates research into interactive product",
+    "description": "Interactive demo of a four-graph memory architecture (semantic, temporal, causal, entity) for agents reasoning across spatial and temporal histories — each graph answers a different query class. Built as a gamified 5-act walkthrough showing live graph traversal. Recognized by faculty as the standout project in the cohort.",
+    "proves": "Translates research architecture into interactive proof of system thinking",
     "connects_to": ["site-intelligence-agent", "agent-pm-1"]
   },
   {
