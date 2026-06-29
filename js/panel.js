@@ -270,7 +270,7 @@
         <div class="stack-group">
           <span class="stack-group-label">Business</span>
           <div class="stack-pills">
-            ${['Enterprise sales support','Competitive analysis','Financial modeling','Market sizing','Negotiation','Executive communication'].map(t=>`<span class="stack-pill stack-pill-amber">${t}</span>`).join('')}
+            ${['Enterprise sales support','Competitive analysis','Financial modeling','Market sizing','Negotiation','Executive communication','Customer success handoff'].map(t=>`<span class="stack-pill stack-pill-amber">${t}</span>`).join('')}
             ${['Partnership development','Revenue modeling'].map(t=>`<span class="stack-pill stack-pill-learning" title="in progress">${t}</span>`).join('')}
           </div>
         </div>
