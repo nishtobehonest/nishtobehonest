@@ -274,6 +274,12 @@
             ${['Partnership development','Revenue modeling'].map(t=>`<span class="stack-pill stack-pill-learning" title="in progress">${t}</span>`).join('')}
           </div>
         </div>
+        <div class="stack-group">
+          <span class="stack-group-label">Forward Deployed Engineering</span>
+          <div class="stack-pills">
+            ${['Rapid prototyping','POC / demo delivery','Bespoke artifact creation','Solution architecture','Customer technical discovery','API integration','Field deployment','Customer onboarding'].map(t=>`<span class="stack-pill stack-pill-purple">${t}</span>`).join('')}
+          </div>
+        </div>
       </div>
 
       <span class="about-section-label">Education</span>
