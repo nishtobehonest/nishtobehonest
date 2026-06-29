@@ -305,6 +305,7 @@
         <div class="about-cta-links">
           <a href="https://calendly.com/nishchay26/new-meeting" target="_blank" rel="noopener" class="cta-btn cta-btn-primary">↗ Book a 30-min call</a>
           <a href="mailto:nishchay26@gmail.com" class="cta-btn cta-btn-secondary">↗ nishchay26@gmail.com</a>
+          <a href="/Nishchay_Vishwanath_Resume.pdf" download class="cta-btn cta-btn-secondary">↗ Resume PDF</a>
         </div>
       </div>`;
   }
