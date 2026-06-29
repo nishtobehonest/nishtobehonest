@@ -269,7 +269,7 @@
         <div class="stack-group">
           <span class="stack-group-label">Business</span>
           <div class="stack-pills">
-            ${['Enterprise sales support','Competitive analysis','Financial modeling','Series B fundraising','Negotiation','Executive communication'].map(t=>`<span class="stack-pill stack-pill-amber">${t}</span>`).join('')}
+            ${['Enterprise sales support','Competitive analysis','Financial modeling','Negotiation','Executive communication'].map(t=>`<span class="stack-pill stack-pill-amber">${t}</span>`).join('')}
           </div>
         </div>
       </div>
