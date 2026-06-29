@@ -251,7 +251,7 @@
         <span class="proof-value">Audit and review workflows that closed a $1.5M government contract</span>
       </div>
 
-      <span class="about-section-label">Stack</span>
+      <span class="about-section-label" id="about-stack">Stack</span>
       <div class="stack-groups">
         <div class="stack-group">
           <span class="stack-group-label">AI &amp; Engineering</span>
@@ -314,9 +314,24 @@
 
   /* ── Event wiring ────────────────────────────────── */
 
+  function scrollToStack() {
+    const tryScroll = (attempts = 0) => {
+      const el = document.getElementById('about-stack');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (attempts < 20) {
+        requestAnimationFrame(() => tryScroll(attempts + 1));
+      }
+    };
+    requestAnimationFrame(tryScroll);
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.nav-item, .id-domain-pill').forEach(btn => {
+    document.querySelectorAll('.nav-item').forEach(btn => {
       btn.addEventListener('click', () => openPanel(btn.dataset.panel));
+    });
+    document.querySelectorAll('.id-domain-pill').forEach(btn => {
+      btn.addEventListener('click', () => { openPanel('about'); scrollToStack(); });
     });
     closeBtn.addEventListener('click', closePanel);
     document.addEventListener('open-panel', e => openPanel(e.detail));
