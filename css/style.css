@@ -335,17 +335,20 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .terminal-body {
   flex: 1;
   padding: 38px 50px;
-  overflow: hidden;
+  overflow-y: auto;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   line-height: 1.75;
   color: var(--text);
 }
+.terminal-body::-webkit-scrollbar { width: 4px; }
+.terminal-body::-webkit-scrollbar-track { background: transparent; }
+.terminal-body::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 2px; }
 
 /* ─── Terminal line types ────────────────────────── */
 .term-prompt   { color: var(--blue); }
 .term-divider  { color: var(--border-2); }
-.term-label    { color: var(--muted); letter-spacing: 0.08em; }
+.term-label    { color: var(--muted); letter-spacing: 0.06em; font-size: 0.7rem; }
 .term-shipped  { color: var(--green); }
 .term-progress { color: var(--amber); }
 .term-muted    { color: var(--muted); }

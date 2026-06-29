@@ -19,12 +19,14 @@
     const el = document.createElement('div');
     el.innerHTML = html;
     body.appendChild(el);
+    body.scrollTop = body.scrollHeight;
   }
 
   function addBlank() {
     const el = document.createElement('div');
     el.innerHTML = '&nbsp;';
     body.appendChild(el);
+    body.scrollTop = body.scrollHeight;
   }
 
   function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
@@ -40,6 +42,7 @@
       function step() {
         if (i < text.length) {
           span.textContent += text[i++];
+          body.scrollTop = body.scrollHeight;
           setTimeout(step, CHAR_DELAY);
         } else {
           resolve();
