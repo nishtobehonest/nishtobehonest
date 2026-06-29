@@ -18,6 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
+  <script>document.documentElement.dataset.theme = localStorage.getItem('nish-theme') || 'light';</script>
 
   <script type="application/ld+json">
   {
@@ -59,7 +60,10 @@
         <a href="https://linkedin.com/in/nishtobehonest" class="id-social" target="_blank" rel="noopener">↗ linkedin</a>
         <a href="mailto:nv268@cornell.edu" class="id-social">↗ email</a>
       </div>
-      <span class="id-copy">©2026</span>
+      <div class="id-footer-end">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">◑ dark</button>
+        <span class="id-copy">©2026</span>
+      </div>
     </footer>
   </aside>
 
@@ -91,5 +95,6 @@
 <script src="js/utils.js"></script>
 <script src="js/terminal.js"></script>
 <script src="js/panel.js"></script>
+<script src="js/theme.js"></script>
 </body>
 </html>

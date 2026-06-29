@@ -1,5 +1,44 @@
-/* ─── Design tokens ───────────────────────────────── */
+/* ─── Design tokens — light theme (default) ───────── */
 :root {
+  --bg:        #F8F8F7;
+  --surface:   #FFFFFF;
+  --surface-2: #F2F2F0;
+  --border:    #E4E4E1;
+  --border-2:  #D0D0CC;
+  --text:      #09090B;
+  --muted:     #52525B;
+  --muted-2:   #6B7280;
+
+  --blue:   #2563EB;
+  --teal:   #0D9488;
+  --green:  #15803D;
+  --amber:  #B45309;
+  --purple: #7C3AED;
+  --red:    #DC2626;
+
+  --blue-dim:   rgba(37,99,235,.1);
+  --teal-dim:   rgba(13,148,136,.1);
+  --green-dim:  rgba(21,128,61,.1);
+  --amber-dim:  rgba(180,83,9,.1);
+  --purple-dim: rgba(124,58,237,.1);
+
+  --nav-blur-bg: rgba(248,248,247,.92);
+
+  --radius-card: 12px;
+  --radius-el:   8px;
+  --radius-pill: 999px;
+
+  --max-w:       1100px;
+  --section-gap: 80px;
+  --panel-w:     480px;
+
+  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+  --font-body:    'Inter', system-ui, sans-serif;
+}
+
+/* ─── Dark theme override ─────────────────────────── */
+[data-theme="dark"] {
   --bg:        #0A0A0A;
   --surface:   #111111;
   --surface-2: #181818;
@@ -22,17 +61,7 @@
   --amber-dim:  rgba(245,158,11,.12);
   --purple-dim: rgba(167,139,250,.12);
 
-  --radius-card: 12px;
-  --radius-el:   8px;
-  --radius-pill: 999px;
-
-  --max-w:       1100px;
-  --section-gap: 80px;
-  --panel-w:     480px;
-
-  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
-  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
-  --font-body:    'Inter', system-ui, sans-serif;
+  --nav-blur-bg: rgba(10,10,10,.88);
 }
 
 /* ─── Reset ───────────────────────────────────────── */
@@ -81,7 +110,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(10,10,10,.88);
+  background: var(--nav-blur-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
@@ -109,7 +138,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   font-weight: 600;
   color: var(--blue);
   padding: 6px 16px;
-  border: 1px solid rgba(79,142,247,.35);
+  border: 1px solid var(--blue-dim);
   border-radius: var(--radius-el);
   transition: background .2s, border-color .2s;
 }
@@ -226,11 +255,21 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   transition: color .2s;
 }
 .id-social:hover { color: var(--text); }
+.id-footer-end { display: flex; align-items: center; gap: 12px; }
 .id-copy {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   color: var(--muted);
 }
+.theme-toggle {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  padding: 0;
+  transition: color .2s;
+}
+.theme-toggle:hover { color: var(--text); }
 
 /* ─── Terminal column (right 62%) ─────────────────── */
 .terminal-col {

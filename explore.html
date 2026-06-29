@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
+  <script>document.documentElement.dataset.theme = localStorage.getItem('nish-theme') || 'light';</script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/roughjs@4/bundled/rough.min.js"></script>
 </head>
@@ -23,6 +24,7 @@
     <div class="nav-links">
       <a href="explore.html" class="nav-link active">Explore</a>
       <a href="explore.html?type=blog,learning" class="nav-link">Writing</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">◑ dark</button>
       <a href="mailto:nv268@cornell.edu" class="btn-nav">Get in touch →</a>
     </div>
   </div>
@@ -139,5 +141,6 @@
 
 <script src="js/utils.js"></script>
 <script src="js/explorer.js"></script>
+<script src="js/theme.js"></script>
 </body>
 </html>
