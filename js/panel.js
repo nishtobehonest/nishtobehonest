@@ -208,7 +208,7 @@
         <span class="proof-label">Operational AI in production</span>
         <span class="proof-value">Scaled imagery pipeline 800× (25K to 20M+ data points) at Aereo</span>
         <span class="proof-label">HITL escalation design</span>
-        <span class="proof-value">Conflict-detection layer that surfaced disagreement between spatial risk score and inspection history — plain-English explanation and counterfactual to the human reviewer</span>
+        <span class="proof-value">HITL conflict-detection on live pipeline data — spatial risk score vs. inspection history, with counterfactual to reviewer</span>
         <span class="proof-label">Full-stack deployment</span>
         <span class="proof-value">RAG pipeline to human review interface to cloud — end-to-end, not just localhost</span>
         <span class="proof-label">LLM eval frameworks</span>
@@ -219,9 +219,9 @@
 
       <span class="about-section-label">Stack</span>
       <div class="about-stack">
-        <span>Python</span><span>LangChain</span><span>LangGraph</span><span>FastAPI</span><span>Anthropic SDK</span>
+        <span class="stack-key">Python</span><span class="stack-key">LangChain</span><span class="stack-key">LangGraph</span><span>FastAPI</span><span class="stack-key">Anthropic SDK</span>
         <span>React</span><span>Vite</span><span>Tailwind</span><span>Leaflet.js</span>
-        <span>Apache Sedona</span><span>Wherobots Cloud</span><span>Chroma</span><span>Streamlit</span>
+        <span class="stack-key">Apache Sedona</span><span>Wherobots Cloud</span><span>Chroma</span><span>Streamlit</span>
         <span>SQL</span><span>QGIS</span><span>Power BI</span><span>Claude Code</span><span>Vercel</span>
       </div>
 
