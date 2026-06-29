@@ -419,6 +419,13 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .work-chevron { color: var(--muted); font-size: 0.75rem; transition: transform .25s; flex-shrink: 0; }
 .work-trigger.open .work-chevron { transform: rotate(90deg); }
 
+.work-teaser {
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  color: var(--muted-2);
+  line-height: 1.6;
+  padding: 0 0 10px 0;
+}
 .work-detail {
   max-height: 0;
   overflow: hidden;
@@ -597,6 +604,14 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 
 /* ─── Stack block ────────────────────────────────── */
 .stack-key { color: var(--text); font-weight: 600; }
+.stack-pm {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-top: 8px;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
 .about-stack {
   display: flex;
   flex-wrap: wrap;

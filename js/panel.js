@@ -53,6 +53,7 @@
       year: '2025 → 2026',
       company: 'Cornell University',
       role: 'MEng Management',
+      teaser: 'AI systems engineering + product strategy. Building agentic systems, eval frameworks, and HITL workflows.',
       bullets: [
         'Product strategy and AI systems engineering focus',
         'AI for Engineering Management coursework'
@@ -62,6 +63,7 @@
       year: 'Jan → May 2026',
       company: 'ServiceNow',
       role: 'Enterprise AI Product Consultant',
+      teaser: 'Live enterprise engagement with ServiceNow product leadership. Benchmarked Build Agent across builder personas. Delivered strategic recommendations on AI workflow adoption.',
       bullets: [
         'Cornell DTI engagement — root-cause analysis of enterprise AI adoption drop-off',
         'Tested LLM Build Agent across no-code, low-code, and pro-code developer personas',
@@ -72,10 +74,13 @@
       year: '2022 → 2025',
       company: 'Aereo',
       role: 'Product Manager',
+      teaser: 'Scaled imagery pipeline 800×. Built the trust layer that closed a $1.5M government contract. Supported $15M Series B.',
       bullets: [
-        'Owned geospatial data products for mining and infrastructure clients',
-        'Scaled spatial analytics pipeline 800× — 25K to 20M+ data points in production',
-        'Built 300-feature roadmap supporting $15M Series B; supported $1.5M deal close'
+        'Owned geospatial data products and AI-driven analytics workflows for enterprise clients in mining, construction, and infrastructure — built the reliability layer between automated outputs and operational decision-making; directly supported a $1.5M deal and $500K contract',
+        'Scaled geospatial imagery processing pipelines from 25K to 20M+ (800×) data points in production — defined system requirements, aligned computer-vision segmentation outputs with enterprise SLAs, launched scalable spatial analytics workflows including 7M drone images in 5 months',
+        'Led cross-system integration of data ingestion and analytics platforms — defined 60+ technical requirements, metadata alignment standards, and HITL validation workflows that made automated spatial outputs trustworthy for enterprise and government use; improved enterprise adoption 1.5×, reduced support tickets 30%',
+        'Introduced structured intake and prioritization framework governing cross-team dependencies, PRDs, and QA validation; improved delivery efficiency by 50%',
+        'Built 300-feature roadmap synthesizing enterprise requirements and competitive benchmarks across 80+ parameters; supported $15M Series B raise'
       ]
     }
   ];
@@ -91,6 +96,7 @@
               <span class="work-role">${item.role}</span>
               <span class="work-chevron">›</span>
             </button>
+            ${item.teaser ? `<p class="work-teaser">${item.teaser}</p>` : ''}
             <div class="work-detail">
               <ul class="work-bullets">
                 ${item.bullets.map(b => `<li>${b}</li>`).join('')}
@@ -225,10 +231,12 @@
       <div class="proof-grid">
         <span class="proof-label">Agentic system design</span>
         <span class="proof-value">3-path routing agent: confident answer, conflict surfaced, programmatic escalation</span>
+        <span class="proof-label">Agent behavior spec</span>
+        <span class="proof-value">Defined routing logic, confidence thresholds, and HITL override conditions as explicit PRD requirements before engineering build</span>
         <span class="proof-label">Operational AI in production</span>
         <span class="proof-value">Scaled imagery pipeline 800× (25K to 20M+ data points) at Aereo</span>
         <span class="proof-label">HITL escalation design</span>
-        <span class="proof-value">HITL conflict-detection on live pipeline data — spatial risk score vs. inspection history, with counterfactual to reviewer</span>
+        <span class="proof-value">HITL conflict-detection on live PHMSA pipeline data — surfaces disagreement between spatial risk score and inspection history with plain-English explanation and counterfactual</span>
         <span class="proof-label">Full-stack deployment</span>
         <span class="proof-value">RAG pipeline to human review interface to cloud — end-to-end, not just localhost</span>
         <span class="proof-label">LLM eval frameworks</span>
@@ -244,6 +252,7 @@
         <span class="stack-key">Apache Sedona</span><span>Chroma</span><span>Streamlit</span>
         <span>SQL</span><span>QGIS</span><span>Power BI</span><span>Claude Code</span><span>Vercel</span>
       </div>
+      <p class="stack-pm">PRDs for agent behavior specs · eval design frameworks · Notion · Linear · Figma</p>
 
       <span class="about-section-label">Education</span>
       <div class="about-edu">

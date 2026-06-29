@@ -11,7 +11,7 @@
     "link": "https://github.com/nishtobehonest/site-intelligence-agent",
     "description": "Multi-agent RAG for field technicians working with messy, high-stakes operational data. Three routing paths: confident answer with citations, conflict surfaced for human review, programmatic escalation when the system can't trust its own output. Under 2% hallucination rate across 85 adversarial eval cases.",
     "proves": "Designs for failure, not the happy path",
-    "design_note": "The design problem was confidence calibration and explainability, not just retrieval accuracy. Architecture diagram showing the three routing paths is the proof of system thinking — not prompt engineering.",
+    "design_note": "The core product decision was the routing threshold: at what confidence score does the agent stop and surface the conflict to a human instead of answering? Too low and you flood reviewers. Too high and you ship hallucinations. That threshold is a product call, not an engineering call.",
     "connects_to": ["magma", "calling-services-mcp"]
   },
   {
@@ -26,7 +26,7 @@
     "link": "https://github.com/nishtobehonest/pipeline-risk-intelligence-agent",
     "description": "Spatial risk scoring with HITL conflict detection on real PHMSA pipeline data. Composite risk score layers FEMA flood zones, USGS seismic data, NLCD land cover, and historical inspection records. The HITL routing layer surfaces disagreement between spatial risk score and inspection history — gives the human reviewer a plain-English explanation and a counterfactual.",
     "proves": "HITL conflict detection is the differentiator, not the risk scoring",
-    "design_note": "The HITL conflict-detection design is what makes this different from a dashboard. When the composite spatial score and inspection history disagree, the system routes to a human with a plain-English explanation of why — not just a flag.",
+    "design_note": "The key design decision was what the human reviewer actually sees when the spatial risk score and inspection history disagree. Showing the raw score disagreement isn't enough — the reviewer needs a plain-English explanation and a counterfactual to make a real decision. Designing that interface is product work.",
     "connects_to": ["decision-intelligence-agent", "site-intelligence-agent"]
   },
   {
@@ -41,6 +41,7 @@
     "link": "https://github.com/nishtobehonest/MAGMA-agentic-memory-architecture",
     "description": "Interactive demo of a four-graph memory architecture (semantic, temporal, causal, entity) for agents reasoning across spatial and temporal histories — each graph answers a different query class. Built as a gamified 5-act walkthrough showing live graph traversal. Recognized by faculty as the standout project in the cohort.",
     "proves": "Translates research architecture into interactive proof of system thinking",
+    "design_note": "The product question driving the build: how do you make a four-graph memory architecture legible to someone who didn't build it? The 5-act gamified structure was the answer — each act isolates one memory type so the system behavior is visible, not just described.",
     "connects_to": ["site-intelligence-agent", "agent-pm-1"]
   },
   {
@@ -251,7 +252,7 @@
     "status": "coming-soon",
     "tier": 1,
     "link": "",
-    "description": "Most AI demos only show the happy path. This post explores why graceful degradation — knowing when NOT to answer — is the hardest and most important design decision in production AI.",
+    "description": "Most AI demos only show the happy path. This post explores why the routing threshold — knowing when NOT to answer and when to surface conflict to a human — is the hardest product decision in agentic system design. Not an engineering decision. A product one.",
     "proves": "Structured thinking on AI design tradeoffs",
     "connects_to": ["site-intelligence-agent", "decision-intelligence-agent"]
   },
