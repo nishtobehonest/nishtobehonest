@@ -630,24 +630,27 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 }
 
 /* ─── Stack block ────────────────────────────────── */
-.stack-key { color: var(--text); font-weight: 600; }
-.stack-pm {
+.stack-groups { display: flex; flex-direction: column; gap: 18px; margin-bottom: 28px; }
+.stack-group  { display: flex; flex-direction: column; gap: 8px; }
+.stack-group-label {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--muted);
-  margin-top: 8px;
-  margin-bottom: 28px;
-  line-height: 1.6;
 }
-.about-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 20px;
+.stack-pills { display: flex; flex-wrap: wrap; gap: 5px; }
+.stack-pill {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text);
-  margin-bottom: 28px;
+  font-size: 0.68rem;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
 }
+.stack-pill-teal     { color: var(--teal);   background: var(--teal-dim); }
+.stack-pill-blue     { color: var(--blue);   background: var(--blue-dim); }
+.stack-pill-amber    { color: var(--amber);  background: var(--amber-dim); }
+.stack-pill-learning { color: var(--muted);  background: var(--surface-2); border: 1px dashed var(--border-2); opacity: 0.7; }
 
 /* ─── Section-level collapsible (Stack & Experience, Testimonials) */
 .about-accordion-wrap { margin-bottom: 28px; }

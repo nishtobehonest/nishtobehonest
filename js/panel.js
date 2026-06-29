@@ -252,13 +252,27 @@
       </div>
 
       <span class="about-section-label">Stack</span>
-      <div class="about-stack">
-        <span class="stack-key">Python</span><span class="stack-key">LangChain</span><span class="stack-key">LangGraph</span><span>FastAPI</span><span class="stack-key">Anthropic SDK</span>
-        <span>React</span><span>Vite</span><span>Tailwind</span><span>Leaflet.js</span>
-        <span class="stack-key">Apache Sedona</span><span>Chroma</span><span>Streamlit</span>
-        <span>SQL</span><span>QGIS</span><span>Power BI</span><span>Claude Code</span><span>Vercel</span>
+      <div class="stack-groups">
+        <div class="stack-group">
+          <span class="stack-group-label">AI &amp; Engineering</span>
+          <div class="stack-pills">
+            ${['Python','LangChain','LangGraph','FastAPI','Anthropic SDK','Apache Sedona','Chroma','Streamlit','Claude Code','React','SQL','QGIS'].map(t=>`<span class="stack-pill stack-pill-teal">${t}</span>`).join('')}
+            ${['TypeScript','Node.js','PostgreSQL','Docker','Next.js'].map(t=>`<span class="stack-pill stack-pill-learning" title="in progress">${t}</span>`).join('')}
+          </div>
+        </div>
+        <div class="stack-group">
+          <span class="stack-group-label">Product &amp; Strategy</span>
+          <div class="stack-pills">
+            ${['Agent behavior specs','Eval framework design','HITL workflow design','Roadmapping','User research','Stakeholder communication','Prioritization','PRDs','Notion','Linear','Figma'].map(t=>`<span class="stack-pill stack-pill-blue">${t}</span>`).join('')}
+          </div>
+        </div>
+        <div class="stack-group">
+          <span class="stack-group-label">Business</span>
+          <div class="stack-pills">
+            ${['Enterprise sales support','Competitive analysis','Financial modeling','Series B fundraising','Negotiation','Executive communication'].map(t=>`<span class="stack-pill stack-pill-amber">${t}</span>`).join('')}
+          </div>
+        </div>
       </div>
-      <p class="stack-pm">PRDs for agent behavior specs · eval design frameworks · Notion · Linear · Figma</p>
 
       <span class="about-section-label">Education</span>
       <div class="about-edu">
