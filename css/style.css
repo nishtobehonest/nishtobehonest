@@ -522,6 +522,41 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 }
 .edu-sep { color: var(--muted); }
 .about-caps-accordion { margin-bottom: 28px; }
+
+/* ─── Section-level collapsible (Stack & Experience, Testimonials) */
+.about-accordion-wrap { margin-bottom: 28px; }
+.about-accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  padding: 0 0 10px;
+  margin-bottom: 0;
+  transition: color .2s;
+}
+.about-accordion-trigger:hover { color: var(--muted-2); }
+.about-accordion-trigger.open  { color: var(--muted-2); }
+.about-accordion-chevron {
+  font-size: 0.75rem;
+  transition: transform .25s;
+}
+.about-accordion-trigger.open .about-accordion-chevron { transform: rotate(90deg); }
+.about-accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease;
+}
+.about-accordion-body.open { max-height: 1200px; padding-top: 16px; }
 .cap-item { border-bottom: 1px solid var(--border); }
 .cap-trigger {
   width: 100%;

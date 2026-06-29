@@ -194,20 +194,6 @@
     const testimonials = nodes.filter(n => n.type === 'testimonial' && n.status === 'shipped');
 
     bodyEl.innerHTML = `
-      <div class="about-bio">
-        <p>PM background, CS foundation, three years in production AI at Aereo — geospatial SaaS serving mining, construction, and infrastructure clients. That's where I learned what operational AI actually means: messy data, high stakes, enterprise buyers who won't act on outputs they can't trust.</p>
-        <p>I'm interested in the agentic system design problem: how do you build agents that route correctly, fail gracefully, and hand off to humans in a way that actually works?</p>
-        <p>At Cornell I've been building that layer — multi-agent RAG, HITL escalation, MCP servers, eval frameworks. I want a role where I'm designing and shipping these systems, not just writing docs about them.</p>
-        <p class="about-stem">STEM OPT · Open to FDE, Agentic PM, AI PM, and product builder roles.</p>
-      </div>
-
-      <span class="about-section-label">Background</span>
-      <div class="about-background">
-        <p>Three years shipping operational AI products at Aereo — drone imagery pipelines, geospatial analytics, mining and infrastructure clients. Real messy data, real enterprise buyers, real consequences when the system got it wrong.</p>
-        <p>At Cornell, I moved into the build layer: RAG pipelines, multi-agent orchestration, MCP server development, LLM evaluation frameworks, HITL escalation design, and full-stack deployment. Stack includes Python, LangChain, LangGraph, FastAPI, React, Apache Sedona, Anthropic SDK, Chroma, Streamlit, and Vercel. I've built and shipped end-to-end — from data ingestion to agent reasoning to human review interface to cloud deployment.</p>
-        <p>I'm targeting roles where the agent design problem is the core product problem — teams where designing and shipping agentic systems is the job, not just speccing them.</p>
-      </div>
-
       <span class="about-section-label">What I bring</span>
       <div class="about-caps-accordion">
         ${[
@@ -277,21 +263,49 @@
           </div>`).join('')}
       </div>
 
+      <div class="about-bio">
+        <p>PM background, CS foundation, three years in production AI at Aereo — geospatial SaaS serving mining, construction, and infrastructure clients. That's where I learned what operational AI actually means: messy data, high stakes, enterprise buyers who won't act on outputs they can't trust.</p>
+        <p>I'm interested in the agentic system design problem: how do you build agents that route correctly, fail gracefully, and hand off to humans in a way that actually works?</p>
+        <p>At Cornell I've been building that layer — multi-agent RAG, HITL escalation, MCP servers, eval frameworks. I want a role where I'm designing and shipping these systems, not just writing docs about them.</p>
+        <p class="about-stem">STEM OPT · Open to FDE, Agentic PM, AI PM, and product builder roles.</p>
+      </div>
+
+      <div class="about-accordion-wrap">
+        <button class="about-accordion-trigger" data-target="stack-exp">
+          <span>Stack &amp; Experience</span>
+          <span class="about-accordion-chevron">›</span>
+        </button>
+        <div class="about-accordion-body" id="stack-exp">
+          <div class="about-background">
+            <p>Three years shipping operational AI products at Aereo — drone imagery pipelines, geospatial analytics, mining and infrastructure clients. Real messy data, real enterprise buyers, real consequences when the system got it wrong.</p>
+            <p>At Cornell, I moved into the build layer: RAG pipelines, multi-agent orchestration, MCP server development, LLM evaluation frameworks, HITL escalation design, and full-stack deployment. Stack includes Python, LangChain, LangGraph, FastAPI, React, Apache Sedona, Anthropic SDK, Chroma, Streamlit, and Vercel. I've built and shipped end-to-end — from data ingestion to agent reasoning to human review interface to cloud deployment.</p>
+            <p>I'm targeting roles where the agent design problem is the core product problem — teams where designing and shipping agentic systems is the job, not just speccing them.</p>
+          </div>
+        </div>
+      </div>
+
       <span class="about-section-label">Education</span>
       <div class="about-edu">
         Cornell University <span class="edu-sep">/</span> MEng Management <span class="edu-sep">/</span> 2025–2026
       </div>
 
-      <span class="about-section-label">What people say</span>
-      <div class="about-testimonials">
-        ${testimonials.map(node => `
-          <div class="testimonial-card">
-            <blockquote class="tcard-quote">"${node.description}"</blockquote>
-            <div>
-              <p class="tcard-name">${node.title}</p>
-              ${node.author_title ? `<p class="tcard-role">${node.author_title}</p>` : ''}
-            </div>
-          </div>`).join('')}
+      <div class="about-accordion-wrap">
+        <button class="about-accordion-trigger" data-target="testimonials">
+          <span>What people say</span>
+          <span class="about-accordion-chevron">›</span>
+        </button>
+        <div class="about-accordion-body" id="testimonials">
+          <div class="about-testimonials">
+            ${testimonials.map(node => `
+              <div class="testimonial-card">
+                <blockquote class="tcard-quote">"${node.description}"</blockquote>
+                <div>
+                  <p class="tcard-name">${node.title}</p>
+                  ${node.author_title ? `<p class="tcard-role">${node.author_title}</p>` : ''}
+                </div>
+              </div>`).join('')}
+          </div>
+        </div>
       </div>`;
 
     bodyEl.querySelectorAll('.cap-trigger').forEach(btn => {
@@ -300,6 +314,15 @@
         const isOpen = btn.classList.contains('open');
         btn.classList.toggle('open', !isOpen);
         detail.classList.toggle('open', !isOpen);
+      });
+    });
+
+    bodyEl.querySelectorAll('.about-accordion-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const body = bodyEl.querySelector(`#${btn.dataset.target}`);
+        const isOpen = btn.classList.contains('open');
+        btn.classList.toggle('open', !isOpen);
+        body.classList.toggle('open', !isOpen);
       });
     });
   }
