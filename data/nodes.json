@@ -8,7 +8,7 @@
     "tags": ["RAG", "confidence-gating", "field-service", "LangChain", "Chroma"],
     "status": "shipped",
     "tier": 1,
-    "link": "https://github.com/nishtobehonest/site-intelligence-agent",
+    "link": "https://nishtobehonest.github.io/site-intelligence-agent/",
     "description": "Multi-agent RAG for field technicians working with messy, high-stakes operational data. Three routing paths: confident answer with citations, conflict surfaced for human review, programmatic escalation when the system can't trust its own output. Under 2% hallucination rate across 85 adversarial eval cases.",
     "proves": "Designs for failure, not the happy path",
     "design_note": "The core product decision was the routing threshold: at what confidence score does the agent stop and surface the conflict to a human instead of answering? Too low and you flood reviewers. Too high and you ship hallucinations. That threshold is a product call, not an engineering call.",

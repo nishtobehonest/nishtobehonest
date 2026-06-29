@@ -152,10 +152,14 @@
       const isSoon = node.status === 'coming-soon';
       const Tag    = node.link && !isSoon ? 'a' : 'div';
       const attrs  = node.link && !isSoon ? `href="${node.link}" target="_blank" rel="noopener"` : '';
+      const tags   = (node.tags || []).slice(0, 5).map(t => `<span class="proj-tag">${t}</span>`).join('');
       return `
         <${Tag} class="proj-row${isSoon ? ' proj-row-soon' : ''}" ${attrs}>
           <span class="proj-date">${node.date}</span>
-          <span class="proj-title">${node.title}</span>
+          <span class="proj-title-group">
+            <span class="proj-title">${node.title}</span>
+            ${tags ? `<span class="proj-tags">${tags}</span>` : ''}
+          </span>
           <span class="proj-status">${termStatus(node.status)}</span>
           <span class="proj-chevron">›</span>
         </${Tag}>`;

@@ -459,8 +459,8 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .proj-list { margin-bottom: 8px; }
 .proj-row {
   display: flex;
-  align-items: baseline;
-  padding: 14px 0;
+  align-items: center;
+  padding: 12px 0;
   border-bottom: 1px solid var(--border);
   font-family: var(--font-mono);
   font-size: 0.8125rem;
@@ -470,10 +470,19 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 }
 .proj-row:hover { color: var(--text); }
 .proj-row-soon { opacity: 0.45; pointer-events: none; }
-.proj-date    { color: var(--muted); min-width: 86px; flex-shrink: 0; font-size: 0.75rem; }
-.proj-title   { flex: 1; font-weight: 600; padding: 0 10px; color: var(--text); }
-.proj-status  { color: var(--muted); font-size: 0.75rem; margin-right: 10px; }
-.proj-chevron { color: var(--muted); font-size: 0.75rem; flex-shrink: 0; }
+.proj-date         { color: var(--muted); min-width: 86px; flex-shrink: 0; font-size: 0.75rem; align-self: flex-start; padding-top: 2px; }
+.proj-title-group  { flex: 1; display: flex; flex-direction: column; gap: 5px; padding: 0 10px; }
+.proj-title        { font-weight: 600; color: var(--text); }
+.proj-tags         { display: flex; flex-wrap: wrap; gap: 4px; }
+.proj-tag {
+  font-size: 0.6rem;
+  color: var(--blue);
+  background: var(--blue-dim);
+  padding: 2px 6px;
+  border-radius: var(--radius-pill);
+}
+.proj-status  { color: var(--muted); font-size: 0.75rem; margin-right: 10px; align-self: flex-start; padding-top: 2px; }
+.proj-chevron { color: var(--muted); font-size: 0.75rem; flex-shrink: 0; align-self: flex-start; padding-top: 2px; }
 
 .view-graph-link {
   display: inline-flex;
