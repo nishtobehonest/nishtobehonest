@@ -244,15 +244,15 @@
   },
   {
     "slug": "blog-on-graceful-failure",
-    "title": "Why I Design AI That Fails Gracefully",
+    "title": "Agentic System Design",
     "type": "blog",
     "domain": "writing",
     "date": "2026-06",
-    "tags": ["AI-design", "reliability", "engineering-philosophy"],
+    "tags": ["agentic-systems", "failure-modes", "system-design"],
     "status": "shipped",
     "tier": 1,
     "link": "https://lab.nishchay.me/chapters/03-agentic-systems/",
-    "description": "Most AI demos only show the happy path. This post explores why the routing threshold — knowing when NOT to answer and when to surface conflict to a human — is the hardest product decision in agentic system design. Not an engineering decision. A product one.",
+    "description": "Multi-agent systems that confidently produce wrong answers are the default. This chapter covers designing systems with visible failure modes — where failure is observable, handleable, and doesn't propagate silently.",
     "proves": "Structured thinking on AI design tradeoffs",
     "connects_to": ["site-intelligence-agent", "decision-intelligence-agent"]
   },
@@ -286,7 +286,7 @@
   },
   {
     "slug": "learning-feedback-loops",
-    "title": "Learning: Agentic Feedback Loops",
+    "title": "Agentic Feedback Loops",
     "type": "learning",
     "domain": "ai-systems",
     "date": "2026-06",
@@ -294,7 +294,7 @@
     "status": "shipped",
     "tier": 2,
     "link": "https://lab.nishchay.me/chapters/02-agentic-loops/",
-    "description": "Retrying without iteration doesn't improve outputs. This chapter explores what meaningful feedback loops actually accomplish — and how to build agents that improve from their own outputs.",
+    "description": "Retrying without iteration doesn't improve outputs. What meaningful feedback loops actually accomplish — and how to build agents that learn from their own outputs rather than just repeat them.",
     "proves": "Understands agentic iteration beyond naive retry",
     "connects_to": ["site-intelligence-agent", "magma"]
   },

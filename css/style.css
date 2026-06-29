@@ -493,25 +493,42 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 /* ─── THINKING panel ─────────────────────────────── */
 .thinking-list { display: flex; flex-direction: column; gap: 10px; }
 .thinking-item {
+  display: block;
   padding: 14px 16px;
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-el);
-  transition: border-color .2s;
+  transition: border-color .2s, background .2s;
+  text-decoration: none;
+  color: inherit;
 }
-.thinking-item:hover { border-color: var(--border-2); }
+.thinking-item-link { cursor: pointer; }
+.thinking-item-link:hover { border-color: var(--blue); background: var(--surface); }
 .thinking-item-title {
   font-size: 0.9375rem;
   font-weight: 500;
   margin-bottom: 6px;
   color: var(--text);
 }
-.thinking-item-title a:hover { color: var(--blue); }
 .thinking-item-desc {
   font-size: 0.8125rem;
   color: var(--muted-2);
   line-height: 1.55;
   margin-bottom: 8px;
+}
+.thinking-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+.thinking-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--muted);
+  background: var(--border);
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
 }
 .thinking-soon {
   font-size: .65rem;

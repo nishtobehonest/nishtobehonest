@@ -198,15 +198,16 @@
         ${items.map(node => {
           const typeLabel = node.type === 'blog' ? 'Writing' : 'Learning';
           const hasLink   = node.link && node.status !== 'coming-soon';
-          const titleInner = hasLink
-            ? `<a href="${node.link}" target="_blank" rel="noopener" class="thinking-item-title">${node.title}</a>`
-            : `<p class="thinking-item-title">${node.title}${node.status === 'coming-soon' ? ' <span class="thinking-soon">— coming soon</span>' : ''}</p>`;
-          return `
-            <div class="thinking-item">
-              ${titleInner}
-              <p class="thinking-item-desc">${node.description}</p>
-              <span class="thinking-item-meta">${typeLabel}  ·  ${node.date}</span>
-            </div>`;
+          const tags      = (node.tags || []).map(t => `<span class="thinking-tag">${t}</span>`).join('');
+          const isSoon    = node.status === 'coming-soon';
+          const inner = `
+            <p class="thinking-item-title">${node.title}${isSoon ? ' <span class="thinking-soon">— coming soon</span>' : ''}</p>
+            <p class="thinking-item-desc">${node.description}</p>
+            ${tags ? `<div class="thinking-tags">${tags}</div>` : ''}
+            <span class="thinking-item-meta">${typeLabel}  ·  ${node.date}</span>`;
+          return hasLink
+            ? `<a class="thinking-item thinking-item-link" href="${node.link}" target="_blank" rel="noopener">${inner}</a>`
+            : `<div class="thinking-item">${inner}</div>`;
         }).join('')}
       </div>`;
   }
