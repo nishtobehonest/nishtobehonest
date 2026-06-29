@@ -243,6 +243,21 @@
     "connects_to": ["agentic-consulting-analyst", "decision-intelligence-agent"]
   },
   {
+    "slug": "vitaloop",
+    "title": "Vitaloop — ED Patient Monitoring",
+    "type": "project",
+    "domain": "ai-systems",
+    "date": "2026-03",
+    "tags": ["healthcare", "LLM", "real-time", "FastAPI", "Next.js", "hackathon", "Ollama", "privacy"],
+    "status": "shipped",
+    "tier": 2,
+    "link": "https://github.com/nishtobehonest/vitaloop",
+    "description": "Cornell Digital Health AI Hackathon 2026. Patient-facing chat (Ease) collects symptom updates; staff dashboard (Signal) runs continuous LLM deterioration detection and re-ranks patients by acuity in real time.",
+    "proves": "Full-stack AI under hackathon time pressure with a privacy-first architecture",
+    "design_note": "LLM inference runs on privately hosted GPUs via Ollama — no patient data leaves hospital infrastructure. The privacy boundary is an architectural constraint baked into the system design, not added at the end.",
+    "connects_to": ["site-intelligence-agent", "decision-intelligence-agent"]
+  },
+  {
     "slug": "blog-on-graceful-failure",
     "title": "Agentic System Design",
     "type": "blog",
