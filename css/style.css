@@ -1243,5 +1243,4 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   .nav-item { font-size: 0.75rem; padding: 6px 10px; }
   .terminal-col { min-height: 55vh; }
   .terminal-body { padding: 20px 24px; font-size: 0.75rem; }
-  .projects-grid { grid-template-columns: 1fr; }
 }
