@@ -108,11 +108,11 @@
 
     bodyEl.querySelectorAll('.work-trigger').forEach(btn => {
       btn.addEventListener('click', () => {
-        const detail = btn.nextElementSibling;
+        const detail = btn.closest('.work-item').querySelector('.work-detail');
         const isOpen = btn.classList.contains('open');
         bodyEl.querySelectorAll('.work-trigger').forEach(b => {
           b.classList.remove('open');
-          b.nextElementSibling.classList.remove('open');
+          b.closest('.work-item').querySelector('.work-detail').classList.remove('open');
         });
         if (!isOpen) {
           btn.classList.add('open');

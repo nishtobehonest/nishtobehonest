@@ -431,7 +431,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   overflow: hidden;
   transition: max-height .3s ease;
 }
-.work-detail.open { max-height: 300px; }
+.work-detail.open { max-height: 800px; }
 .work-bullets { list-style: none; padding: 4px 0 16px 20px; }
 .work-bullets li {
   font-size: 0.875rem;
