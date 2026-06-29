@@ -204,7 +204,8 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .id-sub {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--muted-2);
+  color: var(--text);
+  opacity: 0.75;
   line-height: 1.65;
   margin-bottom: 28px;
 }
@@ -504,6 +505,12 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   color: var(--muted-2);
   line-height: 1.55;
   margin-bottom: 8px;
+}
+.thinking-soon {
+  font-size: .65rem;
+  color: var(--muted-2);
+  font-style: italic;
+  opacity: 0.65;
 }
 .thinking-item-meta {
   font-family: var(--font-mono);

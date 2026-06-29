@@ -114,6 +114,15 @@
         }
       });
     });
+
+    /* Auto-expand Aereo — strongest proof, shouldn't be hidden */
+    const aereoIdx = WORK.findIndex(w => w.company === 'Aereo');
+    const triggers = bodyEl.querySelectorAll('.work-trigger');
+    const details  = bodyEl.querySelectorAll('.work-detail');
+    if (aereoIdx >= 0 && triggers[aereoIdx]) {
+      triggers[aereoIdx].classList.add('open');
+      details[aereoIdx].classList.add('open');
+    }
   }
 
   /* ═══════════════════════════════════════════════════
@@ -127,6 +136,12 @@
       .filter(n => n.type === 'project')
       .sort((a, b) => a.tier - b.tier || b.date.localeCompare(a.date));
 
+    function termStatus(status) {
+      if (status === 'shipped')     return '<span class="term-shipped">✓</span>';
+      if (status === 'in-progress') return '<span class="term-progress">↻</span>';
+      return '<span class="term-muted">○</span>';
+    }
+
     function rowHtml(node) {
       const isSoon = node.status === 'coming-soon';
       const Tag    = node.link && !isSoon ? 'a' : 'div';
@@ -135,7 +150,7 @@
         <${Tag} class="proj-row${isSoon ? ' proj-row-soon' : ''}" ${attrs}>
           <span class="proj-date">${node.date}</span>
           <span class="proj-title">${node.title}</span>
-          <span class="proj-status">${statusLabel(node.status)}</span>
+          <span class="proj-status">${termStatus(node.status)}</span>
           <span class="proj-chevron">›</span>
         </${Tag}>`;
     }
@@ -160,7 +175,12 @@
     const nodes = await getNodes();
     const items = nodes
       .filter(n => n.type === 'blog' || n.type === 'learning')
-      .sort((a, b) => b.date.localeCompare(a.date));
+      .sort((a, b) => {
+        const aS = a.status === 'coming-soon' ? 1 : 0;
+        const bS = b.status === 'coming-soon' ? 1 : 0;
+        if (aS !== bS) return aS - bS;
+        return b.date.localeCompare(a.date);
+      });
 
     if (!items.length) {
       bodyEl.innerHTML = `<p style="color:var(--muted);font-size:.875rem">Nothing here yet.</p>`;
@@ -174,7 +194,7 @@
           const hasLink   = node.link && node.status !== 'coming-soon';
           const titleInner = hasLink
             ? `<a href="${node.link}" target="_blank" rel="noopener" class="thinking-item-title">${node.title}</a>`
-            : `<p class="thinking-item-title">${node.title}${node.status === 'coming-soon' ? ' <span style="color:var(--muted);font-size:.7rem">— coming soon</span>' : ''}</p>`;
+            : `<p class="thinking-item-title">${node.title}${node.status === 'coming-soon' ? ' <span class="thinking-soon">— coming soon</span>' : ''}</p>`;
           return `
             <div class="thinking-item">
               ${titleInner}

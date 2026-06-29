@@ -77,7 +77,7 @@
     await sleep(280);
 
     // Registry
-    await typeLine(`> scanning ${projects.length} projects...`, 'term-prompt');
+    await typeLine('> scanning project registry...', 'term-prompt');
     addBlank();
     await sleep(380);
 
@@ -100,7 +100,7 @@
 
     if (rest > 0) {
       await sleep(30);
-      addLine(`<span class="term-muted">[+${rest} more]</span>`);
+      addLine(`<span class="term-muted">[ and ${rest} more in the graph ]</span>`);
     }
     addBlank();
     await sleep(480);
@@ -122,7 +122,7 @@
     await sleep(280);
 
     // Stats
-    addLine(`<span class="term-stat">> ${projects.length} projects  ·  ${inProg.length} in progress  ·  ${learning.length} learning</span>`);
+    addLine(`<span class="term-stat">> ${projects.length} projects  ·  ${inProg.length} in progress  ·  ${learning.length} in research</span>`);
     addBlank();
     await sleep(360);
 
