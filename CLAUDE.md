@@ -22,13 +22,13 @@ No build, no install step. The site is deployed to Vercel automatically on push 
 The entire site is still driven by a single data file: [data/nodes.json](data/nodes.json). Nothing in the HTML needs to change to add content.
 
 **Pages:**
-- [index.html](index.html) — viewport-as-canvas landing page. No scroll. Two-column grid: identity left (38%), terminal typewriter right (62%). Navigation opens slide-in panels.
-- [explore.html](explore.html) — full explorer with grid + D3 force-directed graph toggle, persona routing (recruiter / engineer / curious), and domain filter pills. Driven by [js/explorer.js](js/explorer.js). Linked from the PROJECTS panel.
+- [index.html](index.html) — viewport-as-canvas landing page. No scroll. Two-column grid: identity left (38%), terminal/content right (62%). Clicking nav items replaces the terminal column with section content in place.
+- [explore.html](explore.html) — full explorer with grid + D3 force-directed graph toggle, persona routing (recruiter / engineer / curious), and domain filter pills. Driven by [js/explorer.js](js/explorer.js). Linked from the PROJECTS section.
 
 **Key files:**
-- `css/style.css` — design tokens + canvas layout + terminal + panel system + mobile
+- `css/style.css` — design tokens + canvas layout + terminal + section system + mobile
 - `js/terminal.js` — typewriter animation; reads nodes.json, types project names + confidence gate lines
-- `js/panel.js` — slide-in panel system; renders all 4 sections. WORK is hardcoded (edit `WORK` array in panel.js directly — not data-driven from nodes.json)
+- `js/panel.js` — section renderer; clicking nav swaps `#terminalView` for `#sectionView` inline. WORK is hardcoded (edit `WORK` array in panel.js directly — not data-driven from nodes.json)
 - `js/explorer.js` — all explore.html logic: grid render, D3 graph, detail panel, persona presets, domain/status/type filters
 - `js/utils.js` — badge helpers shared between index and explore
 - `data/nodes.json` — single source of truth for all content
@@ -43,7 +43,7 @@ The entire site is still driven by a single data file: [data/nodes.json](data/no
 │  create, I do not    │  > confidence: 0.23 → human      │
 │  understand."        │  > select a section. █           │
 │ — R. Feynman         │                                  │
-│                      │                                  │
+│                      │  [clicking nav replaces terminal] │
 │ 01 / WORK            │                                  │
 │ 02 / PROJECTS        │                                  │
 │ 03 / THINKING        │                                  │
@@ -53,17 +53,17 @@ The entire site is still driven by a single data file: [data/nodes.json](data/no
 └──────────────────────┴──────────────────────────────────┘
 ```
 
-**Panel system:**
-- Clicking any nav item slides a panel in from the RIGHT — never navigates away from the canvas
-- `Escape` or backdrop click closes the panel
-- `01 / WORK` → accordion: Year / Company / Role ▼ (hardcoded in panel.js)
-- `02 / PROJECTS` → card grid from nodes.json + filter pills + "View full graph →" link to explore.html
+**Section system:**
+- Clicking any nav item replaces the right column (`#terminalView` → `#sectionView`) in place — no sidebar, no overlay
+- `✕` button or clicking the active nav item again restores the terminal
+- `Escape` also closes the section
+- `01 / WORK` → accordion rows: Year / **Company** / Role › (hardcoded in panel.js)
+- `02 / PROJECTS` → clean row list from nodes.json (date / **title** / status / ›) + "View full graph" link
 - `03 / THINKING` → list of blog + learning nodes from nodes.json
-- `04 / ABOUT` → monospace bio, education, testimonials from nodes.json
+- `04 / ABOUT` → pitch paragraph + 8-row capabilities accordion + education + testimonials
 
 **Mobile (≤768px):**
-- Two columns collapse to vertical stack (identity top, terminal below)
-- Panel takes full width
+- Two columns collapse to vertical stack (identity top, content below)
 - Nav becomes 2×2 pill grid
 
 ## nodes.json schema
@@ -91,8 +91,8 @@ The entire site is still driven by a single data file: [data/nodes.json](data/no
 - `in-progress` renders an amber badge; appears in all persona views
 - `testimonial` type renders in ABOUT panel as blockquote with amber left border
 - `blog` nodes are external links; rendered in THINKING panel
-- `domain` drives filter pills in PROJECTS panel and explore.html
-- `proves` is surfaced as a one-line signal on project cards
+- `domain` drives filter pills in explore.html (PROJECTS section on homepage shows no filters)
+- `proves` is surfaced in explore.html detail panel only (not shown on homepage project rows)
 - `design_note` is optional — renders as a callout in the explore.html detail panel
 
 ## Content loop — adding new nodes
@@ -129,8 +129,7 @@ Dark theme (pure black), three fonts. CSS variables in [css/style.css](css/style
 | `--green` | `#22C55E` | Shipped status |
 | `--font-display` | Bricolage Grotesque | Name heading only |
 | `--font-mono` | JetBrains Mono | Terminal, nav, tagline, labels |
-| `--font-body` | Inter | Panel body text |
-| `--panel-w` | `480px` | Slide-in panel width |
+| `--font-body` | Inter | Section body text |
 
 **Accent colors are functional, not decorative.** They map to node types and statuses — do not change them for aesthetic reasons.
 
