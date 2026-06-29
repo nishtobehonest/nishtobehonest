@@ -115,7 +115,7 @@
     await sleep(280);
 
     // Experience + stack
-    await typeLine('> 3 yrs operational AI at Aereo  ·  mining, construction, infrastructure', 'term-stat');
+    await typeLine('> 3 yrs operational AI at Aereo  ·  geospatial  ·  mining, construction, infrastructure', 'term-stat');
     await sleep(180);
     await typeLine('> stack: LangChain · LangGraph · FastAPI · Anthropic SDK · Apache Sedona', 'term-stat');
     addBlank();

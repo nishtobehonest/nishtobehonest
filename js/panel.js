@@ -278,6 +278,8 @@
         <span class="proof-value">RAG pipeline to human review interface to cloud — end-to-end, not just localhost</span>
         <span class="proof-label">LLM eval frameworks</span>
         <span class="proof-value">85 adversarial test cases, under 2% hallucination rate, confidence scoring and graceful degradation</span>
+        <span class="proof-label">Geospatial data products</span>
+        <span class="proof-value">Drone imagery, spatial risk scoring, pipeline inspection data — operational AI on physical-world data at production scale</span>
         <span class="proof-label">Enterprise trust layer</span>
         <span class="proof-value">Audit and review workflows that closed a $1.5M government contract</span>
       </div>
