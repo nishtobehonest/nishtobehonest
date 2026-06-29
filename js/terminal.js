@@ -60,17 +60,24 @@
     const rest     = projects.length - SHOW.length;
 
     // Header
-    await typeLine('> nishchay.me — knowledge graph', 'term-prompt');
+    await typeLine('> nishchay.me — agent log', 'term-prompt');
     await sleep(60);
     addLine('<span class="term-divider">──────────────────────────────</span>');
     addBlank();
     await sleep(180);
     addLine('<span class="term-label">AGENTIC SYSTEM BUILDER  ·  FDE  ·  CORNELL MEM  ·  2026</span>');
     addBlank();
+    await sleep(200);
+
+    // Agent boot
+    await typeLine('> agent runtime: active', 'term-prompt');
+    await sleep(120);
+    await typeLine('> memory: loaded  ·  tools: bound', 'term-prompt');
+    addBlank();
     await sleep(280);
 
-    // Scanning
-    await typeLine(`> scanning ${projects.length} projects...`, 'term-prompt');
+    // Registry
+    await typeLine(`> loading project registry...`, 'term-prompt');
     addBlank();
     await sleep(380);
 
@@ -125,7 +132,7 @@
     span.className = 'term-prompt';
     wrapper.appendChild(span);
     body.appendChild(wrapper);
-    const prompt = '> select a section [1/2/3/4]  ';
+    const prompt = '> awaiting input [1/2/3/4]  ';
     for (const ch of prompt) {
       span.textContent += ch;
       await sleep(CHAR_DELAY);
