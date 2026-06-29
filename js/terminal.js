@@ -65,7 +65,7 @@
     addLine('<span class="term-divider">──────────────────────────────</span>');
     addBlank();
     await sleep(180);
-    addLine('<span class="term-label">AGENTIC PM  ·  FDE  ·  CORNELL MEM  ·  2026</span>');
+    addLine('<span class="term-label">AGENTIC SYSTEM DESIGN  ·  BUILDER  ·  PM  ·  FDE  ·  CORNELL MEM  ·  2026</span>');
     addBlank();
     await sleep(200);
 
