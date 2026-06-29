@@ -315,7 +315,7 @@
   /* ── Event wiring ────────────────────────────────── */
 
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.nav-item').forEach(btn => {
+    document.querySelectorAll('.nav-item, .id-domain-pill').forEach(btn => {
       btn.addEventListener('click', () => openPanel(btn.dataset.panel));
     });
     closeBtn.addEventListener('click', closePanel);

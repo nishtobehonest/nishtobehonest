@@ -224,7 +224,11 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   letter-spacing: 0.06em;
   padding: 3px 9px;
   border-radius: var(--radius-pill);
+  cursor: pointer;
+  border: none;
+  transition: opacity .15s, transform .15s;
 }
+.id-domain-pill:hover { opacity: 0.75; transform: translateY(-1px); }
 .id-domain-teal   { color: var(--teal);   background: var(--teal-dim); }
 .id-domain-blue   { color: var(--blue);   background: var(--blue-dim); }
 .id-domain-purple { color: var(--purple); background: var(--purple-dim); }
