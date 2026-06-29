@@ -351,6 +351,13 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .term-muted    { color: var(--muted); }
 .term-gate     { color: var(--purple); }
 .term-stat     { color: var(--teal); }
+.term-cta      { color: var(--muted); }
+.term-cta-link {
+  color: var(--green);
+  text-decoration: none;
+  font-family: var(--font-mono);
+}
+.term-cta-link:hover { opacity: 0.75; }
 .term-link {
   font: inherit; color: inherit; background: none; border: none;
   cursor: pointer; padding: 0; text-decoration: none;
@@ -855,6 +862,38 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   text-decoration: none;
 }
 .more-recs-link:hover { color: var(--blue); }
+
+/* ─── About CTA ──────────────────────────────────── */
+.about-cta {
+  margin-top: 32px;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  background: var(--surface);
+}
+.about-cta-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+  letter-spacing: 0.04em;
+}
+.about-cta-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.cta-btn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  transition: opacity .15s;
+}
+.cta-btn:hover { opacity: 0.8; }
+.cta-btn-primary  { background: var(--green); color: #000; font-weight: 600; }
+.cta-btn-secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border-2); }
 
 /* ─── Testimonial cards ──────────────────────────── */
 .testimonial-card {

@@ -298,6 +298,14 @@
             </div>
           </div>`).join('')}
         <a href="https://www.linkedin.com/in/nishchay-v/" target="_blank" rel="noopener" class="more-recs-link">↗ More recommendations on LinkedIn</a>
+      </div>
+
+      <div class="about-cta">
+        <p class="about-cta-label">Open to FDE · Agentic PM · AI PM roles</p>
+        <div class="about-cta-links">
+          <a href="https://calendly.com/nishchay26/new-meeting" target="_blank" rel="noopener" class="cta-btn cta-btn-primary">↗ Book a 30-min call</a>
+          <a href="mailto:nishchay26@gmail.com" class="cta-btn cta-btn-secondary">↗ nishchay26@gmail.com</a>
+        </div>
       </div>`;
   }
 

@@ -126,6 +126,13 @@
     addBlank();
     await sleep(360);
 
+    // CTA
+    await typeLine('> open to: FDE · Agentic PM · AI PM roles', 'term-gate');
+    await sleep(120);
+    addLine('<span class="term-cta"><a href="https://calendly.com/nishchay26/new-meeting" target="_blank" rel="noopener" class="term-cta-link">↗ book a call</a>  ·  <a href="mailto:nishchay26@gmail.com" class="term-cta-link">nishchay26@gmail.com</a></span>');
+    addBlank();
+    await sleep(280);
+
     // Final prompt with blinking cursor
     const wrapper = document.createElement('div');
     const span = document.createElement('span');
