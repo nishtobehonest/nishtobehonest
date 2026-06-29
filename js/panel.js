@@ -194,75 +194,6 @@
     const testimonials = nodes.filter(n => n.type === 'testimonial' && n.status === 'shipped');
 
     bodyEl.innerHTML = `
-      <span class="about-section-label">What I bring</span>
-      <div class="about-caps-accordion">
-        ${[
-          { title: 'Discovery and customer understanding', bullets: [
-            'On-site field discovery with enterprise customers before any spec exists',
-            'Translating ambiguous, emotionally loaded customer asks into crisp problem statements',
-            'Building trust with skeptical, non-technical field users who have deeply embedded manual processes',
-            'Distinguishing the stated problem from the real one',
-            'Owning the customer relationship end to end across multiple stakeholder levels simultaneously',
-          ]},
-          { title: 'AI product judgment', bullets: [
-            'Designing human-in-the-loop validation workflows for AI outputs in high-stakes environments',
-            'Identifying silent failure risk before it reaches users',
-            'Knowing when to automate fully versus when to keep a human in the loop, and being able to defend that call',
-            'Defining eval categories, failure modes, and what done actually looks like for an AI feature',
-            'Understanding the difference between model accuracy and user trust, and knowing which one to optimize first',
-            'Prompt engineering and iteration, not as a technical exercise but as a product discipline',
-          ]},
-          { title: 'Agent and system architecture', bullets: [
-            'Designing multi-agent pipelines where each agent has a single, narrow job',
-            'Scoping agentic solutions with four parts: trigger, action with confidence, human handoff, log',
-            'Understanding RAG pipeline design including chunking strategy, embedding model choice, and where retrieval actually breaks',
-            'Building eval frameworks that test accuracy, hallucination rate, retrieval quality, and latency',
-            'Reading agent architectures and spotting where they will fail in production before they do',
-          ]},
-          { title: 'Prototyping and building', bullets: [
-            'Can build a working prototype fast enough to show engineers what you mean, not just describe it',
-            'Built a Site Intelligence Agent with FastAPI, ChromaDB, and the Anthropic SDK, tested against 85 eval cases, under 2% hallucination',
-            'Built a multi-agent healthcare triage system from scratch in an unfamiliar domain under a hard deadline',
-            'Uses Claude Code daily as a real tool, not a claimed interest',
-            'Can write enough code to have a real conversation with engineers, not just nod along',
-          ]},
-          { title: 'Platform and systems thinking', bullets: [
-            'Recognizing when a system is breaking because of wrong assumptions, not wrong performance',
-            'Designing stage-based workflows with validation gates and guardrails that prevent misuse at the system level',
-            'Understanding how scale changes user behavior and what breaks first',
-            'Distinguishing load-bearing architectural decisions from implementation details',
-          ]},
-          { title: 'Execution and delivery', bullets: [
-            'End-to-end ownership from problem definition through launch through stabilization',
-            'Writing PRDs and acceptance criteria that encode expert constraints as safe defaults',
-            'Making hard, unpopular prioritization calls under sales pressure',
-            'Cross-team coordination without process theater',
-            'Release readiness judgment — knowing when something is safe to ship and when it is not',
-          ]},
-          { title: 'Data and quantitative thinking', bullets: [
-            'SQL background from Aereo, comfortable enough to run your own queries rather than wait for an analyst',
-            'Built operational dashboards and analytics workflows for enterprise clients',
-            'Comfortable with unit economics, cost-per-query reasoning, and accuracy versus cost tradeoffs',
-          ]},
-          { title: 'Operating without a safety net', bullets: [
-            'Founded and ran a business end to end, hired and led a team, operated without structure or support',
-            'Can do whatever-it-takes work when the gap needs filling, not just the work on the job description',
-            'No notice period, ready to move when the right thing comes along',
-          ]},
-        ].map((cap, i) => `
-          <div class="cap-item">
-            <button class="cap-trigger" data-cap="${i}">
-              <span class="cap-title">${cap.title}</span>
-              <span class="cap-chevron">›</span>
-            </button>
-            <div class="cap-detail" id="cap-detail-${i}">
-              <ul class="cap-bullets">
-                ${cap.bullets.map(b => `<li>${b}</li>`).join('')}
-              </ul>
-            </div>
-          </div>`).join('')}
-      </div>
-
       <div class="about-bio">
         <p>PM background, CS foundation, three years in production AI at Aereo — geospatial SaaS serving mining, construction, and infrastructure clients. That's where I learned what operational AI actually means: messy data, high stakes, enterprise buyers who won't act on outputs they can't trust.</p>
         <p>I'm interested in the agentic system design problem: how do you build agents that route correctly, fail gracefully, and hand off to humans in a way that actually works?</p>
@@ -270,18 +201,28 @@
         <p class="about-stem">STEM OPT · Open to FDE, Agentic PM, AI PM, and product builder roles.</p>
       </div>
 
-      <div class="about-accordion-wrap">
-        <button class="about-accordion-trigger" data-target="stack-exp">
-          <span>Stack &amp; Experience</span>
-          <span class="about-accordion-chevron">›</span>
-        </button>
-        <div class="about-accordion-body" id="stack-exp">
-          <div class="about-background">
-            <p>Three years shipping operational AI products at Aereo — drone imagery pipelines, geospatial analytics, mining and infrastructure clients. Real messy data, real enterprise buyers, real consequences when the system got it wrong.</p>
-            <p>At Cornell, I moved into the build layer: RAG pipelines, multi-agent orchestration, MCP server development, LLM evaluation frameworks, HITL escalation design, and full-stack deployment. Stack includes Python, LangChain, LangGraph, FastAPI, React, Apache Sedona, Anthropic SDK, Chroma, Streamlit, and Vercel. I've built and shipped end-to-end — from data ingestion to agent reasoning to human review interface to cloud deployment.</p>
-            <p>I'm targeting roles where the agent design problem is the core product problem — teams where designing and shipping agentic systems is the job, not just speccing them.</p>
-          </div>
-        </div>
+      <span class="about-section-label">What I bring</span>
+      <div class="proof-grid">
+        <span class="proof-label">Agentic system design</span>
+        <span class="proof-value">3-path routing agent: confident answer, conflict surfaced, programmatic escalation</span>
+        <span class="proof-label">Operational AI in production</span>
+        <span class="proof-value">Scaled imagery pipeline 800× (25K to 20M+ data points) at Aereo</span>
+        <span class="proof-label">HITL escalation design</span>
+        <span class="proof-value">Conflict-detection layer that surfaced disagreement between spatial risk score and inspection history — plain-English explanation and counterfactual to the human reviewer</span>
+        <span class="proof-label">Full-stack deployment</span>
+        <span class="proof-value">RAG pipeline to human review interface to cloud — end-to-end, not just localhost</span>
+        <span class="proof-label">LLM eval frameworks</span>
+        <span class="proof-value">85 adversarial test cases, under 2% hallucination rate, confidence scoring and graceful degradation</span>
+        <span class="proof-label">Enterprise trust layer</span>
+        <span class="proof-value">Audit and review workflows that closed a $1.5M government contract</span>
+      </div>
+
+      <span class="about-section-label">Stack</span>
+      <div class="about-stack">
+        <span>Python</span><span>LangChain</span><span>LangGraph</span><span>FastAPI</span><span>Anthropic SDK</span>
+        <span>React</span><span>Vite</span><span>Tailwind</span><span>Leaflet.js</span>
+        <span>Apache Sedona</span><span>Wherobots Cloud</span><span>Chroma</span><span>Streamlit</span>
+        <span>SQL</span><span>QGIS</span><span>Power BI</span><span>Claude Code</span><span>Vercel</span>
       </div>
 
       <span class="about-section-label">Education</span>
@@ -289,42 +230,17 @@
         Cornell University <span class="edu-sep">/</span> MEng Management <span class="edu-sep">/</span> 2025–2026
       </div>
 
-      <div class="about-accordion-wrap">
-        <button class="about-accordion-trigger" data-target="testimonials">
-          <span>What people say</span>
-          <span class="about-accordion-chevron">›</span>
-        </button>
-        <div class="about-accordion-body" id="testimonials">
-          <div class="about-testimonials">
-            ${testimonials.map(node => `
-              <div class="testimonial-card">
-                <blockquote class="tcard-quote">"${node.description}"</blockquote>
-                <div>
-                  <p class="tcard-name">${node.title}</p>
-                  ${node.author_title ? `<p class="tcard-role">${node.author_title}</p>` : ''}
-                </div>
-              </div>`).join('')}
-          </div>
-        </div>
+      <span class="about-section-label">What people say</span>
+      <div class="about-testimonials">
+        ${testimonials.map(node => `
+          <div class="testimonial-card">
+            <blockquote class="tcard-quote">"${node.description}"</blockquote>
+            <div>
+              <p class="tcard-name">${node.title}</p>
+              ${node.author_title ? `<p class="tcard-role">${node.author_title}</p>` : ''}
+            </div>
+          </div>`).join('')}
       </div>`;
-
-    bodyEl.querySelectorAll('.cap-trigger').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const detail = bodyEl.querySelector(`#cap-detail-${btn.dataset.cap}`);
-        const isOpen = btn.classList.contains('open');
-        btn.classList.toggle('open', !isOpen);
-        detail.classList.toggle('open', !isOpen);
-      });
-    });
-
-    bodyEl.querySelectorAll('.about-accordion-trigger').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const body = bodyEl.querySelector(`#${btn.dataset.target}`);
-        const isOpen = btn.classList.contains('open');
-        btn.classList.toggle('open', !isOpen);
-        body.classList.toggle('open', !isOpen);
-      });
-    });
   }
 
   /* ── Dispatcher ──────────────────────────────────── */
