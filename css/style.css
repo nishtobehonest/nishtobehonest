@@ -473,6 +473,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .proj-date         { color: var(--muted); min-width: 86px; flex-shrink: 0; font-size: 0.75rem; align-self: flex-start; padding-top: 2px; }
 .proj-title-group  { flex: 1; display: flex; flex-direction: column; gap: 5px; padding: 0 10px; }
 .proj-title        { font-weight: 600; color: var(--text); }
+.proj-desc         { font-family: var(--font-body); font-size: 0.75rem; color: var(--muted-2); line-height: 1.5; }
 .proj-tags         { display: flex; flex-wrap: wrap; gap: 4px; }
 .proj-tag {
   font-size: 0.6rem;

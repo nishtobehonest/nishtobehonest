@@ -158,6 +158,7 @@
           <span class="proj-date">${node.date}</span>
           <span class="proj-title-group">
             <span class="proj-title">${node.title}</span>
+            <span class="proj-desc">${node.description}</span>
             ${tags ? `<span class="proj-tags">${tags}</span>` : ''}
           </span>
           <span class="proj-status">${termStatus(node.status)}</span>
