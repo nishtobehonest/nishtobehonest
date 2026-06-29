@@ -285,6 +285,20 @@
     "connects_to": ["calling-services-mcp", "latex-resume-tailor-mcp"]
   },
   {
+    "slug": "learning-ai-evals",
+    "title": "AI Evals",
+    "type": "learning",
+    "domain": "ai-systems",
+    "date": "2026-05",
+    "tags": ["evals", "LLM-as-judge", "pass-at-k", "graders"],
+    "status": "shipped",
+    "tier": 2,
+    "link": "https://lab.nishchay.me/chapters/01-evals/",
+    "description": "You can't tell if it works by looking at it. Evals are how you know — six concepts, six live components, from graders to pass@k.",
+    "proves": "Eval-first thinking before shipping AI systems",
+    "connects_to": ["site-intelligence-agent", "magma"]
+  },
+  {
     "slug": "learning-feedback-loops",
     "title": "Agentic Feedback Loops",
     "type": "learning",
