@@ -179,9 +179,9 @@
     "domain": "ai-systems",
     "date": "2026-06",
     "tags": ["evals", "agents", "LLM", "learning-in-public", "deterministic"],
-    "status": "in-progress",
+    "status": "shipped",
     "tier": 2,
-    "link": "",
+    "link": "https://lab.nishchay.me",
     "description": "Chapter-by-chapter lab where AI concepts — deterministic agents, random agents, LLM navigation, evals, LLM-as-judge — are built into a 2D grid world. Each chapter ends with a notes.md written after running the code. The notes are the artifact.",
     "proves": "Learning AI engineering in public, with evals",
     "connects_to": ["learning-rag-architecture", "decision-intelligence-agent"]
@@ -249,9 +249,9 @@
     "domain": "writing",
     "date": "2026-06",
     "tags": ["AI-design", "reliability", "engineering-philosophy"],
-    "status": "coming-soon",
+    "status": "shipped",
     "tier": 1,
-    "link": "",
+    "link": "https://lab.nishchay.me/chapters/03-agentic-systems/",
     "description": "Most AI demos only show the happy path. This post explores why the routing threshold — knowing when NOT to answer and when to surface conflict to a human — is the hardest product decision in agentic system design. Not an engineering decision. A product one.",
     "proves": "Structured thinking on AI design tradeoffs",
     "connects_to": ["site-intelligence-agent", "decision-intelligence-agent"]
@@ -283,6 +283,20 @@
     "description": "Deep dive into MCP — from reading the spec to building two servers. What the protocol actually solves (custom glue code per-client) and where it falls short.",
     "proves": "From spec to two shipped servers",
     "connects_to": ["calling-services-mcp", "latex-resume-tailor-mcp"]
+  },
+  {
+    "slug": "learning-feedback-loops",
+    "title": "Learning: Agentic Feedback Loops",
+    "type": "learning",
+    "domain": "ai-systems",
+    "date": "2026-06",
+    "tags": ["agents", "feedback-loops", "iteration", "LLM"],
+    "status": "shipped",
+    "tier": 2,
+    "link": "https://lab.nishchay.me/chapters/02-agentic-loops/",
+    "description": "Retrying without iteration doesn't improve outputs. This chapter explores what meaningful feedback loops actually accomplish — and how to build agents that improve from their own outputs.",
+    "proves": "Understands agentic iteration beyond naive retry",
+    "connects_to": ["site-intelligence-agent", "magma"]
   },
   {
     "slug": "learning-rag-architecture",
