@@ -77,7 +77,7 @@
     await sleep(280);
 
     // Registry
-    await typeLine(`> loading project registry...`, 'term-prompt');
+    await typeLine(`> scanning ${projects.length} projects...`, 'term-prompt');
     addBlank();
     await sleep(380);
 
@@ -132,7 +132,7 @@
     span.className = 'term-prompt';
     wrapper.appendChild(span);
     body.appendChild(wrapper);
-    const prompt = '> awaiting input [1/2/3/4]  ';
+    const prompt = '> select a section [1/2/3/4]  ';
     for (const ch of prompt) {
       span.textContent += ch;
       await sleep(CHAR_DELAY);
