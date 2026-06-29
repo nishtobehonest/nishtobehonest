@@ -210,6 +210,26 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   margin-bottom: 28px;
 }
 
+/* ─── Domain pills ───────────────────────────────── */
+.id-domains {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+}
+.id-domain-pill {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+}
+.id-domain-teal   { color: var(--teal);   background: var(--teal-dim); }
+.id-domain-blue   { color: var(--blue);   background: var(--blue-dim); }
+.id-domain-purple { color: var(--purple); background: var(--purple-dim); }
+.id-domain-amber  { color: var(--amber);  background: var(--amber-dim); }
+
 /* ─── Numbered nav ───────────────────────────────── */
 .id-nav {
   display: flex;
