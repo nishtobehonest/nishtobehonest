@@ -322,6 +322,8 @@
       btn.addEventListener('click', () => openPanel(btn.dataset.panel));
     });
     closeBtn.addEventListener('click', closePanel);
+    document.addEventListener('open-panel', e => openPanel(e.detail));
+    document.addEventListener('close-panel', () => { if (currentPanel) closePanel(); });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && currentPanel) closePanel();
     });

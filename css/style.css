@@ -190,7 +190,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   font-weight: 500;
-  color: var(--muted-2);
+  color: var(--text);
   padding: 9px 12px;
   border-radius: var(--radius-el);
   cursor: pointer;
@@ -280,6 +280,11 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .term-muted    { color: var(--muted); }
 .term-gate     { color: var(--purple); }
 .term-stat     { color: var(--teal); }
+.term-link {
+  font: inherit; color: inherit; background: none; border: none;
+  cursor: pointer; padding: 0; text-decoration: none;
+}
+.term-link:hover { color: var(--blue); }
 
 /* ─── Blinking cursor ────────────────────────────── */
 .cursor {

@@ -7,6 +7,12 @@
   const body = document.getElementById('termBody');
   if (!body) return;
 
+  /* ── Panel bridge ─────────────────────────────────── */
+
+  function triggerPanel(section) {
+    document.dispatchEvent(new CustomEvent('open-panel', { detail: section }));
+  }
+
   /* ── DOM helpers ──────────────────────────────────── */
 
   function addLine(html) {
@@ -59,7 +65,7 @@
     addLine('<span class="term-divider">──────────────────────────────</span>');
     addBlank();
     await sleep(180);
-    addLine('<span class="term-label">AGENTIC PM  ·  CORNELL MEM  ·  2026</span>');
+    addLine('<span class="term-label">AGENTIC SYSTEM BUILDER  ·  FDE  ·  CORNELL MEM  ·  2026</span>');
     addBlank();
     await sleep(280);
 
@@ -68,7 +74,7 @@
     addBlank();
     await sleep(380);
 
-    // Project lines — pad with dots to align status icons
+    // Project lines — pad with dots to align status icons; titles are clickable
     const maxLen = Math.max(...SHOW.map(n => n.title.length));
     for (const node of SHOW) {
       const dotCount = Math.max(maxLen - node.title.length + 4, 4);
@@ -81,7 +87,7 @@
       } else {
         statusHtml = `<span class="term-muted"> ○</span>`;
       }
-      addLine(`<span>${node.title} <span class="term-muted">${dots}</span>${statusHtml}</span>`);
+      addLine(`<span><button class="term-link" data-slug="${node.slug}">${node.title}</button> <span class="term-muted">${dots}</span>${statusHtml}</span>`);
       await sleep(SCAN_GAP);
     }
 
@@ -101,6 +107,13 @@
     addBlank();
     await sleep(280);
 
+    // Experience + stack
+    await typeLine('> 3 yrs operational AI at Aereo  ·  mining, construction, infrastructure', 'term-stat');
+    await sleep(180);
+    await typeLine('> stack: LangChain · LangGraph · FastAPI · Anthropic SDK · Apache Sedona', 'term-stat');
+    addBlank();
+    await sleep(280);
+
     // Stats
     addLine(`<span class="term-stat">> ${projects.length} projects  ·  ${inProg.length} in progress  ·  ${learning.length} learning</span>`);
     addBlank();
@@ -112,7 +125,7 @@
     span.className = 'term-prompt';
     wrapper.appendChild(span);
     body.appendChild(wrapper);
-    const prompt = '> select a section to explore. ';
+    const prompt = '> select a section [1/2/3/4]  ';
     for (const ch of prompt) {
       span.textContent += ch;
       await sleep(CHAR_DELAY);
@@ -120,6 +133,25 @@
     const cursor = document.createElement('span');
     cursor.className = 'cursor';
     wrapper.appendChild(cursor);
+
+    // Wire up clickable project titles
+    body.querySelectorAll('.term-link').forEach(btn => {
+      btn.addEventListener('click', () => triggerPanel('projects'));
+    });
+
+    // Keyboard navigation — fire once per session
+    const keyMap = { '1': 'work', '2': 'projects', '3': 'thinking', '4': 'about',
+                     'w': 'work', 'p': 'projects', 't': 'thinking', 'a': 'about' };
+    function onKey(e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      const section = keyMap[e.key];
+      if (section) {
+        triggerPanel(section);
+      } else if (e.key === 'Escape') {
+        document.dispatchEvent(new CustomEvent('close-panel'));
+      }
+    }
+    document.addEventListener('keydown', onKey);
   }
 
   /* ── Boot ────────────────────────────────────────── */
