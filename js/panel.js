@@ -53,7 +53,7 @@
       year: '2025 → 2026',
       company: 'Cornell University',
       role: 'MEng Management',
-      teaser: 'AI systems engineering + product strategy. Building agentic systems, eval frameworks, and HITL workflows.',
+      teaser: 'AI systems engineering + product strategy. Built agentic systems, eval frameworks, and HITL workflows.',
       bullets: [
         'Product strategy and AI systems engineering focus',
         'AI for Engineering Management coursework'
@@ -223,7 +223,7 @@
       <div class="about-bio">
         <p>PM background, CS foundation, three years in production AI at Aereo — geospatial SaaS serving mining, construction, and infrastructure clients. That's where I learned what operational AI actually means: messy data, high stakes, enterprise buyers who won't act on outputs they can't trust.</p>
         <p>I'm interested in the agentic system design problem: how do you build agents that route correctly, fail gracefully, and hand off to humans in a way that actually works?</p>
-        <p>At Cornell I've been building that layer — multi-agent RAG, HITL escalation, MCP servers, eval frameworks. I want a role where I'm designing and shipping these systems, not just writing docs about them.</p>
+        <p>At Cornell I built that layer — multi-agent RAG, HITL escalation, MCP servers, eval frameworks. I want a role where I'm designing and shipping these systems, not just writing docs about them.</p>
         <p class="about-stem">STEM OPT · Open to FDE, Agentic PM, AI PM, and product builder roles.</p>
       </div>
 
