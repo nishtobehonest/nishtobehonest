@@ -534,7 +534,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .proof-label {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--text);
+  color: var(--muted-2);
   padding: 10px 16px 10px 0;
   border-bottom: 1px solid var(--border);
   line-height: 1.5;
@@ -542,7 +542,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .proof-value {
   font-family: var(--font-body);
   font-size: 0.8125rem;
-  color: var(--muted-2);
+  color: var(--text);
   padding: 10px 0;
   border-bottom: 1px solid var(--border);
   line-height: 1.5;
