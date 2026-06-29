@@ -211,11 +211,18 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 }
 
 /* ─── Domain pills ───────────────────────────────── */
+.id-stack-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--muted);
+  margin: 18px 0 6px;
+  letter-spacing: 0.04em;
+}
 .id-domains {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 16px;
+  margin-top: 0;
 }
 .id-domain-pill {
   font-family: var(--font-mono);
