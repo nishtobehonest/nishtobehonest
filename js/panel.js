@@ -233,24 +233,6 @@
         <p class="about-stem">STEM OPT · Open to FDE, Agentic PM, AI PM, and product builder roles.</p>
       </div>
 
-      <span class="about-section-label">What I bring</span>
-      <div class="proof-grid">
-        <span class="proof-label">Agentic system design</span>
-        <span class="proof-value">3-path routing agent: confident answer, conflict surfaced, programmatic escalation</span>
-        <span class="proof-label">Agent behavior spec</span>
-        <span class="proof-value">Defined routing logic, confidence thresholds, and HITL override conditions as explicit PRD requirements before engineering build</span>
-        <span class="proof-label">Operational AI in production</span>
-        <span class="proof-value">Scaled imagery pipeline 800× (25K to 20M+ data points) at Aereo</span>
-        <span class="proof-label">HITL escalation design</span>
-        <span class="proof-value">HITL conflict-detection on live PHMSA pipeline data — surfaces disagreement between spatial risk score and inspection history with plain-English explanation and counterfactual</span>
-        <span class="proof-label">Full-stack deployment</span>
-        <span class="proof-value">RAG pipeline to human review interface to cloud — end-to-end, not just localhost</span>
-        <span class="proof-label">LLM eval frameworks</span>
-        <span class="proof-value">85 adversarial test cases, under 2% hallucination rate, confidence scoring and graceful degradation</span>
-        <span class="proof-label">Enterprise trust layer</span>
-        <span class="proof-value">Audit and review workflows that closed a $1.5M government contract</span>
-      </div>
-
       <span class="about-section-label" id="about-stack">Stack</span>
       <div class="stack-groups">
         <div class="stack-group">
@@ -280,6 +262,24 @@
             ${['Rapid prototyping','POC / demo delivery','Bespoke artifact creation','Solution architecture','Customer technical discovery','API integration','Field deployment','Customer onboarding'].map(t=>`<span class="stack-pill stack-pill-purple">${t}</span>`).join('')}
           </div>
         </div>
+      </div>
+
+      <span class="about-section-label">What I bring</span>
+      <div class="proof-grid">
+        <span class="proof-label">Agentic system design</span>
+        <span class="proof-value">3-path routing agent: confident answer, conflict surfaced, programmatic escalation</span>
+        <span class="proof-label">Agent behavior spec</span>
+        <span class="proof-value">Defined routing logic, confidence thresholds, and HITL override conditions as explicit PRD requirements before engineering build</span>
+        <span class="proof-label">Operational AI in production</span>
+        <span class="proof-value">Scaled imagery pipeline 800× (25K to 20M+ data points) at Aereo</span>
+        <span class="proof-label">HITL escalation design</span>
+        <span class="proof-value">HITL conflict-detection on live PHMSA pipeline data — surfaces disagreement between spatial risk score and inspection history with plain-English explanation and counterfactual</span>
+        <span class="proof-label">Full-stack deployment</span>
+        <span class="proof-value">RAG pipeline to human review interface to cloud — end-to-end, not just localhost</span>
+        <span class="proof-label">LLM eval frameworks</span>
+        <span class="proof-value">85 adversarial test cases, under 2% hallucination rate, confidence scoring and graceful degradation</span>
+        <span class="proof-label">Enterprise trust layer</span>
+        <span class="proof-value">Audit and review workflows that closed a $1.5M government contract</span>
       </div>
 
       <span class="about-section-label">Education</span>
