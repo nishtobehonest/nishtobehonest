@@ -221,7 +221,7 @@
       <div class="about-stack">
         <span class="stack-key">Python</span><span class="stack-key">LangChain</span><span class="stack-key">LangGraph</span><span>FastAPI</span><span class="stack-key">Anthropic SDK</span>
         <span>React</span><span>Vite</span><span>Tailwind</span><span>Leaflet.js</span>
-        <span class="stack-key">Apache Sedona</span><span>Wherobots Cloud</span><span>Chroma</span><span>Streamlit</span>
+        <span class="stack-key">Apache Sedona</span><span>Chroma</span><span>Streamlit</span>
         <span>SQL</span><span>QGIS</span><span>Power BI</span><span>Claude Code</span><span>Vercel</span>
       </div>
 
