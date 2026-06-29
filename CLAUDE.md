@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal portfolio site for Nishchay Vishwanath — a "living knowledge graph" of projects, writing, and learning notes. Vanilla HTML/CSS/JS + D3.js, no build step.
 
-**Strategic intent:** Dual-use — passive discovery (people find me) and active proof (sent during job applications). North star positioning: Agentic PM. Target audience: Series A/B startups bringing AI into physical-world/operational environments (drone analytics, geospatial, industrial ops, enterprise automation). The site shows trajectory, not just a snapshot — timestamps and statuses are intentionally visible.
+**Strategic intent:** Dual-use — passive discovery (people find me) and active proof (sent during job applications). North star positioning: **Agentic PM · FDE**. Target audience: Series A/B startups bringing AI into physical-world/operational environments (drone analytics, geospatial, industrial ops, enterprise automation). The site shows trajectory, not just a snapshot — timestamps and statuses are intentionally visible.
 
 ## Running locally
 
@@ -28,7 +28,7 @@ The entire site is still driven by a single data file: [data/nodes.json](data/no
 **Key files:**
 - `css/style.css` — design tokens + canvas layout + terminal + section system + mobile
 - `js/terminal.js` — typewriter animation; reads nodes.json, types project names + confidence gate lines
-- `js/panel.js` — section renderer; clicking nav swaps `#terminalView` for `#sectionView` inline. WORK is hardcoded (edit `WORK` array in panel.js directly — not data-driven from nodes.json)
+- `js/panel.js` — section renderer; clicking nav swaps `#terminalView` for `#sectionView` inline. WORK is hardcoded (edit `WORK` array in panel.js directly — not data-driven from nodes.json). Also wires `.id-domain-pill` clicks to open ABOUT + scroll to `#about-stack`.
 - `js/explorer.js` — all explore.html logic: grid render, D3 graph, detail panel, persona presets, domain/status/type filters
 - `js/utils.js` — badge helpers shared between index and explore
 - `data/nodes.json` — single source of truth for all content
@@ -36,14 +36,19 @@ The entire site is still driven by a single data file: [data/nodes.json](data/no
 **Homepage layout:**
 ```
 ┌──────────────────────┬──────────────────────────────────┐
-│ Nishchay Vishwanath  │  > nishchay.me — knowledge graph │
-│ Product → AI...      │  ──────────────────────────────  │
-│                      │  site-intelligence-agent ... ✓   │
-│ "What I cannot       │  pipeline-risk-agent ..... ↻     │
-│  create, I do not    │  > confidence: 0.23 → human      │
-│  understand."        │  > select a section. █           │
-│ — R. Feynman         │                                  │
-│                      │  [clicking nav replaces terminal] │
+│ Nishchay Vishwanath  │  > nishchay.me — agent log       │
+│ Founder → PM →       │  ──────────────────────────────  │
+│ Agentic PM · FDE.    │  AGENTIC SYSTEM DESIGN · PM ·    │
+│                      │  BUILDER · FDE · CORNELL · 2026  │
+│ 3 yrs PM background, │                                  │
+│ CS foundation...     │  site-intelligence-agent ... ✓   │
+│                      │  pipeline-risk-agent ..... ↻     │
+│ [AI Eng] [Prod]      │  > confidence: 0.23 → human      │
+│ [FDE] [Business]     │  > select a section. █           │
+│   ↑ clickable pills  │                                  │
+│   → open ABOUT →     │  [clicking nav replaces terminal] │
+│   scroll to Stack    │                                  │
+│                      │                                  │
 │ 01 / WORK            │                                  │
 │ 02 / PROJECTS        │                                  │
 │ 03 / THINKING        │                                  │
@@ -60,7 +65,13 @@ The entire site is still driven by a single data file: [data/nodes.json](data/no
 - `01 / WORK` → accordion rows: Year / **Company** / Role › (hardcoded in panel.js)
 - `02 / PROJECTS` → clean row list from nodes.json (date / **title** / status / ›) + "View full graph" link
 - `03 / THINKING` → list of blog + learning nodes from nodes.json
-- `04 / ABOUT` → pitch paragraph + 8-row capabilities accordion + education + testimonials
+- `04 / ABOUT` → Bio → **Stack** (4 groups: AI Engineering/teal, Product & Strategy/blue, Business/amber, FDE/purple, each with shipped + learning pills) → **What I bring** (7-row proof grid) → Education → Testimonials
+
+**Domain pills (identity column):**
+- Four colored pills below the sub text: AI Engineering (teal), Product & Strategy (blue), FDE (purple), Business (amber)
+- Clicking any pill opens ABOUT and auto-scrolls to the Stack section (`#about-stack`)
+- Colors match the ABOUT stack group colors — intentional visual consistency
+- Wired in `panel.js`: `.id-domain-pill` click → `openPanel('about')` + `scrollToStack()` (rAF poll until `#about-stack` exists)
 
 **Mobile (≤768px):**
 - Two columns collapse to vertical stack (identity top, content below)
