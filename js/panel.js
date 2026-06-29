@@ -263,8 +263,8 @@
         <div class="stack-group">
           <span class="stack-group-label">Product &amp; Strategy</span>
           <div class="stack-pills">
-            ${['Agent behavior specs','Eval framework design','HITL workflow design','Roadmapping','User research','Stakeholder communication','Prioritization','PRDs','Go-to-market strategy','Demo building','Technical documentation','OKRs','Notion','Linear','Figma'].map(t=>`<span class="stack-pill stack-pill-blue">${t}</span>`).join('')}
-            ${['A/B testing','API / developer experience design'].map(t=>`<span class="stack-pill stack-pill-learning" title="in progress">${t}</span>`).join('')}
+            ${['Agent behavior specs','Eval framework design','HITL workflow design','Roadmapping','User research','Stakeholder communication','Prioritization','PRDs','Go-to-market strategy','Demo building','Technical documentation','OKRs','A/B testing','Notion','Linear','Figma'].map(t=>`<span class="stack-pill stack-pill-blue">${t}</span>`).join('')}
+            ${['API / developer experience design'].map(t=>`<span class="stack-pill stack-pill-learning" title="in progress">${t}</span>`).join('')}
           </div>
         </div>
         <div class="stack-group">
