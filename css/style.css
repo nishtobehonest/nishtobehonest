@@ -405,7 +405,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   cursor: pointer;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-  color: var(--muted-2);
+  color: var(--text);
   background: none;
   border: none;
   text-align: left;
@@ -415,14 +415,14 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .work-trigger.open  { color: var(--text); }
 .work-year    { color: var(--muted); min-width: 86px; flex-shrink: 0; font-size: 0.75rem; }
 .work-company { flex: 1; font-weight: 600; padding: 0 10px; color: var(--text); }
-.work-role    { color: var(--muted); font-size: 0.75rem; margin-right: 10px; }
+.work-role    { color: var(--text); font-size: 0.75rem; margin-right: 10px; }
 .work-chevron { color: var(--muted); font-size: 0.75rem; transition: transform .25s; flex-shrink: 0; }
 .work-trigger.open .work-chevron { transform: rotate(90deg); }
 
 .work-teaser {
   font-family: var(--font-mono);
   font-size: 0.73rem;
-  color: var(--muted-2);
+  color: var(--text);
   line-height: 1.6;
   padding: 0 0 10px 0;
 }
@@ -435,7 +435,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .work-bullets { list-style: none; padding: 4px 0 16px 20px; }
 .work-bullets li {
   font-size: 0.875rem;
-  color: var(--muted-2);
+  color: var(--text);
   line-height: 1.65;
   margin-bottom: 5px;
   position: relative;
@@ -571,7 +571,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .about-edu {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-  color: var(--muted-2);
+  color: var(--text);
   line-height: 1.85;
   margin-bottom: 28px;
 }
@@ -587,8 +587,8 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .proof-label {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--muted-2);
-  opacity: 0.6;
+  color: var(--text);
+  opacity: 0.75;
   padding: 10px 16px 10px 0;
   border-bottom: 1px solid var(--border);
   line-height: 1.5;
@@ -618,7 +618,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   gap: 6px 20px;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--muted-2);
+  color: var(--text);
   margin-bottom: 28px;
 }
 
@@ -805,7 +805,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   flex-direction: column;
   gap: 16px;
 }
-.tcard-quote { font-size: .9375rem; color: var(--muted-2); line-height: 1.75; font-style: italic; flex: 1; }
+.tcard-quote { font-size: .9375rem; color: var(--text); line-height: 1.75; font-style: italic; flex: 1; }
 .tcard-name  { font-size: .9375rem; font-weight: 600; color: var(--text); }
 .tcard-role  { font-size: .8125rem; color: var(--muted); margin-top: 3px; }
 
