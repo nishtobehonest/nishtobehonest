@@ -17,6 +17,8 @@ npx serve .        # serves on http://localhost:3000
 
 No build, no install step. The site is deployed to Vercel automatically on push to `main`.
 
+**Must be served, not opened directly.** Double-clicking `index.html` (`file://` URL) breaks `fetch('data/nodes.json')` under browser CORS rules and shows `// error loading data` / panels stuck on `loading...`. Always use one of the commands above.
+
 ## Architecture (v3 — rebuilt 2026-06-22)
 
 The entire site is still driven by a single data file: [data/nodes.json](data/nodes.json). Nothing in the HTML needs to change to add content.
@@ -161,3 +163,5 @@ Dark theme (pure black), three fonts. CSS variables in [css/style.css](css/style
 ## Planning history
 
 planning/ folder removed after v3 shipped. Three phases: knowledge graph architecture (v1) → enrichment + visuals (v2) → viewport-as-canvas rebuild (v3, 2026-06-22).
+
+**Abandoned fork (2026-06-30):** `main` briefly diverged from `origin/main` — a separate local line kept building on the pre-v3 design (persona-nav homepage, philosophy CTAs, building strip) while `origin/main` independently became the v3 terminal rebuild. Local `main` was reset to `origin/main` (the live version) to resolve this. The abandoned line, including content never ported into current `nodes.json` — a `pipeline-risk-intelligence-agent` node and 4 FDE-artifact case studies (Waymo, HomeLight, Netic, Drafted) — is preserved at git tags `backup/old-main-persona-direction` and `backup/joyful-frolicking-dongarra`. Port any of that content forward manually if it's still relevant; don't assume it's already on the live site.
