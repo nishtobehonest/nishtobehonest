@@ -265,6 +265,20 @@ function buildGraph() {
   const W = container.clientWidth;
   const H = container.clientHeight;
 
+  // Edge/label colors must track the active theme — hardcoded white was
+  // invisible against the light theme's off-white background.
+  const rootStyle = getComputedStyle(document.documentElement);
+  const cssVar = name => rootStyle.getPropertyValue(name).trim();
+  const typeColor = {
+    project:     cssVar('--blue')   || TYPE_COLOR.project,
+    blog:        cssVar('--purple') || TYPE_COLOR.blog,
+    learning:    cssVar('--teal')   || TYPE_COLOR.learning,
+    testimonial: cssVar('--amber')  || TYPE_COLOR.testimonial,
+  };
+  const edgeColor      = cssVar('--border-2') || 'rgba(255,255,255,.12)';
+  const edgeColorHover = cssVar('--muted-2')  || 'rgba(255,255,255,.6)';
+  const labelColor     = cssVar('--muted-2')  || 'rgba(226,232,240,.75)';
+
   d3.select(svgEl).selectAll('*').remove();
   if (simulation) simulation.stop();
 
@@ -287,7 +301,7 @@ function buildGraph() {
   const link = linkGroup.selectAll('line')
     .data(links)
     .join('line')
-    .attr('stroke', 'rgba(255,255,255,.12)')
+    .attr('stroke', edgeColor)
     .attr('stroke-width', 1.5);
 
   // Rough.js: draw hand-sketched edges once simulation settles
@@ -301,7 +315,7 @@ function buildGraph() {
     links.forEach((l, idx) => {
       if (l.source.x == null) return;
       const el = rc.line(l.source.x, l.source.y, l.target.x, l.target.y, {
-        roughness: 1.3, stroke: 'rgba(255,255,255,0.18)', strokeWidth: 1.5, seed: (idx + 1) * 17,
+        roughness: 1.3, stroke: edgeColor, strokeWidth: 1.5, seed: (idx + 1) * 17,
       });
       rg.appendChild(el);
     });
@@ -327,9 +341,9 @@ function buildGraph() {
 
   node.append('circle')
     .attr('r', nodeRadius)
-    .attr('fill', d => TYPE_COLOR[d.type] || '#4F8EF7')
+    .attr('fill', d => typeColor[d.type] || typeColor.project)
     .attr('fill-opacity', d => d.status === 'coming-soon' ? 0.35 : 0.9)
-    .attr('stroke', d => TYPE_COLOR[d.type] || '#4F8EF7')
+    .attr('stroke', d => typeColor[d.type] || typeColor.project)
     .attr('stroke-width', d => d.tier === 1 ? 2.5 : 1.5)
     .attr('stroke-opacity', 0.6);
 
@@ -337,7 +351,7 @@ function buildGraph() {
     .text(d => d.title.length > 22 ? d.title.slice(0, 20) + '…' : d.title)
     .attr('text-anchor', 'middle')
     .attr('dy', d => nodeRadius(d) + 14)
-    .attr('fill', 'rgba(226,232,240,.75)')
+    .attr('fill', labelColor)
     .attr('font-size', '10px')
     .attr('font-family', 'Inter, sans-serif')
     .attr('pointer-events', 'none');
@@ -351,10 +365,11 @@ function buildGraph() {
       tooltip.classList.add('visible');
       tooltipTitle.textContent = d.title;
       tooltipType.textContent  = d.type;
-      tooltipType.style.color  = TYPE_COLOR[d.type] || '#4F8EF7';
+      tooltipType.style.color  = typeColor[d.type] || typeColor.project;
       const isConnected = l => l.source.id === d.id || l.target.id === d.id;
       link
-        .attr('stroke', l => isConnected(l) ? 'rgba(255,255,255,.6)' : 'rgba(255,255,255,.08)')
+        .attr('stroke', edgeColorHover)
+        .attr('stroke-opacity', l => isConnected(l) ? 1 : 0.3)
         .attr('stroke-width', l => isConnected(l) ? 2.5 : 1.5)
         .attr('opacity', 1);
     })
@@ -366,7 +381,8 @@ function buildGraph() {
     .on('mouseout', () => {
       tooltip.classList.remove('visible');
       link
-        .attr('stroke', 'rgba(255,255,255,.12)')
+        .attr('stroke', edgeColor)
+        .attr('stroke-opacity', 1)
         .attr('stroke-width', 1.5)
         .attr('opacity', roughLinkGroup ? 0 : 1);
     })
@@ -503,6 +519,14 @@ async function init() {
   document.getElementById('panelClose').addEventListener('click', closePanel);
   document.getElementById('panelBackdrop').addEventListener('click', closePanel);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+
+  // Graph colors are read from CSS vars at build time — rebuild on theme
+  // toggle so edges/nodes don't keep the other theme's colors.
+  document.querySelectorAll('.theme-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (currentView === 'graph') { graphBuilt = false; buildGraph(); }
+    });
+  });
 }
 
 document.addEventListener('DOMContentLoaded', init);
