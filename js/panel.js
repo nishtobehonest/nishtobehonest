@@ -87,9 +87,9 @@
       year: '2020 → 2022',
       company: 'PokerClothingStore.com',
       role: 'Founder',
-      teaser: 'Built and iterated an e-commerce product from zero to 400+ conversions and Rs. 270K+ revenue, owning growth, funnel tracking, and execution end to end.',
+      teaser: 'Built and launched an e-commerce product from scratch, growing to 400+ sales in 18 months while leading a 5-person cross-functional team.',
       bullets: [
-        'Built and iterated an e-commerce product from zero to 400+ conversions and Rs. 270K+ revenue, owning funnel tracking, customer feedback loops, and execution prioritization across a 5-person team',
+        'Built and launched an e-commerce product from scratch, growing to 400+ sales in 18 months while leading a 5-person cross-functional team',
         'Ran 40+ A/B tests across targeting and creatives; analyzed performance to reallocate spend, reducing costs ~20% and improving efficiency (CTR +30% est., ROAS ~2x)',
         'Streamlined operating workflows with lightweight automation and cadence, improving execution speed by 50% and freeing 25 hours/week for analysis and iterative improvements'
       ]
