@@ -86,7 +86,22 @@
     "link": "https://github.com/nishtobehonest/email-negotiation-coach",
     "description": "3-step LLM chain that coaches negotiation — extract facts, diagnose gaps, generate questions. Deliberately does not draft replies. Human judgment stays in the loop by design, not by accident.",
     "proves": "Keeps humans in the loop by design, not by accident",
-    "connects_to": ["latex-resume-tailor-mcp", "agentic-consulting-analyst"]
+    "connects_to": ["latex-resume-tailor-mcp", "agentic-consulting-analyst", "draft-campaign-pipeline"]
+  },
+  {
+    "slug": "draft-campaign-pipeline",
+    "title": "Draft — Agentic Campaign Email Pipeline",
+    "type": "project",
+    "domain": "ai-systems",
+    "date": "2026-07",
+    "tags": ["agentic-workflow", "confidence-routing", "human-in-the-loop", "Claude Sonnet 5", "React", "Vercel"],
+    "status": "shipped",
+    "tier": 1,
+    "link": "https://draft-sunny-spoon.vercel.app",
+    "description": "A five-screen agentic pipeline for marketing email production: one real Claude call drafts copy and scores its own confidence section-by-section, a second independent Claude call runs legal review against whatever a human last edited, and send stays genuinely disabled until a human checks the approval box. Per-call token cost is tracked from real API usage, not estimated.",
+    "proves": "Builds the approval gate as a real blocker, not UI theater",
+    "design_note": "Drafting and confidence-scoring is branded as one agent because it's genuinely one API call underneath — no dressing up a single call as a multi-agent system. Legal review is a real second call, and only a human checking a box can ever set approved: true. The model never approves its own output.",
+    "connects_to": ["email-negotiation-coach", "site-intelligence-agent", "decision-intelligence-agent"]
   },
   {
     "slug": "case-studies",
