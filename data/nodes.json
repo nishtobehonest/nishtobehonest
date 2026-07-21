@@ -60,19 +60,19 @@
     "connects_to": ["latex-resume-tailor-mcp", "site-intelligence-agent"]
   },
   {
-    "slug": "decision-intelligence-agent",
-    "title": "Decision Intelligence Agent",
+    "slug": "draft-campaign-pipeline",
+    "title": "Draft — Agentic Campaign Email Pipeline",
     "type": "project",
     "domain": "ai-systems",
-    "date": "2026-01",
-    "tags": ["deterministic", "decision-engine", "React", "recharts", "explainability"],
+    "date": "2026-07",
+    "tags": ["agentic-workflow", "confidence-routing", "human-in-the-loop", "Claude Sonnet 5", "React", "Vercel"],
     "status": "shipped",
     "tier": 1,
-    "link": "https://github.com/nishtobehonest/decision-intelligence-agent",
-    "description": "Deterministic revenue classifier and marketing decision engine — deliberately no LLM in the core path. When revenue is healthy, it suppresses low-priority actions. Models the cost of acting.",
-    "proves": "Knows when NOT to use AI",
-    "design_note": "No LLM in the core decision path. The cost of acting is modeled explicitly — when revenue is healthy, suppressing low-priority actions is the right call, not an oversight.",
-    "connects_to": ["dti-servicenow", "case-studies"]
+    "link": "https://draft-sunny-spoon.vercel.app",
+    "description": "A five-screen agentic pipeline for marketing email production: one real Claude call drafts copy and scores its own confidence section-by-section, a second independent Claude call runs legal review against whatever a human last edited, and send stays genuinely disabled until a human checks the approval box. Per-call token cost is tracked from real API usage, not estimated.",
+    "proves": "Builds the approval gate as a real blocker, not UI theater",
+    "design_note": "Drafting and confidence-scoring is branded as one agent because it's genuinely one API call underneath — no dressing up a single call as a multi-agent system. Legal review is a real second call, and only a human checking a box can ever set approved: true. The model never approves its own output.",
+    "connects_to": ["email-negotiation-coach", "site-intelligence-agent", "decision-intelligence-agent"]
   },
   {
     "slug": "email-negotiation-coach",
@@ -89,19 +89,19 @@
     "connects_to": ["latex-resume-tailor-mcp", "agentic-consulting-analyst", "draft-campaign-pipeline"]
   },
   {
-    "slug": "draft-campaign-pipeline",
-    "title": "Draft — Agentic Campaign Email Pipeline",
+    "slug": "decision-intelligence-agent",
+    "title": "Decision Intelligence Agent",
     "type": "project",
     "domain": "ai-systems",
-    "date": "2026-07",
-    "tags": ["agentic-workflow", "confidence-routing", "human-in-the-loop", "Claude Sonnet 5", "React", "Vercel"],
+    "date": "2026-01",
+    "tags": ["deterministic", "decision-engine", "React", "recharts", "explainability"],
     "status": "shipped",
     "tier": 1,
-    "link": "https://draft-sunny-spoon.vercel.app",
-    "description": "A five-screen agentic pipeline for marketing email production: one real Claude call drafts copy and scores its own confidence section-by-section, a second independent Claude call runs legal review against whatever a human last edited, and send stays genuinely disabled until a human checks the approval box. Per-call token cost is tracked from real API usage, not estimated.",
-    "proves": "Builds the approval gate as a real blocker, not UI theater",
-    "design_note": "Drafting and confidence-scoring is branded as one agent because it's genuinely one API call underneath — no dressing up a single call as a multi-agent system. Legal review is a real second call, and only a human checking a box can ever set approved: true. The model never approves its own output.",
-    "connects_to": ["email-negotiation-coach", "site-intelligence-agent", "decision-intelligence-agent"]
+    "link": "https://github.com/nishtobehonest/decision-intelligence-agent",
+    "description": "Deterministic revenue classifier and marketing decision engine — deliberately no LLM in the core path. When revenue is healthy, it suppresses low-priority actions. Models the cost of acting.",
+    "proves": "Knows when NOT to use AI",
+    "design_note": "No LLM in the core decision path. The cost of acting is modeled explicitly — when revenue is healthy, suppressing low-priority actions is the right call, not an oversight.",
+    "connects_to": ["dti-servicenow", "case-studies"]
   },
   {
     "slug": "case-studies",
