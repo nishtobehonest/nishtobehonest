@@ -157,8 +157,11 @@ Dark theme (pure black), three fonts. CSS variables in [css/style.css](css/style
 
 - **Live URL:** https://nishchay.me (`www.nishchay.me` redirects to apex)
 - **GitHub:** https://github.com/nishtobehonest/nishtobehonest
-- Deployed on Vercel, connected to the GitHub repo — every push to `main` auto-deploys
 - [vercel.json](vercel.json) enables clean URLs (`/explore` instead of `/explore.html`)
+
+**Deploys are manual, not git-triggered.** The Vercel project (`nishtobehonest`) has no linked GitHub repo — `vercel project inspect nishtobehonest` shows no Git Repository section. Pushing to `main` does **not** deploy anything by itself. After pushing, run `vercel --prod --yes` from the repo root to actually ship the change (requires the Vercel CLI logged into the right account; `.vercel/project.json` has the project/org IDs already linked). Confirmed 2026-07-21: three pushes sat live-unreflected for 5+ days until a manual deploy was run.
+
+To make pushes auto-deploy as originally intended, connect the GitHub repo in the Vercel dashboard: Project Settings → Git → Connect Git Repository → `nishtobehonest/nishtobehonest`. Until that's done, always deploy manually after pushing.
 
 ## Planning history
 
