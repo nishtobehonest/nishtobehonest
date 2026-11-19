@@ -106,8 +106,7 @@
           <div class="work-item">
             <button class="work-trigger" data-idx="${i}">
               <span class="work-year">${item.year}</span>
-              <span class="work-company">${item.company}${item.type ? `<span class="work-company-type">${item.type}</span>` : ''}</span>
-              <span class="work-role">${item.role}</span>
+              <span class="work-company">${item.company}<span class="work-role-inline"> · ${item.role}</span>${item.type ? `<span class="work-company-type">${item.type}</span>` : ''}</span>
               <span class="work-chevron">›</span>
             </button>
             ${item.teaser ? `<p class="work-teaser">${item.teaser}</p>` : ''}
