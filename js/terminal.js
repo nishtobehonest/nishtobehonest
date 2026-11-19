@@ -68,7 +68,7 @@
     addLine('<span class="term-divider">──────────────────────────────</span>');
     addBlank();
     await sleep(180);
-    addLine('<span class="term-label">FORWARD DEPLOYED PM  ·  AGENTIC SYSTEM DESIGN  ·  BUILDER  ·  SYNTHETIC RESEARCH  ·  GEOSPATIAL / OPERATIONAL AI</span>');
+    addLine('<span class="term-label">PRODUCT MANAGER  ·  AGENTIC AI SYSTEMS  ·  FORWARD DEPLOYED  ·  BUILDER  ·  GEOSPATIAL / OPERATIONAL AI</span>');
     addBlank();
     await sleep(200);
 

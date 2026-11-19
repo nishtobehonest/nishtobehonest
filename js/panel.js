@@ -53,7 +53,7 @@
       year: '2026 → now',
       company: 'AuxoAI',
       type: 'Forward-deployed AI company for enterprises',
-      role: 'Forward Deployed Strategist',
+      role: 'Forward Deployed Strategist (AI Product & Agent Development)',
       teaser: 'Building and evaluating AI agents for synthetic market research: LLM personas built from real survey data, agents that test live products, and evals that check both against real people.',
       bullets: [
         'Built a multi-agent browser-testing system: 4 LLM agents act as mobile guests on a live site, and a finding counts only if 3 of 4 agree. For a U.S. steakhouse chain, a details-first offer page lifted reservation success from 67% to 93%',
