@@ -50,6 +50,19 @@
 
   const WORK = [
     {
+      year: 'Sept 2026 → now',
+      company: 'AuxoAI',
+      role: 'Forward Deployed Strategist',
+      teaser: 'Forward deployed on synthetic market research: AI-simulated customer personas built from real survey data. I prove the personas are faithful, score the models behind them, and run studies with them for enterprise clients.',
+      bullets: [
+        'Led day-to-day delivery for an Australian/UK wine company. Built a Python reconciliation pipeline proving 3,031/3,031 synthetic personas matched real respondents on every attribute and all 1,456 answers, and surfaced a 10.5-point gender skew in how the platform draws personas',
+        'Reverse-engineered an undocumented survey weight (gender × age × location, 12.6M-adult base) to ~1e-14 fit error; the research agency confirmed it',
+        'Designed a pre-registered calibration study scoring two LLM engines against a 153-tab human survey (n=2,500, 51,500 rows per run): 79% vs 68% directional accuracy, plus screener and template defects the scores exposed',
+        'Built a Node/Playwright harness that simulates mobile guests on a live site, driven by 4 LLMs, with a finding counted only if 3 of 4 models agree. Ran 154 synthetic-guest sessions for a U.S. steakhouse chain; a 74-session A/B test showed a details-first offer page lifting reservation success from 67% to 93%',
+        'Built the agent engine, safety policy and 70-file student kit for a hands-on AI-agent bootcamp at Cornell Tech (106 passing tests, 20/20 concurrent-session load test); co-facilitated for ~70 graduate students'
+      ]
+    },
+    {
       year: '2025 → 2026',
       company: 'Cornell University',
       role: 'MEng Management',
@@ -132,8 +145,8 @@
       });
     });
 
-    /* Auto-expand Aereo — strongest proof, shouldn't be hidden */
-    const aereoIdx = WORK.findIndex(w => w.company === 'Aereo');
+    /* Auto-expand current role — newest proof, shouldn't be hidden */
+    const aereoIdx = WORK.findIndex(w => w.company === 'AuxoAI');
     const triggers = bodyEl.querySelectorAll('.work-trigger');
     const details  = bodyEl.querySelectorAll('.work-detail');
     if (aereoIdx >= 0 && triggers[aereoIdx]) {
@@ -240,8 +253,9 @@
       <div class="about-bio">
         <p>PM background, CS foundation, three years in production AI at Aereo — geospatial SaaS serving mining, construction, and infrastructure clients. That's where I learned what operational AI actually means: messy data, high stakes, enterprise buyers who won't act on outputs they can't trust.</p>
         <p>I'm interested in the agentic system design problem: how do you build agents that route correctly, fail gracefully, and hand off to humans in a way that actually works?</p>
-        <p>At Cornell I built that layer — multi-agent RAG, HITL escalation, MCP servers, eval frameworks. I want a role where I'm designing and shipping these systems, not just writing docs about them.</p>
-        <p class="about-stem">STEM OPT · Open to FDE, Agentic PM, AI PM, and product builder roles.</p>
+        <p>At Cornell I built that layer — multi-agent RAG, HITL escalation, MCP servers, eval frameworks.</p>
+        <p>Now I'm a Forward Deployed Strategist at AuxoAI in New York. I work on synthetic market research for enterprise clients: validating AI personas against real survey data, scoring the models behind them, and building the agents that run the studies.</p>
+        <p class="about-stem">New York · STEM OPT</p>
       </div>
 
       <span class="about-section-label" id="about-stack">Stack</span>
@@ -249,8 +263,8 @@
         <div class="stack-group">
           <span class="stack-group-label">AI &amp; Engineering</span>
           <div class="stack-pills">
-            ${['Python','LangChain','LangGraph','FastAPI','Anthropic SDK','Apache Sedona','Chroma','Streamlit','Claude Code','React','SQL','QGIS'].map(t=>`<span class="stack-pill stack-pill-teal">${t}</span>`).join('')}
-            ${['TypeScript','Node.js','PostgreSQL','Docker','Next.js'].map(t=>`<span class="stack-pill stack-pill-learning" title="in progress">${t}</span>`).join('')}
+            ${['Python','LangChain','LangGraph','FastAPI','Anthropic SDK','Playwright','Node.js','Apache Sedona','Chroma','Streamlit','Claude Code','React','SQL','QGIS'].map(t=>`<span class="stack-pill stack-pill-teal">${t}</span>`).join('')}
+            ${['TypeScript','PostgreSQL','Docker','Next.js'].map(t=>`<span class="stack-pill stack-pill-learning" title="in progress">${t}</span>`).join('')}
           </div>
         </div>
         <div class="stack-group">
@@ -281,6 +295,10 @@
         <span class="proof-value">3-path routing agent: confident answer, conflict surfaced, programmatic escalation</span>
         <span class="proof-label">Agent behavior spec</span>
         <span class="proof-value">Defined routing logic, confidence thresholds, and HITL override conditions as explicit PRD requirements before engineering build</span>
+        <span class="proof-label">Synthetic research validation</span>
+        <span class="proof-value">Proved 3,031/3,031 AI personas matched their source survey and found a 10.5-point platform weighting skew at AuxoAI</span>
+        <span class="proof-label">LLM benchmarking</span>
+        <span class="proof-value">Scored two LLM engines against a 153-tab human survey: 79% vs 68% directional accuracy</span>
         <span class="proof-label">Operational AI in production</span>
         <span class="proof-value">Scaled imagery pipeline 800× (25K to 20M+ data points) at Aereo</span>
         <span class="proof-label">HITL escalation design</span>
@@ -314,7 +332,7 @@
       </div>
 
       <div class="about-cta">
-        <p class="about-cta-label">Open to FDE · Agentic PM · AI PM roles</p>
+        <p class="about-cta-label">Get in touch</p>
         <div class="about-cta-links">
           <a href="https://calendly.com/nishchay26/new-meeting" target="_blank" rel="noopener" class="cta-btn cta-btn-primary">↗ Book a 30-min call</a>
           <a href="mailto:nishchay26@gmail.com" class="cta-btn cta-btn-secondary">↗ nishchay26@gmail.com</a>

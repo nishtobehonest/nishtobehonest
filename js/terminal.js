@@ -68,7 +68,7 @@
     addLine('<span class="term-divider">──────────────────────────────</span>');
     addBlank();
     await sleep(180);
-    addLine('<span class="term-label">AGENTIC SYSTEM DESIGN  ·  BUILDER  ·  PM  ·  FDE  ·  GEOSPATIAL / OPERATIONAL AI  ·  CORNELL MEM  ·  2026</span>');
+    addLine('<span class="term-label">FORWARD DEPLOYED PM  ·  AGENTIC SYSTEM DESIGN  ·  BUILDER  ·  SYNTHETIC RESEARCH  ·  GEOSPATIAL / OPERATIONAL AI</span>');
     addBlank();
     await sleep(200);
 
@@ -118,6 +118,8 @@
     await sleep(280);
 
     // Experience + stack
+    await typeLine('> now: forward deployed strategist @ AuxoAI  ·  synthetic research  ·  LLM evals', 'term-stat');
+    await sleep(180);
     await typeLine('> 3 yrs operational AI at Aereo  ·  geospatial  ·  mining, construction, infrastructure', 'term-stat');
     await sleep(180);
     await typeLine('> stack: LangChain · LangGraph · FastAPI · Anthropic SDK · Apache Sedona', 'term-stat');
@@ -130,8 +132,6 @@
     await sleep(360);
 
     // CTA
-    await typeLine('> open to: FDE · Agentic PM · AI PM roles', 'term-gate');
-    await sleep(120);
     addLine('<span class="term-cta"><a href="https://calendly.com/nishchay26/new-meeting" target="_blank" rel="noopener" class="term-cta-link">↗ book a call</a>  ·  <a href="mailto:nishchay26@gmail.com" class="term-cta-link">nishchay26@gmail.com</a></span>');
     addBlank();
     await sleep(280);
