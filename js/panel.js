@@ -53,19 +53,19 @@
       year: '2026 → now',
       company: 'AuxoAI',
       role: 'Forward Deployed Strategist',
-      teaser: 'Synthetic market research for enterprise clients: AI personas built from real survey data. I prove they\'re faithful, benchmark the models behind them, and run studies with them.',
+      teaser: 'Building and evaluating AI agents for synthetic market research: LLM personas built from real survey data, agents that test live products, and evals that check both against real people.',
       bullets: [
-        'Proved 3,031 of 3,031 AI personas matched the real respondents they came from, and found a hidden 10.5-point gender skew in the platform',
-        'Benchmarked two AI models against real human survey answers: 79% vs 68% directional accuracy',
-        'Built AI-driven mobile site tests for a U.S. steakhouse chain; a details-first offer page lifted reservation success from 67% to 93%',
-        'Built the agent engine and student kit for a hands-on AI-agent bootcamp at Cornell Tech, and co-led it for ~70 graduate students'
+        'Built a multi-agent browser-testing system: 4 LLM agents act as mobile guests on a live site, and a finding counts only if 3 of 4 agree. For a U.S. steakhouse chain, a details-first offer page lifted reservation success from 67% to 93%',
+        'Built an observe-decide-act agent engine with a tested safety policy for a hands-on AI-agent bootcamp at Cornell Tech; co-led it for ~70 graduate students',
+        'Evaluated two LLM engines against real human survey answers: 79% vs 68% directional accuracy',
+        'Proved 3,031 of 3,031 AI personas matched the real respondents they came from, and found a hidden 10.5-point gender skew in the platform'
       ]
     },
     {
       year: '2026',
       company: 'ServiceNow',
       role: 'Agentic AI Product Consultant (contract, via Cornell DTI)',
-      teaser: 'Enterprise engagement on AI Build Agent deployment strategy for ServiceNow App Engine. Findings presented to the App Engine GM and Director.',
+      teaser: 'Agentic AI readiness strategy for ServiceNow\'s AI Build Agent on App Engine. Findings presented to the App Engine GM and Director.',
       bullets: [
         'Ran 76-step hands-on testing of the Build Agent across no-code, low-code and pro-code personas',
         'Uncovered a critical onboarding access gap that reframed the engagement from scripting complexity to an AI adoption and perception gap',
@@ -79,7 +79,7 @@
       teaser: 'Scaled drone imagery processing 800× and built the trust layer enterprise clients relied on. Supported a $1M deal, a $500K contract and a $15M Series B.',
       bullets: [
         'Grew imagery processing from 25K to 20M+ images, including 7M drone images in 5 months for enterprise deployments',
-        'Built review and validation workflows that made automated outputs trustworthy for enterprise and government clients; ~1.5× adoption and ~30% fewer support tickets (est.)',
+        'Built human-in-the-loop review and validation workflows that made automated outputs trustworthy for enterprise and government clients; ~1.5× adoption and ~30% fewer support tickets (est.)',
         'Built a 300+ feature roadmap from customer needs and a 9-competitor benchmark; supported the $15M Series B raise'
       ]
     },
@@ -228,10 +228,10 @@
 
     bodyEl.innerHTML = `
       <div class="about-bio">
-        <p>PM background, CS foundation, three years in production AI at Aereo — geospatial SaaS serving mining, construction, and infrastructure clients. That's where I learned what operational AI actually means: messy data, high stakes, enterprise buyers who won't act on outputs they can't trust.</p>
+        <p>PM background, CS foundation, three years in production AI at Aereo, a geospatial SaaS company serving mining, construction, and infrastructure clients. That's where I learned what operational AI actually means: messy data, high stakes, enterprise buyers who won't act on outputs they can't trust.</p>
         <p>I'm interested in the agentic system design problem: how do you build agents that route correctly, fail gracefully, and hand off to humans in a way that actually works?</p>
-        <p>At Cornell I built that layer — multi-agent RAG, HITL escalation, MCP servers, eval frameworks.</p>
-        <p>Now I'm a Forward Deployed Strategist at AuxoAI in New York. I work on synthetic market research for enterprise clients: validating AI personas against real survey data, scoring the models behind them, and building the agents that run the studies.</p>
+        <p>At Cornell I built that layer: multi-agent RAG, HITL escalation, MCP servers, eval frameworks.</p>
+        <p>Now I'm a Forward Deployed Strategist at AuxoAI in New York, building and evaluating AI agents for enterprise clients: browser agents that test live products, an agent engine with a safety policy, and evals that check LLM answers against real people.</p>
         <p class="about-stem">New York · STEM OPT</p>
       </div>
 
@@ -268,24 +268,24 @@
 
       <span class="about-section-label">What I bring</span>
       <div class="proof-grid">
+        <span class="proof-label">Agent building</span>
+        <span class="proof-value">Observe-decide-act agent engine with a tested safety policy; held 20/20 concurrent sessions for a live Cornell Tech bootcamp</span>
+        <span class="proof-label">Multi-agent systems</span>
+        <span class="proof-value">4 LLM agents testing a live site with a 3-of-4 consensus rule; lifted reservation success 67% to 93%</span>
+        <span class="proof-label">Agent &amp; LLM evaluation</span>
+        <span class="proof-value">Two LLM engines scored against real human survey data (79% vs 68%); 85 adversarial test cases at under 2% hallucination rate</span>
+        <span class="proof-label">Autonomy frameworks</span>
+        <span class="proof-value">A+/B/C trust-tier model for when enterprise apps can run autonomous agents, presented to ServiceNow's App Engine GM</span>
         <span class="proof-label">Agentic system design</span>
-        <span class="proof-value">3-path routing agent: confident answer, conflict surfaced, programmatic escalation</span>
-        <span class="proof-label">Agent behavior spec</span>
-        <span class="proof-value">Defined routing logic, confidence thresholds, and HITL override conditions as explicit PRD requirements before engineering build</span>
+        <span class="proof-value">3-path routing agent (confident answer, conflict surfaced, escalation), with routing logic and HITL override conditions specified before build</span>
+        <span class="proof-label">HITL escalation design</span>
+        <span class="proof-value">HITL conflict detection on live PHMSA pipeline data: surfaces disagreement between spatial risk score and inspection history with a plain-English explanation and counterfactual</span>
+        <span class="proof-label">Geospatial data products</span>
+        <span class="proof-value">Drone imagery, spatial risk scoring, pipeline inspection data: operational AI on physical-world data at production scale</span>
         <span class="proof-label">Synthetic research validation</span>
         <span class="proof-value">Proved 3,031/3,031 AI personas matched their source survey and found a 10.5-point platform weighting skew at AuxoAI</span>
-        <span class="proof-label">LLM benchmarking</span>
-        <span class="proof-value">Scored two LLM engines against a 153-tab human survey: 79% vs 68% directional accuracy</span>
         <span class="proof-label">Operational AI in production</span>
         <span class="proof-value">Scaled imagery pipeline 800× (25K to 20M+ data points) at Aereo</span>
-        <span class="proof-label">HITL escalation design</span>
-        <span class="proof-value">HITL conflict-detection on live PHMSA pipeline data — surfaces disagreement between spatial risk score and inspection history with plain-English explanation and counterfactual</span>
-        <span class="proof-label">Full-stack deployment</span>
-        <span class="proof-value">RAG pipeline to human review interface to cloud — end-to-end, not just localhost</span>
-        <span class="proof-label">LLM eval frameworks</span>
-        <span class="proof-value">85 adversarial test cases, under 2% hallucination rate, confidence scoring and graceful degradation</span>
-        <span class="proof-label">Geospatial data products</span>
-        <span class="proof-value">Drone imagery, spatial risk scoring, pipeline inspection data — operational AI on physical-world data at production scale</span>
         <span class="proof-label">Enterprise trust layer</span>
         <span class="proof-value">Audit and review workflows that supported a $1M deal and $500K contract</span>
       </div>
