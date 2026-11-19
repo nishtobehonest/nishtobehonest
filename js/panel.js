@@ -90,7 +90,7 @@
       year: '2020 → 2022',
       company: 'PokerClothingStore.com',
       type: 'D2C e-commerce brand',
-      role: 'Founder',
+      role: 'Founder & Product Lead',
       teaser: 'Built an e-commerce brand from zero to 400+ sales in 18 months with a 5-person team.',
       bullets: [
         'Owned growth, funnel tracking and execution end to end',
