@@ -456,6 +456,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .work-trigger.open  { color: var(--text); }
 .work-year    { color: var(--muted); min-width: 86px; flex-shrink: 0; font-size: 0.75rem; }
 .work-company { flex: 1; font-weight: 600; padding: 0 10px; color: var(--text); }
+.work-company-type { display: block; margin-top: 3px; font-weight: 400; font-size: 0.7rem; color: var(--muted); }
 .work-role    { color: var(--text); font-size: 0.75rem; margin-right: 10px; }
 .work-chevron { color: var(--muted); font-size: 0.75rem; transition: transform .25s; flex-shrink: 0; }
 .work-trigger.open .work-chevron { transform: rotate(90deg); }

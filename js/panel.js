@@ -52,6 +52,7 @@
     {
       year: '2026 → now',
       company: 'AuxoAI',
+      type: 'Forward-deployed AI company for enterprises',
       role: 'Forward Deployed Strategist',
       teaser: 'Building and evaluating AI agents for synthetic market research: LLM personas built from real survey data, agents that test live products, and evals that check both against real people.',
       bullets: [
@@ -64,6 +65,7 @@
     {
       year: '2026',
       company: 'ServiceNow',
+      type: 'Enterprise workflow and AI platform',
       role: 'Agentic AI Product Consultant (contract, via Cornell DTI)',
       teaser: 'Agentic AI readiness strategy for ServiceNow\'s AI Build Agent on App Engine. Findings presented to the App Engine GM and Director.',
       bullets: [
@@ -75,6 +77,7 @@
     {
       year: '2022 → 2025',
       company: 'Aereo',
+      type: 'Drone tech and geospatial SaaS, India',
       role: 'Product Manager (promoted from APM)',
       teaser: 'Scaled drone imagery processing 800× and built the trust layer enterprise clients relied on. Supported a $1M deal, a $500K contract and a $15M Series B.',
       bullets: [
@@ -86,6 +89,7 @@
     {
       year: '2020 → 2022',
       company: 'PokerClothingStore.com',
+      type: 'D2C e-commerce brand',
       role: 'Founder',
       teaser: 'Built an e-commerce brand from zero to 400+ sales in 18 months with a 5-person team.',
       bullets: [
@@ -102,7 +106,7 @@
           <div class="work-item">
             <button class="work-trigger" data-idx="${i}">
               <span class="work-year">${item.year}</span>
-              <span class="work-company">${item.company}</span>
+              <span class="work-company">${item.company}${item.type ? `<span class="work-company-type">${item.type}</span>` : ''}</span>
               <span class="work-role">${item.role}</span>
               <span class="work-chevron">›</span>
             </button>
