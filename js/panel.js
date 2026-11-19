@@ -50,61 +50,47 @@
 
   const WORK = [
     {
-      year: 'Sept 2026 → now',
+      year: '2026 → now',
       company: 'AuxoAI',
       role: 'Forward Deployed Strategist',
-      teaser: 'Forward deployed on synthetic market research: AI-simulated customer personas built from real survey data. I prove the personas are faithful, score the models behind them, and run studies with them for enterprise clients.',
+      teaser: 'Synthetic market research for enterprise clients: AI personas built from real survey data. I prove they\'re faithful, benchmark the models behind them, and run studies with them.',
       bullets: [
-        'Led day-to-day delivery for an Australian/UK wine company. Built a Python reconciliation pipeline proving 3,031/3,031 synthetic personas matched real respondents on every attribute and all 1,456 answers, and surfaced a 10.5-point gender skew in how the platform draws personas',
-        'Reverse-engineered an undocumented survey weight (gender × age × location, 12.6M-adult base) to ~1e-14 fit error; the research agency confirmed it',
-        'Designed a pre-registered calibration study scoring two LLM engines against a 153-tab human survey (n=2,500, 51,500 rows per run): 79% vs 68% directional accuracy, plus screener and template defects the scores exposed',
-        'Built a Node/Playwright harness that simulates mobile guests on a live site, driven by 4 LLMs, with a finding counted only if 3 of 4 models agree. Ran 154 synthetic-guest sessions for a U.S. steakhouse chain; a 74-session A/B test showed a details-first offer page lifting reservation success from 67% to 93%',
-        'Built the agent engine, safety policy and 70-file student kit for a hands-on AI-agent bootcamp at Cornell Tech (106 passing tests, 20/20 concurrent-session load test); co-facilitated for ~70 graduate students'
+        'Proved 3,031 of 3,031 AI personas matched the real respondents they came from, and found a hidden 10.5-point gender skew in the platform',
+        'Benchmarked two AI models against real human survey answers: 79% vs 68% directional accuracy',
+        'Built AI-driven mobile site tests for a U.S. steakhouse chain; a details-first offer page lifted reservation success from 67% to 93%',
+        'Built the agent engine and student kit for a hands-on AI-agent bootcamp at Cornell Tech, and co-led it for ~70 graduate students'
       ]
     },
     {
-      year: '2025 → 2026',
-      company: 'Cornell University',
-      role: 'MEng Management',
-      teaser: 'AI systems engineering + product strategy. Built agentic systems, eval frameworks, and HITL workflows.',
-      bullets: [
-        'Product strategy and AI systems engineering focus',
-        'AI for Engineering Management coursework'
-      ]
-    },
-    {
-      year: 'Jan → May 2026',
+      year: '2026',
       company: 'ServiceNow',
-      role: 'Enterprise AI Product Consultant',
-      teaser: 'Live enterprise engagement with ServiceNow product leadership. Benchmarked Build Agent across builder personas. Delivered strategic recommendations on AI workflow adoption.',
+      role: 'Enterprise AI Product Consultant (via Cornell DTI)',
+      teaser: 'Live engagement with ServiceNow product leadership on why enterprise teams stall when adopting AI workflows.',
       bullets: [
-        'Cornell DTI engagement — root-cause analysis of enterprise AI adoption drop-off',
-        'Tested LLM Build Agent across no-code, low-code, and pro-code developer personas',
-        'Presented agentic AI readiness portfolio to App Engine GM'
+        'Root-caused where enterprise AI adoption drops off',
+        'Tested the LLM Build Agent across no-code, low-code and pro-code builders',
+        'Presented an agentic AI readiness portfolio to the App Engine GM'
       ]
     },
     {
       year: '2022 → 2025',
       company: 'Aereo',
-      role: 'Product Manager',
-      teaser: 'Scaled imagery pipeline 800×. Built the trust layer that closed a $1.5M government contract. Supported $15M Series B.',
+      role: 'Product Manager (promoted from APM)',
+      teaser: 'Scaled drone imagery processing 800× and built the trust layer enterprise clients relied on. Supported a $1M deal, a $500K contract and a $15M Series B.',
       bullets: [
-        'Owned geospatial data products and AI-driven analytics workflows for enterprise clients in mining, construction, and infrastructure — built the reliability layer between automated outputs and operational decision-making; directly supported a $1.5M deal and $500K contract',
-        'Scaled geospatial imagery processing pipelines from 25K to 20M+ (800×) data points in production — defined system requirements, aligned computer-vision segmentation outputs with enterprise SLAs, launched scalable spatial analytics workflows including 7M drone images in 5 months',
-        'Led cross-system integration of data ingestion and analytics platforms — defined 60+ technical requirements, metadata alignment standards, and HITL validation workflows that made automated spatial outputs trustworthy for enterprise and government use; improved enterprise adoption 1.5×, reduced support tickets 30%',
-        'Introduced structured intake and prioritization framework governing cross-team dependencies, PRDs, and QA validation; improved delivery efficiency by 50%',
-        'Built 300-feature roadmap synthesizing enterprise requirements and competitive benchmarks across 80+ parameters; supported $15M Series B raise'
+        'Grew imagery processing from 25K to 20M+ images, including 7M drone images in 5 months for enterprise deployments',
+        'Built review and validation workflows that made automated outputs trustworthy for enterprise and government clients; ~1.5× adoption and ~30% fewer support tickets (est.)',
+        'Built a 300+ feature roadmap from customer needs and a 9-competitor benchmark; supported the $15M Series B raise'
       ]
     },
     {
       year: '2020 → 2022',
       company: 'PokerClothingStore.com',
       role: 'Founder',
-      teaser: 'Built and launched an e-commerce product from scratch, growing to 400+ sales in 18 months while leading a 5-person cross-functional team, owning growth, funnel tracking, and execution end to end.',
+      teaser: 'Built an e-commerce brand from zero to 400+ sales in 18 months with a 5-person team.',
       bullets: [
-        'Built and launched an e-commerce product from scratch, growing to 400+ sales in 18 months while leading a 5-person cross-functional team, owning growth, funnel tracking, and execution end to end',
-        'Ran 40+ A/B tests across targeting and creatives; analyzed performance to reallocate spend, reducing costs ~20% and improving efficiency (CTR +30% est., ROAS ~2x)',
-        'Streamlined operating workflows with lightweight automation and cadence, improving execution speed by 50% and freeing 25 hours/week for analysis and iterative improvements'
+        'Owned growth, funnel tracking and execution end to end',
+        'Ran 40+ A/B tests on targeting and creatives: ~20% lower costs, ~2x ROAS'
       ]
     }
   ];
@@ -144,15 +130,6 @@
         }
       });
     });
-
-    /* Auto-expand current role — newest proof, shouldn't be hidden */
-    const aereoIdx = WORK.findIndex(w => w.company === 'AuxoAI');
-    const triggers = bodyEl.querySelectorAll('.work-trigger');
-    const details  = bodyEl.querySelectorAll('.work-detail');
-    if (aereoIdx >= 0 && triggers[aereoIdx]) {
-      triggers[aereoIdx].classList.add('open');
-      details[aereoIdx].classList.add('open');
-    }
   }
 
   /* ═══════════════════════════════════════════════════
@@ -310,7 +287,7 @@
         <span class="proof-label">Geospatial data products</span>
         <span class="proof-value">Drone imagery, spatial risk scoring, pipeline inspection data — operational AI on physical-world data at production scale</span>
         <span class="proof-label">Enterprise trust layer</span>
-        <span class="proof-value">Audit and review workflows that closed a $1.5M government contract</span>
+        <span class="proof-value">Audit and review workflows that supported a $1M deal and $500K contract</span>
       </div>
 
       <span class="about-section-label">Education</span>
