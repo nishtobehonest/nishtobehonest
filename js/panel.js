@@ -64,12 +64,12 @@
     {
       year: '2026',
       company: 'ServiceNow',
-      role: 'Enterprise AI Product Consultant (via Cornell DTI)',
-      teaser: 'Live engagement with ServiceNow product leadership on why enterprise teams stall when adopting AI workflows.',
+      role: 'Agentic AI Product Consultant (contract, via Cornell DTI)',
+      teaser: 'Enterprise engagement on AI Build Agent deployment strategy for ServiceNow App Engine. Findings presented to the App Engine GM and Director.',
       bullets: [
-        'Root-caused where enterprise AI adoption drops off',
-        'Tested the LLM Build Agent across no-code, low-code and pro-code builders',
-        'Presented an agentic AI readiness portfolio to the App Engine GM'
+        'Ran 76-step hands-on testing of the Build Agent across no-code, low-code and pro-code personas',
+        'Uncovered a critical onboarding access gap that reframed the engagement from scripting complexity to an AI adoption and perception gap',
+        'Built a 6-parameter scoring framework that narrowed 8 strategic bets to 5, and delivered an agentic AI readiness portfolio with an A+/B/C trust tier model for when enterprise apps can graduate to autonomous agents'
       ]
     },
     {
